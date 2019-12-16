@@ -1,0 +1,10 @@
+.Menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 24px;
+}
+
+#menuIcon {
+  color: #223132;
+}
