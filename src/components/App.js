@@ -1,25 +1,24 @@
 import React from "react"
-
-import Menu from "./Menu"
 import "./App.css"
+import { ReactComponent as DownArrow } from "../assets/down-arrow.svg"
 
 function App() {
   return (
     <div className="App">
-      <Menu />
-      <video
-        className="VideoBackground"
-        src={`${process.env.PUBLIC_URL}/beach.mp4`}
-        autoplay="true"
-        loop="true"
-        muted="true"
-        type="video/mp4"
-      />
-      <img
-        className="SkillCloud"
-        src={`${process.env.PUBLIC_URL}/skills.png`}
-        alt="skills"
-      />
+      <div className="page page-one">
+        <div>
+          <div className="avatar" />
+          <div className="intro">
+            <p>Hello,</p>
+            <p>
+              I'm <span>Tan Loc</span>,
+            </p>
+            <p>a software engineer.</p>
+          </div>
+        </div>
+        <DownArrow className="down-arrow" />
+      </div>
+      <div className="page"></div>
     </div>
   )
 }
