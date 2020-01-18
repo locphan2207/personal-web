@@ -1,8 +1,14 @@
-import React from "react"
+import React, { useState } from "react"
 import "./App.css"
 import { ReactComponent as DownArrow } from "../assets/down-arrow.svg"
 
 function App() {
+  const [pageTwoVisible, setPageTwoVisible] = useState(false)
+
+  const onArrowClick = () => {
+    setPageTwoVisible(!pageTwoVisible)
+  }
+
   return (
     <div className="App">
       <div className="page page-one">
@@ -16,9 +22,14 @@ function App() {
             <p>a software engineer.</p>
           </div>
         </div>
-        <DownArrow className="down-arrow" />
+        <DownArrow className="down-arrow" onClick={onArrowClick} />
       </div>
-      <div className="page"></div>
+
+      {pageTwoVisible && (
+        <div className="page page-two">
+          <div className="menu"></div>
+        </div>
+      )}
     </div>
   )
 }

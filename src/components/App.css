@@ -10,8 +10,9 @@
   align-items: center;
 }
 
+/* Page One */
 .page-one {
-  background-color: #c4ccca;
+  background-color: #d7dadc;
   display: flex;
   flex-direction: column;
 }
@@ -48,7 +49,7 @@
 
 .intro p:first-child {
   font-size: 25px;
-  font-style: italic;
+  font-weight: 200;
 }
 
 .intro p:nth-child(2) {
@@ -68,4 +69,45 @@
   font-size: 60px;
   margin-left: 10px;
   line-height: 70px;
+}
+
+/* Page Two */
+.page-two {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: #3e3d3d;
+  flex: 1;
+  animation: 0.5s ease-in-out slide-up;
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background-color: blue;
+  animation: 1s ease-in-out slide-left;
+}
+
+@keyframes slide-up {
+  from {
+    top: 100%;
+  }
+
+  to {
+    top: 0;
+  }
+}
+
+@keyframes slide-left {
+  from {
+    right: -100%;
+  }
+  to {
+    right: 0;
+  }
 }
