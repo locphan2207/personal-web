@@ -12,7 +12,7 @@ function App() {
   const onClose = () => {
     const panes = document.getElementsByClassName("pane")
     panes[panes.length - 1].addEventListener(
-      "animationend",
+      "transitionend",
       () => setPageTwoVisible(false),
       false
     )
@@ -21,6 +21,16 @@ function App() {
       pane.setAttribute("class", currClassName + " pane-hidden")
     }
   }
+
+  useEffect(() => {
+    if (pageTwoVisible) {
+      const panes = document.getElementsByClassName("pane")
+      for (const pane of panes) {
+        const currClassName = pane.getAttribute("class")
+        pane.setAttribute("class", currClassName.replace("pane-hidden", ""))
+      }
+    }
+  })
 
   return (
     <div className="App">
@@ -39,10 +49,10 @@ function App() {
       </div>
 
       {pageTwoVisible && (
-        <div className="page page-two">
-          <div className={"pane left-pane"}></div>
-          <div className={"pane mid-pane"}></div>
-          <div className={"pane right-pane"}>
+        <div className={"page page-two"}>
+          <div className={"pane left-pane pane-hidden"}></div>
+          <div className={"pane mid-pane pane-hidden"}></div>
+          <div className={"pane right-pane pane-hidden"}>
             <div onClick={onClose}>
               <p className={"close"}>X</p>
             </div>

@@ -83,52 +83,28 @@
 
 .pane {
   height: 100%;
-  animation-timing-function: ease-in-out;
-  animation-name: slide-up;
-  animation-direction: normal;
 }
 
 .pane-hidden {
-  animation-name: slide-down;
   transform: translateY(100%);
 }
 
 .left-pane {
   width: 50%;
   background-color: #3e3d3d;
-  animation-duration: 0.5s;
+  transition: all 0.5s;
 }
 
 .mid-pane {
   width: 10%;
   background-color: #df9449;
-  animation-duration: 0.75s;
+  transition: all 0.75s;
 }
 
 .right-pane {
   width: 40%;
   background-color: #7e9792;
-  animation-duration: 1s;
-}
-
-@keyframes slide-up {
-  from {
-    transform: translateY(100%);
-  }
-
-  to {
-    transform: translateY(0);
-  }
-}
-
-@keyframes slide-down {
-  from {
-    transform: translateY(0);
-  }
-
-  to {
-    transform: translateY(100%);
-  }
+  transition: all 1s;
 }
 
 .close {
