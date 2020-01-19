@@ -1,12 +1,25 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import "./App.css"
 import { ReactComponent as DownArrow } from "../assets/down-arrow.svg"
 
 function App() {
   const [pageTwoVisible, setPageTwoVisible] = useState(false)
 
-  const onArrowClick = () => {
-    setPageTwoVisible(!pageTwoVisible)
+  const onOpen = () => {
+    setPageTwoVisible(true)
+  }
+
+  const onClose = () => {
+    const panes = document.getElementsByClassName("pane")
+    panes[panes.length - 1].addEventListener(
+      "animationend",
+      () => setPageTwoVisible(false),
+      false
+    )
+    for (const pane of panes) {
+      const currClassName = pane.getAttribute("class")
+      pane.setAttribute("class", currClassName + " pane-hidden")
+    }
   }
 
   return (
@@ -22,12 +35,18 @@ function App() {
             <p>a software engineer.</p>
           </div>
         </div>
-        <DownArrow className="down-arrow" onClick={onArrowClick} />
+        <DownArrow className="down-arrow" onClick={onOpen} />
       </div>
 
       {pageTwoVisible && (
         <div className="page page-two">
-          <div className="menu"></div>
+          <div className={"pane left-pane"}></div>
+          <div className={"pane mid-pane"}></div>
+          <div className={"pane right-pane"}>
+            <div onClick={onClose}>
+              <p className={"close"}>X</p>
+            </div>
+          </div>
         </div>
       )}
     </div>
