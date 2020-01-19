@@ -11,15 +11,11 @@ function App() {
 
   const onClose = () => {
     const panes = document.getElementsByClassName("pane")
-    panes[panes.length - 1].addEventListener(
-      "transitionend",
-      () => setPageTwoVisible(false),
-      false
-    )
     for (const pane of panes) {
       const currClassName = pane.getAttribute("class")
       pane.setAttribute("class", currClassName + " pane-hidden")
     }
+    setTimeout(() => setPageTwoVisible(false), 1000)
   }
 
   useEffect(() => {
@@ -30,7 +26,7 @@ function App() {
         pane.setAttribute("class", currClassName.replace("pane-hidden", ""))
       }
     }
-  })
+  }, [pageTwoVisible])
 
   return (
     <div className="App">
