@@ -48,27 +48,27 @@
 }
 
 .intro p:first-child {
-  font-size: 25px;
+  font-size: 2.5rem;
   font-weight: 200;
 }
 
 .intro p:nth-child(2) {
-  font-size: 40px;
+  font-size: 4rem;
   margin-left: 40px;
-  line-height: 40px;
+  line-height: 4rem;
 }
 
 .intro p:nth-child(2) span {
   font-family: "Fredericka the Great";
-  font-size: 70px;
+  font-size: 7rem;
   color: #b55414;
 }
 
 .intro p:last-child {
   font-family: "Montserrat";
-  font-size: 60px;
+  font-size: 6rem;
   margin-left: 10px;
-  line-height: 70px;
+  line-height: 7rem;
 }
 
 /* Page Two */
@@ -83,6 +83,8 @@
 
 .pane {
   height: 100%;
+  transition-property: all;
+  transition-timing-function: ease;
 }
 
 .pane-hidden {
@@ -91,27 +93,72 @@
 
 .left-pane {
   width: 50%;
-  background-color: #3e3d3d;
-  transition: all 0.5s;
+  background-color: #65ac86;
+  transition-duration: 0.5s;
 }
 
 .mid-pane {
   width: 10%;
-  background-color: #df9449;
-  transition: all 0.75s;
+  background-color: #303030;
+  transition-duration: 0.75s;
 }
 
 .right-pane {
   width: 40%;
-  background-color: #7e9792;
-  transition: all 1s;
+  background-color: #3e3d3d;
+  transition-duration: 1s;
+  box-shadow: 0px 7px 15px 0px #1f1f1f;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .close {
-  font-size: 100px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
   cursor: pointer;
+  color: #65ac86;
 }
 .close:hover {
-  color: yellow;
+  color: #df9449;
   transition: all 0.25s;
+}
+
+.projects-title {
+  color: #ffffffe5;
+  font-size: 2.5rem;
+  font-family: "Montserrat";
+  font-weight: 400;
+  letter-spacing: 0.35rem;
+  margin: 10vh 5vw;
+  align-self: flex-end;
+}
+
+.project-container {
+  height: 6rem;
+  width: 110%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.project-container:hover {
+  background-color: #aeafaf41;
+}
+
+.project-container:hover > .project {
+  color: #65ac86;
+}
+
+.project {
+  color: #ffffffe5;
+  font-size: 2rem;
+  font-family: "Raleway";
+  font-weight: 400;
+  letter-spacing: 0.25rem;
+  margin-left: 20%;
+  transition: 0.4 all ease-out;
 }

@@ -53,8 +53,21 @@ function App() {
           <div className={"pane left-pane pane-hidden"}></div>
           <div className={"pane mid-pane pane-hidden"}></div>
           <div className={"pane right-pane pane-hidden"}>
-            <div onClick={onClose}>
-              <p className={"close"}>X</p>
+            <p onClick={onClose} className={"close"}>
+              X
+            </p>
+            <p className={"projects-title"}>PROJECTS</p>
+            <div className={"project-container"}>
+              <p className={"project"}>Food Stories</p>
+            </div>
+            <div className={"project-container"}>
+              <p className={"project"}>Food Stories</p>
+            </div>
+            <div className={"project-container"}>
+              <p className={"project"}>Food Stories</p>
+            </div>
+            <div className={"project-container"}>
+              <p className={"project"}>Food Stories</p>
             </div>
           </div>
         </div>
