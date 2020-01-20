@@ -4,9 +4,14 @@ import { ReactComponent as DownArrow } from "../assets/down-arrow.svg"
 
 function App() {
   const [pageTwoVisible, setPageTwoVisible] = useState(false)
+  const [hoverProjectIdx, setHoverProjectIdx] = useState(0)
 
   const onOpen = () => {
     setPageTwoVisible(true)
+  }
+
+  const onProjectHover = index => {
+    setHoverProjectIdx(index)
   }
 
   const onClose = () => {
@@ -46,30 +51,65 @@ function App() {
 
       {pageTwoVisible && (
         <div className={"page page-two"}>
-          <div className={"pane left-pane pane-hidden"}></div>
+          <div
+            className={"pane left-pane pane-hidden"}
+            style={
+              hoverProjectIdx >= 0
+                ? {
+                    backgroundColor: PROJECTS[hoverProjectIdx].color,
+                  }
+                : null
+            }
+          ></div>
           <div className={"pane mid-pane pane-hidden"}></div>
           <div className={"pane right-pane pane-hidden"}>
             <p onClick={onClose} className={"close"}>
               X
             </p>
             <p className={"projects-title"}>PROJECTS</p>
-            <div className={"project-container"}>
-              <p className={"project"}>Food Stories</p>
-            </div>
-            <div className={"project-container"}>
-              <p className={"project"}>Food Stories</p>
-            </div>
-            <div className={"project-container"}>
-              <p className={"project"}>Food Stories</p>
-            </div>
-            <div className={"project-container"}>
-              <p className={"project"}>Food Stories</p>
-            </div>
+            {PROJECTS.map((project, idx) => (
+              <div
+                key={project.name}
+                className={"project-container"}
+                onMouseOver={() => onProjectHover(idx)}
+                style={
+                  idx === hoverProjectIdx
+                    ? { backgroundColor: "#aeafaf41" }
+                    : null
+                }
+              >
+                <div
+                  className={"dash"}
+                  style={
+                    idx === hoverProjectIdx
+                      ? { backgroundColor: PROJECTS[idx].color }
+                      : null
+                  }
+                ></div>
+                <p
+                  className={"project"}
+                  style={
+                    idx === hoverProjectIdx
+                      ? { color: PROJECTS[idx].color }
+                      : null
+                  }
+                >
+                  {project.name}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       )}
     </div>
   )
 }
+
+const PROJECTS = [
+  { name: "SBK", color: "green", link: "getsbk.com" },
+  { name: "Food Stories", color: "yellow", link: "food-stories.com" },
+  { name: "Data Block", color: "cyan", link: "food-stories.com" },
+  { name: "Emotion Diary", color: "#65ac86", link: "food-stories.com" },
+]
 
 export default App

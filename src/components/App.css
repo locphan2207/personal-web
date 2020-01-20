@@ -145,12 +145,17 @@
   align-items: center;
   justify-content: flex-start;
 }
-.project-container:hover {
-  background-color: #aeafaf41;
+
+.project-container:hover .dash {
+  width: 3%;
 }
 
-.project-container:hover > .project {
-  color: #65ac86;
+.dash {
+  width: 0;
+  height: 2px;
+  transition: 0.4s width ease-out;
+  background-color: #aeafaf41;
+  margin-left: 20%;
 }
 
 .project {
@@ -159,6 +164,6 @@
   font-family: "Raleway";
   font-weight: 400;
   letter-spacing: 0.25rem;
-  margin-left: 20%;
+  margin-left: 3%;
   transition: 0.4s all ease-out;
 }
