@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/tanloc-phan/static/css/main.07da3a47.chunk.css",
+    "main.js": "/tanloc-phan/static/js/main.9781502c.chunk.js",
+    "main.js.map": "/tanloc-phan/static/js/main.9781502c.chunk.js.map",
+    "runtime-main.js": "/tanloc-phan/static/js/runtime-main.f72c54e7.js",
+    "runtime-main.js.map": "/tanloc-phan/static/js/runtime-main.f72c54e7.js.map",
+    "static/js/2.5d7ab468.chunk.js": "/tanloc-phan/static/js/2.5d7ab468.chunk.js",
+    "static/js/2.5d7ab468.chunk.js.map": "/tanloc-phan/static/js/2.5d7ab468.chunk.js.map",
+    "index.html": "/tanloc-phan/index.html",
+    "precache-manifest.0d439ca4d4c6b24133cbba263673f8c3.js": "/tanloc-phan/precache-manifest.0d439ca4d4c6b24133cbba263673f8c3.js",
+    "service-worker.js": "/tanloc-phan/service-worker.js",
+    "static/css/main.07da3a47.chunk.css.map": "/tanloc-phan/static/css/main.07da3a47.chunk.css.map",
+    "static/js/2.5d7ab468.chunk.js.LICENSE": "/tanloc-phan/static/js/2.5d7ab468.chunk.js.LICENSE",
+    "static/media/App.css": "/tanloc-phan/static/media/avatar.f49d9073.jpg",
+    "static/media/down-arrow.b62e4fef.svg": "/tanloc-phan/static/media/down-arrow.b62e4fef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f72c54e7.js",
+    "static/js/2.5d7ab468.chunk.js",
+    "static/css/main.07da3a47.chunk.css",
+    "static/js/main.9781502c.chunk.js"
+  ]
+}
