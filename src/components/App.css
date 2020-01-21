@@ -165,5 +165,11 @@
   font-weight: 400;
   letter-spacing: 0.25rem;
   margin-left: 3%;
+  opacity: 1;
   transition: 0.4s all ease-out;
+}
+
+.project-hidden {
+  transform: translateY(100%);
+  opacity: 0;
 }

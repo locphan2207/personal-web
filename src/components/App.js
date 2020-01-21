@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react"
 import "./App.css"
 import { ReactComponent as DownArrow } from "../assets/down-arrow.svg"
 
+// TODO:
+// - CREATE A HELPER TO GENERATE KEYFRAMES BASED ON SPRING CONFIG
+
 function App() {
   const [pageTwoVisible, setPageTwoVisible] = useState(false)
   const [hoverProjectIdx, setHoverProjectIdx] = useState(0)
@@ -25,11 +28,29 @@ function App() {
 
   useEffect(() => {
     if (pageTwoVisible) {
+      // Animate panes
       const panes = document.getElementsByClassName("pane")
       for (const pane of panes) {
         const currClassName = pane.getAttribute("class")
         pane.setAttribute("class", currClassName.replace("pane-hidden", ""))
       }
+
+      // Animate project titles
+      // Starts 0.5s after pane animation
+      // Start from the bottom up
+      const projects = document.getElementsByClassName("project")
+      setTimeout(() => {
+        for (let i = projects.length - 1; i >= 0; i--) {
+          const project = projects[i]
+          setTimeout(() => {
+            const currClassName = project.getAttribute("class")
+            project.setAttribute(
+              "class",
+              currClassName.replace("project-hidden", "")
+            )
+          }, 100 * (projects.length - i))
+        }
+      }, 500)
     }
   }, [pageTwoVisible])
 
@@ -87,7 +108,7 @@ function App() {
                   }
                 ></div>
                 <p
-                  className={"project"}
+                  className={"project project-hidden"}
                   style={
                     idx === hoverProjectIdx
                       ? { color: PROJECTS[idx].color }
