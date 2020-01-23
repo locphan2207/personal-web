@@ -132,11 +132,12 @@
   letter-spacing: 0.35rem;
   margin: 10vh 5vw;
   align-self: flex-end;
+  transition: 0.4s all ease-out;
 }
 
 .project-container {
   height: 6rem;
-  width: 110%;
+  width: 105%;
   display: flex;
   align-items: center;
   justify-content: flex-start;

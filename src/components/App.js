@@ -44,6 +44,14 @@ function App() {
         pane.setAttribute("class", currClassName.replace("pane-hidden", ""))
       }
 
+      const title = document.getElementsByClassName("projects-title")[0]
+      setTimeout(() => {
+        title.setAttribute(
+          "class",
+          title.getAttribute("class").replace("project-hidden", "")
+        )
+      }, 700)
+
       // Animate project titles
       // Starts 0.5s after pane animation
       // Start from the bottom up
@@ -108,7 +116,7 @@ function App() {
             >
               X
             </p>
-            <p className={"projects-title"}>PROJECTS</p>
+            <p className={"projects-title project-hidden"}>PROJECTS</p>
             {PROJECTS.map((project, idx) => (
               <div
                 key={project.name}
