@@ -56,18 +56,16 @@ function App() {
       // Starts 0.5s after pane animation
       // Start from the bottom up
       const projects = document.getElementsByClassName("project")
-      setTimeout(() => {
-        for (let i = projects.length - 1; i >= 0; i--) {
-          const project = projects[i]
-          setTimeout(() => {
-            const currClassName = project.getAttribute("class")
-            project.setAttribute(
-              "class",
-              currClassName.replace("project-hidden", "")
-            )
-          }, (500 / projects.length) * (projects.length - i))
-        }
-      }, 300)
+      for (let i = projects.length - 1; i >= 0; i--) {
+        const project = projects[i]
+        setTimeout(() => {
+          const currClassName = project.getAttribute("class")
+          project.setAttribute(
+            "class",
+            currClassName.replace("project-hidden", "")
+          )
+        }, 300 + (500 / projects.length) * (projects.length - i))
+      }
     }
   }, [pageTwoVisible])
 
