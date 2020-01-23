@@ -121,10 +121,6 @@
   right: 10px;
   font-size: 30px;
   cursor: pointer;
-  color: #65ac86;
-}
-.close:hover {
-  color: #df9449;
   transition: all 0.25s;
 }
 

@@ -8,6 +8,7 @@ import { ReactComponent as DownArrow } from "../assets/down-arrow.svg"
 function App() {
   const [pageTwoVisible, setPageTwoVisible] = useState(false)
   const [hoverProjectIdx, setHoverProjectIdx] = useState(0)
+  const [isCloseHover, setCloseHover] = useState(false)
 
   const onOpen = () => {
     setPageTwoVisible(true)
@@ -15,6 +16,14 @@ function App() {
 
   const onProjectHover = index => {
     setHoverProjectIdx(index)
+  }
+
+  const onCloseHover = () => {
+    setCloseHover(true)
+  }
+
+  const onCloseExit = () => {
+    setCloseHover(false)
   }
 
   const onClose = () => {
@@ -84,7 +93,19 @@ function App() {
           ></div>
           <div className={"pane mid-pane pane-hidden"}></div>
           <div className={"pane right-pane pane-hidden"}>
-            <p onClick={onClose} className={"close"}>
+            <p
+              onClick={onClose}
+              className={"close"}
+              onMouseOver={onCloseHover}
+              onMouseLeave={onCloseExit}
+              style={
+                isCloseHover
+                  ? { color: "#ffffffe5" }
+                  : hoverProjectIdx >= 0
+                  ? { color: PROJECTS[hoverProjectIdx].color }
+                  : null
+              }
+            >
               X
             </p>
             <p className={"projects-title"}>PROJECTS</p>
