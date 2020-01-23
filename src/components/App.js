@@ -50,7 +50,7 @@ function App() {
           "class",
           title.getAttribute("class").replace("project-hidden", "")
         )
-      }, 700)
+      }, 1000)
 
       // Animate project titles
       // Starts 0.5s after pane animation
@@ -65,9 +65,9 @@ function App() {
               "class",
               currClassName.replace("project-hidden", "")
             )
-          }, 100 * (projects.length - i))
+          }, (500 / projects.length) * (projects.length - i))
         }
-      }, 500)
+      }, 300)
     }
   }, [pageTwoVisible])
 
