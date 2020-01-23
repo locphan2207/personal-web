@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react"
 import "./PageTwo.css"
 
+const PANE_OPEN_DURATION = 1000
+const TITLE_SHOW_DELAY = PANE_OPEN_DURATION / 3
+const TITLE_SHOW_DURATION = PANE_OPEN_DURATION / 2
+
 function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
   const [isCloseHover, setCloseHover] = useState(false)
 
@@ -17,12 +21,32 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
   }
 
   const onClose = () => {
-    const panes = document.getElementsByClassName("pane")
-    for (const pane of panes) {
-      const currClassName = pane.getAttribute("class")
-      pane.setAttribute("class", currClassName + " pane-hidden")
+    const title = document.getElementsByClassName("projects-title")[0]
+    title.setAttribute("class", title.getAttribute("class") + " project-hidden")
+
+    // Animate project titles
+    // Start from the top down
+    const projects = document.getElementsByClassName("project")
+    for (let i = 0; i < PROJECTS.length; i++) {
+      const project = projects[i]
+      setTimeout(() => {
+        const currClassName = project.getAttribute("class")
+        project.setAttribute("class", currClassName + " project-hidden")
+      }, TITLE_SHOW_DELAY + (TITLE_SHOW_DURATION / projects.length) * i)
     }
-    setTimeout(() => setPageTwoVisible(false), 1000)
+
+    const panes = document.getElementsByClassName("pane")
+    setTimeout(() => {
+      for (const pane of panes) {
+        const currClassName = pane.getAttribute("class")
+        pane.setAttribute("class", currClassName + " pane-hidden")
+      }
+    }, TITLE_SHOW_DURATION)
+
+    setTimeout(
+      () => setPageTwoVisible(false),
+      TITLE_SHOW_DURATION + PANE_OPEN_DURATION
+    )
   }
 
   useEffect(() => {
@@ -39,7 +63,7 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
         "class",
         title.getAttribute("class").replace("project-hidden", "")
       )
-    }, 1000)
+    }, PANE_OPEN_DURATION)
 
     // Animate project titles
     // Starts 0.5s after pane animation
@@ -53,7 +77,7 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
           "class",
           currClassName.replace("project-hidden", "")
         )
-      }, 300 + (500 / projects.length) * (projects.length - i))
+      }, TITLE_SHOW_DELAY + (TITLE_SHOW_DURATION / projects.length) * (projects.length - i))
     }
   }, [])
 
@@ -69,7 +93,11 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
                 }
               : null
           }
-        ></div>
+        >
+          <p>{`${hoverProjectIdx + 1 < 10 && "0"} ${hoverProjectIdx + 1}`}</p>
+          <p>{PROJECTS[hoverProjectIdx].name}</p>
+          <p>{PROJECTS[hoverProjectIdx].year}</p>
+        </div>
         <div className={"pane mid-pane pane-hidden"}></div>
         <div className={"pane right-pane pane-hidden"}>
           <p
@@ -126,10 +154,20 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
 }
 
 const PROJECTS = [
-  { name: "SBK", color: "green", link: "getsbk.com" },
-  { name: "Food Stories", color: "yellow", link: "food-stories.com" },
-  { name: "Data Block", color: "cyan", link: "food-stories.com" },
-  { name: "Emotion Diary", color: "#65ac86", link: "food-stories.com" },
+  { name: "SBK", color: "green", link: "getsbk.com", year: "2018-2020" },
+  {
+    name: "Food Stories",
+    color: "yellow",
+    link: "food-stories.com",
+    year: "2018",
+  },
+  { name: "Data Block", color: "cyan", link: "food-stories.com", year: "2018" },
+  {
+    name: "Emotion Diary",
+    color: "#65ac86",
+    link: "food-stories.com",
+    year: "2018",
+  },
 ]
 
 export default PageTwo
