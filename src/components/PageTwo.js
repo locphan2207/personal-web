@@ -94,9 +94,13 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
               : null
           }
         >
-          <p>{`${hoverProjectIdx + 1 < 10 && "0"} ${hoverProjectIdx + 1}`}</p>
+          <p>{`${hoverProjectIdx + 1 < 10 && "0"}${hoverProjectIdx + 1}`}</p>
           <p>{PROJECTS[hoverProjectIdx].name}</p>
           <p>{PROJECTS[hoverProjectIdx].year}</p>
+          <p>{PROJECTS[hoverProjectIdx].description}</p>
+          {PROJECTS[hoverProjectIdx].bulletPoints.map(point => (
+            <p>{point}</p>
+          ))}
         </div>
         <div className={"pane mid-pane pane-hidden"}></div>
         <div className={"pane right-pane pane-hidden"}>
@@ -154,19 +158,60 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
 }
 
 const PROJECTS = [
-  { name: "SBK", color: "green", link: "getsbk.com", year: "2018-2020" },
+  {
+    name: "SBK",
+    color: "green",
+    link: "getsbk.com",
+    year: "2018-2020",
+    description:
+      "Smarkets is a betting exchange that offers the best odds with lowest commision. At Smarkets, I contributed directly to building a competitive online sportsbook application from its early stages to having thousands of users.",
+    bulletPoints: [
+      "Use React Native to build a cross-platform mobile application to deliver key features with top-notch animations for a perfect UI/UX.",
+      "Use Django to implement necessary database models and corresponding API endpoints for the app.",
+      "Setup a backend app using Flask for the geofence microservice.",
+      "Maintain the good performance by writing efficient functions and components.",
+      "Write unit and automation tests on all platforms to avoid crashes. Apply fast bug fixing based on the crashlytic report.",
+    ],
+  },
   {
     name: "Food Stories",
     color: "yellow",
     link: "food-stories.com",
     year: "2018",
+    description:
+      "A CRUD full stack web to share cooking recipes, built with Ruby on Rails and React/Redux.",
+    bulletPoints: [
+      "Implemented user authentication using BCrypt to create login session without storing actual passwords.",
+      "Designed project as a single-page web app to only re-render components when making API calls to the backend.",
+      "Launched AWS as a cloud image storage and Heroku for web hosting.",
+      "Utilized JQuery and vanilla JavaScript to improve interactive UX/UI.",
+    ],
   },
-  { name: "Data Block", color: "cyan", link: "food-stories.com", year: "2018" },
+  {
+    name: "Data Block",
+    color: "cyan",
+    link: "food-stories.com",
+    year: "2018",
+    description: "A data game built solely on Javascript with D3.js",
+    bulletPoints: [
+      "Utilized D3.js to create falling circles with sizes based on actual data numbers.",
+      "Applied Physics Laws to make collision, gravity, spring force and built methods for vector math and force calculation.",
+      "Implemented basic game knowledge with frame loop, position update, player control input, sound, instruction and score.",
+      "Designed a behavior for the in-game character to have it always move into the closest falling circle.",
+    ],
+  },
   {
     name: "Emotion Diary",
     color: "#65ac86",
     link: "food-stories.com",
     year: "2018",
+    description:
+      "A cross-platform mobile app which keeps track of users’ emotions everyday, built with React Native and Firebase.",
+    bulletPoints: [
+      "Implemented authentication and real-time database using Google’s Firebase cloud services.",
+      "Utilized React Native components to design a friendly and smooth UI/UX.",
+      "Implemented data visualization by creating interactive graphs with transitioning effects and touchable tooltips.",
+    ],
   },
 ]
 
