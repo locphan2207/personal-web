@@ -87,6 +87,7 @@ video {
   vertical-align: baseline;
   color: #3e3d3d;
   font-family: "Raleway";
+  box-sizing: border-box;
 }
 
 /* HTML5 display-role reset for older browsers */

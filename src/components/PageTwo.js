@@ -94,13 +94,24 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
               : null
           }
         >
-          <p>{`${hoverProjectIdx + 1 < 10 && "0"}${hoverProjectIdx + 1}`}</p>
-          <p>{PROJECTS[hoverProjectIdx].name}</p>
-          <p>{PROJECTS[hoverProjectIdx].year}</p>
-          <p>{PROJECTS[hoverProjectIdx].description}</p>
-          {PROJECTS[hoverProjectIdx].bulletPoints.map(point => (
-            <p>{point}</p>
-          ))}
+          <p className={"project-number"}>{`${hoverProjectIdx + 1 < 10 &&
+            "0"}${hoverProjectIdx + 1}`}</p>
+          <div className={"row project-body"}>
+            <div className={"project-desc-container"}>
+              <p className={"project-header"}>
+                {PROJECTS[hoverProjectIdx].name}
+              </p>
+              <p className={"project-description"}>
+                {PROJECTS[hoverProjectIdx].description}
+              </p>
+              <div className={"project-point-container"}>
+                {PROJECTS[hoverProjectIdx].bulletPoints.map(point => (
+                  <p className={"project-point"}>{point}</p>
+                ))}
+              </div>
+            </div>
+            <p className={"project-year"}>{PROJECTS[hoverProjectIdx].year}</p>
+          </div>
         </div>
         <div className={"pane mid-pane pane-hidden"}></div>
         <div className={"pane right-pane pane-hidden"}>
@@ -135,7 +146,7 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
                 className={"dash"}
                 style={
                   idx === hoverProjectIdx
-                    ? { backgroundColor: PROJECTS[idx].color }
+                    ? { backgroundColor: PROJECTS[idx].color, width: "3%" }
                     : null
                 }
               ></div>

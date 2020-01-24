@@ -20,8 +20,8 @@
 
 .left-pane {
   width: 50%;
-  background-color: #65ac86;
   transition-duration: 0.5s;
+  padding: 10vh 5vw;
 }
 
 .mid-pane {
@@ -70,10 +70,6 @@
   justify-content: flex-start;
 }
 
-.project-container:hover .dash {
-  width: 3%;
-}
-
 .dash {
   width: 0;
   height: 2px;
@@ -96,4 +92,57 @@
 .project-hidden {
   transform: translateY(100%);
   opacity: 0;
+}
+
+.project-number {
+  text-align: right;
+  font-family: "Montserrat";
+  font-size: 4rem;
+  letter-spacing: 0.35rem;
+}
+
+.project-header {
+  font-family: "Montserrat";
+  font-size: 5rem;
+  letter-spacing: 0.35rem;
+  text-align: left;
+}
+
+.project-year {
+  text-orientation: upright;
+  writing-mode: vertical-rl;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.project-body {
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100%;
+  margin-top: 20%;
+}
+
+.project-description {
+  text-align: left;
+  width: 85%;
+  margin: 5%;
+  font-family: "Raleway";
+  font-size: 1.3rem;
+  letter-spacing: 0.15rem;
+}
+
+.project-point-container {
+  margin: 5% 10%;
+}
+
+.project-point {
+  text-align: left;
+  margin: 5% 0;
+  font-size: 1.7rem;
+  font-family: "Montserrat";
+  width: 85%;
+  line-height: 1.9rem;
 }
