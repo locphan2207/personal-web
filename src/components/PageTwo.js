@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useLayoutEffect } from "react"
 import "./PageTwo.css"
 
 const PANE_OPEN_DURATION = 1000
@@ -9,7 +9,21 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
   const [isCloseHover, setCloseHover] = useState(false)
 
   const onProjectHover = index => {
-    setHoverProjectIdx(index)
+    if (index !== hoverProjectIdx) {
+      const leftPane = document.getElementsByClassName("left-pane-body")[0]
+      leftPane.setAttribute("class", "left-pane-body hidden")
+
+      setTimeout(() => setHoverProjectIdx(index), 100)
+
+      const number = document.getElementsByClassName("project-number")[0]
+      setTimeout(() => {
+        number.setAttribute("class", "project-number slide-right")
+      }, 100)
+      setTimeout(() => {
+        leftPane.setAttribute("class", "left-pane-body")
+      }, 200)
+      setTimeout(() => number.setAttribute("class", "project-number", 50))
+    }
   }
 
   const onCloseHover = () => {
@@ -94,23 +108,36 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
               : null
           }
         >
-          <p className={"project-number"}>{`${hoverProjectIdx + 1 < 10 &&
-            "0"}${hoverProjectIdx + 1}`}</p>
-          <div className={"row project-body"}>
-            <div className={"project-desc-container"}>
-              <p className={"project-header"}>
-                {PROJECTS[hoverProjectIdx].name}
-              </p>
-              <p className={"project-description"}>
-                {PROJECTS[hoverProjectIdx].description}
-              </p>
-              <div className={"project-point-container"}>
-                {PROJECTS[hoverProjectIdx].bulletPoints.map(point => (
-                  <p className={"project-point"}>{point}</p>
+          <div className={"left-pane-body"}>
+            <p className={"project-number"}>{`${hoverProjectIdx + 1 < 10 &&
+              "0"}${hoverProjectIdx + 1}`}</p>
+            <div className={"row project-body"}>
+              <div className={"project-desc-container"}>
+                <p className={"project-header"}>
+                  {PROJECTS[hoverProjectIdx].name}
+                </p>
+                <p className={"project-description"}>
+                  {PROJECTS[hoverProjectIdx].description}
+                </p>
+                <div className={"project-point-container"}>
+                  {PROJECTS[hoverProjectIdx].bulletPoints.map(point => (
+                    <p className={"project-point"} key={point}>
+                      {point}
+                    </p>
+                  ))}
+                </div>
+              </div>
+              <div className={"project-year-container"}>
+                {PROJECTS[hoverProjectIdx].years.map((year, idx) => (
+                  <>
+                    {!!idx && <div className={"project-year-dash"} />}
+                    <p className={"project-year"} key={year}>
+                      {year}
+                    </p>
+                  </>
                 ))}
               </div>
             </div>
-            <p className={"project-year"}>{PROJECTS[hoverProjectIdx].year}</p>
           </div>
         </div>
         <div className={"pane mid-pane pane-hidden"}></div>
@@ -130,7 +157,7 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
           >
             X
           </p>
-          <p className={"projects-title project-hidden"}>PROJECTS</p>
+          <p className={"projects-title project-hidden"}>{"PROJECTS"}</p>
           {PROJECTS.map((project, idx) => (
             <div
               key={project.name}
@@ -171,9 +198,9 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
 const PROJECTS = [
   {
     name: "SBK",
-    color: "green",
+    color: "#04794e",
     link: "getsbk.com",
-    year: "2018-2020",
+    years: ["2018", "2020"],
     description:
       "Smarkets is a betting exchange that offers the best odds with lowest commision. At Smarkets, I contributed directly to building a competitive online sportsbook application from its early stages to having thousands of users.",
     bulletPoints: [
@@ -186,9 +213,9 @@ const PROJECTS = [
   },
   {
     name: "Food Stories",
-    color: "yellow",
+    color: "#4184a0",
     link: "food-stories.com",
-    year: "2018",
+    years: ["2018"],
     description:
       "A CRUD full stack web to share cooking recipes, built with Ruby on Rails and React/Redux.",
     bulletPoints: [
@@ -200,9 +227,9 @@ const PROJECTS = [
   },
   {
     name: "Data Block",
-    color: "cyan",
+    color: "#3C887E",
     link: "food-stories.com",
-    year: "2018",
+    years: ["2018"],
     description: "A data game built solely on Javascript with D3.js",
     bulletPoints: [
       "Utilized D3.js to create falling circles with sizes based on actual data numbers.",
@@ -213,9 +240,9 @@ const PROJECTS = [
   },
   {
     name: "Emotion Diary",
-    color: "#65ac86",
+    color: "#ad5050",
     link: "food-stories.com",
-    year: "2018",
+    years: ["2018"],
     description:
       "A cross-platform mobile app which keeps track of users’ emotions everyday, built with React Native and Firebase.",
     bulletPoints: [
