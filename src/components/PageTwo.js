@@ -8,32 +8,30 @@ const LEFT_PANE_SHOW_DELAY = PANE_OPEN_DURATION / 8
 
 function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
   const [isCloseHover, setCloseHover] = useState(false)
+  const [isLeftPaneVisible, setIsLeftPaneVisible] = useState(false)
 
   const animationLeftPane = () => {
+    setIsLeftPaneVisible(true)
+
     const number = document.getElementsByClassName("project-number")[0]
     const dash = document.getElementsByClassName("project-year-dash")[0]
-    const leftPane = document.getElementsByClassName("left-pane-body")[0]
-    leftPane.setAttribute("class", "left-pane-body")
+    let years = document.getElementsByClassName("project-year")
     number.setAttribute("class", "project-number slide-left")
     dash.setAttribute("class", "project-year-dash slide-left reduce-width")
+    for (let idx = 0; idx < years.length; idx++) {
+      if (idx % 2 === 0) {
+        years[idx].setAttribute("class", "project-year slide-up")
+      } else {
+        years[idx].setAttribute("class", "project-year slide-down")
+      }
+    }
   }
 
   const onProjectHover = index => {
     if (index !== hoverProjectIdx) {
-      const number = document.getElementsByClassName("project-number")[0]
-      const dash = document.getElementsByClassName("project-year-dash")[0]
-      const leftPane = document.getElementsByClassName("left-pane-body")[0]
-
-      // hide and reset
-      leftPane.setAttribute("class", "left-pane-body hidden")
-      dash.setAttribute("class", "project-year-dash")
-      number.setAttribute("class", "project-number")
-
-      // Show and animate
-      setTimeout(() => {
-        setHoverProjectIdx(index)
-        animationLeftPane()
-      }, LEFT_PANE_SHOW_DELAY)
+      setIsLeftPaneVisible(false)
+      setHoverProjectIdx(index)
+      setTimeout(() => animationLeftPane(), LEFT_PANE_SHOW_DELAY)
     }
   }
 
@@ -105,7 +103,10 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
       }, TITLE_SHOW_DELAY + (TITLE_SHOW_DURATION / projects.length) * (projects.length - i))
     }
 
-    setTimeout(() => animationLeftPane(), LEFT_PANE_SHOW_DELAY)
+    setTimeout(
+      () => animationLeftPane(),
+      LEFT_PANE_SHOW_DELAY + PANE_OPEN_DURATION
+    )
   }, [])
 
   return (
@@ -121,37 +122,41 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
               : null
           }
         >
-          <div className={"left-pane-body hidden"}>
-            <p className={"project-number"}>{`${hoverProjectIdx + 1 < 10 &&
-              "0"}${hoverProjectIdx + 1}`}</p>
-            <div className={"row project-body"}>
-              <div className={"project-desc-container"}>
-                <p className={"project-header"}>
-                  {PROJECTS[hoverProjectIdx].name}
-                </p>
-                <p className={"project-description"}>
-                  {PROJECTS[hoverProjectIdx].description}
-                </p>
-                <div className={"project-point-container"}>
-                  {PROJECTS[hoverProjectIdx].bulletPoints.map(point => (
-                    <p className={"project-point"} key={point}>
-                      {point}
-                    </p>
+          {isLeftPaneVisible && (
+            <div className={"left-pane-body"}>
+              <p className={"project-number"}>{`${hoverProjectIdx + 1 < 10 &&
+                "0"}${hoverProjectIdx + 1}`}</p>
+              <div className={"row project-body"}>
+                <div className={"project-desc-container"}>
+                  <p className={"project-header"}>
+                    {PROJECTS[hoverProjectIdx].name}
+                  </p>
+                  <p className={"project-description"}>
+                    {PROJECTS[hoverProjectIdx].description}
+                  </p>
+                  <div className={"project-point-container"}>
+                    {PROJECTS[hoverProjectIdx].bulletPoints.map(point => (
+                      <p className={"project-point"} key={point}>
+                        {point}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+                <div className={"project-year-container"}>
+                  {PROJECTS[hoverProjectIdx].years.map((year, idx) => (
+                    <div key={idx}>
+                      <div className={"year-wrapper"}>
+                        <p className={"project-year"} key={year}>
+                          {year}
+                        </p>
+                      </div>
+                      {idx === 0 && <div className={"project-year-dash"} />}
+                    </div>
                   ))}
                 </div>
               </div>
-              <div className={"project-year-container"}>
-                {PROJECTS[hoverProjectIdx].years.map((year, idx) => (
-                  <>
-                    <p className={"project-year"} key={year}>
-                      {year}
-                    </p>
-                    {idx === 0 && <div className={"project-year-dash"} />}
-                  </>
-                ))}
-              </div>
             </div>
-          </div>
+          )}
         </div>
         <div className={"pane mid-pane pane-hidden"}></div>
         <div className={"pane right-pane pane-hidden"}>
