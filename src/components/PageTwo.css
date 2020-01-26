@@ -21,7 +21,7 @@
 .left-pane {
   width: 50%;
   transition-duration: 0.5s;
-  padding: 10vh 5vw;
+  padding: 10vh 3vw;
   overflow: hidden;
 }
 
@@ -119,13 +119,14 @@
 .project-year-container {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 
 .project-year-dash {
-  width: 100%;
+  width: 200%;
   height: 1px;
   background-color: #ffffff80;
-  margin: 5px 0;
+  margin: 1rem 0 1rem -50%;
 }
 
 .project-year {
@@ -134,7 +135,8 @@
   writing-mode: vertical-lr;
   color: #ffffff80;
   width: auto;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
+  text-align: justify;
 }
 
 .row {
@@ -174,7 +176,7 @@
   font-weight: 200;
 }
 
-.slide-right {
+.slide-left {
   animation: slide-left 0.5s ease-out;
 }
 
@@ -184,6 +186,19 @@
   }
   to {
     transform: translateX(0);
+  }
+}
+
+.reduce-width {
+  animation: reduce-width 0.7s ease-out;
+}
+
+@keyframes reduce-width {
+  from {
+    width: 700%;
+  }
+  to {
+    width: 200%;
   }
 }
 

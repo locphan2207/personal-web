@@ -10,19 +10,22 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
 
   const onProjectHover = index => {
     if (index !== hoverProjectIdx) {
-      const leftPane = document.getElementsByClassName("left-pane-body")[0]
-      leftPane.setAttribute("class", "left-pane-body hidden")
-
-      setTimeout(() => setHoverProjectIdx(index), 100)
-
       const number = document.getElementsByClassName("project-number")[0]
+      const dash = document.getElementsByClassName("project-year-dash")[0]
+      const leftPane = document.getElementsByClassName("left-pane-body")[0]
+
+      // hide and reset
+      leftPane.setAttribute("class", "left-pane-body hidden")
+      dash.setAttribute("class", "project-year-dash")
+      number.setAttribute("class", "project-number")
+
+      // Show and animate
       setTimeout(() => {
-        number.setAttribute("class", "project-number slide-right")
-      }, 100)
-      setTimeout(() => {
+        setHoverProjectIdx(index)
         leftPane.setAttribute("class", "left-pane-body")
+        number.setAttribute("class", "project-number slide-left")
+        dash.setAttribute("class", "project-year-dash slide-left reduce-width")
       }, 200)
-      setTimeout(() => number.setAttribute("class", "project-number", 50))
     }
   }
 
@@ -130,10 +133,10 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
               <div className={"project-year-container"}>
                 {PROJECTS[hoverProjectIdx].years.map((year, idx) => (
                   <>
-                    {!!idx && <div className={"project-year-dash"} />}
                     <p className={"project-year"} key={year}>
                       {year}
                     </p>
+                    {idx === 0 && <div className={"project-year-dash"} />}
                   </>
                 ))}
               </div>
