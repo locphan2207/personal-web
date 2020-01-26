@@ -12,25 +12,12 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
 
   const animationLeftPane = () => {
     setIsLeftPaneVisible(true)
-
-    const number = document.getElementsByClassName("project-number")[0]
-    const dash = document.getElementsByClassName("project-year-dash")[0]
-    let years = document.getElementsByClassName("project-year")
-    number.setAttribute("class", "project-number slide-left")
-    dash.setAttribute("class", "project-year-dash slide-left reduce-width")
-    for (let idx = 0; idx < years.length; idx++) {
-      if (idx % 2 === 0) {
-        years[idx].setAttribute("class", "project-year slide-up")
-      } else {
-        years[idx].setAttribute("class", "project-year slide-down")
-      }
-    }
   }
 
   const onProjectHover = index => {
     if (index !== hoverProjectIdx) {
-      setIsLeftPaneVisible(false)
       setHoverProjectIdx(index)
+      setIsLeftPaneVisible(false)
       setTimeout(() => animationLeftPane(), LEFT_PANE_SHOW_DELAY)
     }
   }
@@ -103,10 +90,7 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
       }, TITLE_SHOW_DELAY + (TITLE_SHOW_DURATION / projects.length) * (projects.length - i))
     }
 
-    setTimeout(
-      () => animationLeftPane(),
-      LEFT_PANE_SHOW_DELAY + PANE_OPEN_DURATION
-    )
+    setTimeout(() => animationLeftPane(), LEFT_PANE_SHOW_DELAY)
   }, [])
 
   return (
@@ -146,7 +130,12 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
                   {PROJECTS[hoverProjectIdx].years.map((year, idx) => (
                     <div key={idx}>
                       <div className={"year-wrapper"}>
-                        <p className={"project-year"} key={year}>
+                        <p
+                          className={`project-year ${
+                            idx % 2 === 0 ? "even" : "odd"
+                          }`}
+                          key={year}
+                        >
                           {year}
                         </p>
                       </div>
@@ -216,7 +205,7 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
 const PROJECTS = [
   {
     name: "SBK",
-    color: "#04794e",
+    color: "#187b57",
     link: "getsbk.com",
     years: ["2018", "2020"],
     description:

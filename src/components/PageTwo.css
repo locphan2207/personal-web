@@ -107,13 +107,16 @@
   letter-spacing: 0.35rem;
   display: inline-block;
   align-self: flex-end;
+  animation: slide-left 0.5s ease-out both;
 }
 
 .project-header {
   font-family: "Montserrat";
   font-size: 5rem;
-  letter-spacing: 0.35rem;
+  letter-spacing: 0.45rem;
   text-align: left;
+  color: #ffffff;
+  font-weight: 400;
 }
 
 .project-year-container {
@@ -123,10 +126,12 @@
 }
 
 .project-year-dash {
-  width: 200%;
+  /* width: 200%; */
   height: 1px;
   background-color: #ffffff80;
   margin: 1rem 0 1rem -50%;
+  animation: slide-left 0.5s ease-out 0.5s both,
+    reduce-width 1s ease-out 0.5s both;
 }
 
 .year-wrapper {
@@ -143,6 +148,14 @@
   text-align: justify;
 }
 
+.project-year.even {
+  animation: slide-up 0.5s ease-out 0.5s both;
+}
+
+.project-year.odd {
+  animation: slide-down 0.5s ease-out 0.5s both;
+}
+
 .row {
   display: flex;
   flex-direction: row;
@@ -152,17 +165,17 @@
   justify-content: space-between;
   align-items: flex-start;
   height: 100%;
-  margin-top: 20%;
+  margin-top: 15%;
 }
 
 .project-description {
   text-align: left;
   width: 85%;
   margin: 5%;
-  font-size: 1.3rem;
-  letter-spacing: 0.15rem;
+  font-size: 1.5rem;
+  letter-spacing: 0.25rem;
   color: #ffffff80;
-  line-height: 1.7rem;
+  line-height: 1.8rem;
 }
 
 .project-point-container {
@@ -177,11 +190,11 @@
   letter-spacing: 0.15rem;
   line-height: 2.5rem;
   color: #ffffff;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 .slide-left {
-  animation: slide-left 0.5s ease-out;
+  animation: slide-left 0.5s ease-out both;
 }
 
 @keyframes slide-left {
@@ -194,12 +207,13 @@
 }
 
 .reduce-width {
-  animation: reduce-width 0.7s ease-out;
+  animation: reduce-width 0.5s ease-out both;
+  animation-delay: 0.5s;
 }
 
 @keyframes reduce-width {
   from {
-    width: 700%;
+    width: 500%;
   }
   to {
     width: 200%;
@@ -207,7 +221,7 @@
 }
 
 .slide-up {
-  animation: slide-up 0.5s ease-out;
+  animation: slide-up 0.5s ease-out both;
 }
 
 @keyframes slide-up {
@@ -220,7 +234,7 @@
 }
 
 .slide-down {
-  animation: slide-down 0.5s ease-out;
+  animation: slide-down 0.5s ease-out both;
 }
 
 @keyframes slide-down {
@@ -233,7 +247,7 @@
 }
 
 .opacity-visible {
-  animation: opacity-visible 0.1s ease-out;
+  animation: opacity-visible 0.1s ease-out both;
 }
 
 @keyframes opacity-visible {
