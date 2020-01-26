@@ -126,12 +126,11 @@
 }
 
 .project-year-dash {
-  /* width: 200%; */
   height: 1px;
-  background-color: #ffffff80;
+  /* background-color: #ffffff80; */
   margin: 1rem 0 1rem -50%;
   animation: slide-left 0.5s ease-out 0.5s both,
-    reduce-width 1s ease-out 0.5s both;
+    reduce-width 1s ease-out 0.5s both, white-to-black 1s ease-out 0.5s both;
 }
 
 .year-wrapper {
@@ -193,10 +192,6 @@
   font-weight: 400;
 }
 
-.slide-left {
-  animation: slide-left 0.5s ease-out both;
-}
-
 @keyframes slide-left {
   from {
     transform: translateX(200%);
@@ -204,11 +199,6 @@
   to {
     transform: translateX(0);
   }
-}
-
-.reduce-width {
-  animation: reduce-width 0.5s ease-out both;
-  animation-delay: 0.5s;
 }
 
 @keyframes reduce-width {
@@ -220,10 +210,6 @@
   }
 }
 
-.slide-up {
-  animation: slide-up 0.5s ease-out both;
-}
-
 @keyframes slide-up {
   from {
     transform: translateY(100%);
@@ -231,10 +217,6 @@
   to {
     transform: translateY(0);
   }
-}
-
-.slide-down {
-  animation: slide-down 0.5s ease-out both;
 }
 
 @keyframes slide-down {
@@ -246,16 +228,12 @@
   }
 }
 
-.opacity-visible {
-  animation: opacity-visible 0.1s ease-out both;
-}
-
-@keyframes opacity-visible {
+@keyframes white-to-black {
   from {
-    opacity: 0;
+    background-color: white;
   }
   to {
-    opacity: 1;
+    background-color: #3e3d3d;
   }
 }
 
