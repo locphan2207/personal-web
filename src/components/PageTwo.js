@@ -1,12 +1,22 @@
-import React, { useState, useEffect, useLayoutEffect } from "react"
+import React, { useState, useEffect } from "react"
 import "./PageTwo.css"
 
 const PANE_OPEN_DURATION = 1000
 const TITLE_SHOW_DELAY = PANE_OPEN_DURATION / 3
 const TITLE_SHOW_DURATION = PANE_OPEN_DURATION / 2
+const LEFT_PANE_SHOW_DELAY = PANE_OPEN_DURATION / 8
 
 function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
   const [isCloseHover, setCloseHover] = useState(false)
+
+  const animationLeftPane = () => {
+    const number = document.getElementsByClassName("project-number")[0]
+    const dash = document.getElementsByClassName("project-year-dash")[0]
+    const leftPane = document.getElementsByClassName("left-pane-body")[0]
+    leftPane.setAttribute("class", "left-pane-body")
+    number.setAttribute("class", "project-number slide-left")
+    dash.setAttribute("class", "project-year-dash slide-left reduce-width")
+  }
 
   const onProjectHover = index => {
     if (index !== hoverProjectIdx) {
@@ -22,10 +32,8 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
       // Show and animate
       setTimeout(() => {
         setHoverProjectIdx(index)
-        leftPane.setAttribute("class", "left-pane-body")
-        number.setAttribute("class", "project-number slide-left")
-        dash.setAttribute("class", "project-year-dash slide-left reduce-width")
-      }, 200)
+        animationLeftPane()
+      }, LEFT_PANE_SHOW_DELAY)
     }
   }
 
@@ -96,6 +104,8 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
         )
       }, TITLE_SHOW_DELAY + (TITLE_SHOW_DURATION / projects.length) * (projects.length - i))
     }
+
+    setTimeout(() => animationLeftPane(), LEFT_PANE_SHOW_DELAY)
   }, [])
 
   return (
@@ -111,7 +121,7 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
               : null
           }
         >
-          <div className={"left-pane-body"}>
+          <div className={"left-pane-body hidden"}>
             <p className={"project-number"}>{`${hoverProjectIdx + 1 < 10 &&
               "0"}${hoverProjectIdx + 1}`}</p>
             <div className={"row project-body"}>

@@ -204,5 +204,5 @@
 
 .hidden {
   opacity: 0;
-  transition: 0.1s opacity ease;
+  transition: 0.2s opacity ease-in-out;
 }
