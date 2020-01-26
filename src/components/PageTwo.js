@@ -214,8 +214,7 @@ const PROJECTS = [
       "Use React Native to build a cross-platform mobile application to deliver key features with top-notch animations for a perfect UI/UX.",
       "Use Django to implement necessary database models and corresponding API endpoints for the app.",
       "Setup a backend app using Flask for the geofence microservice.",
-      "Maintain the good performance by writing efficient functions and components.",
-      "Write unit and automation tests on all platforms to avoid crashes. Apply fast bug fixing based on the crashlytic report.",
+      "Maintain the good performance by writing efficient functions and components. Write unit and automation tests on all platforms to avoid crashes. Apply fast bug fixing based on the crashlytic report.",
     ],
   },
   {
