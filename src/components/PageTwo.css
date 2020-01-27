@@ -111,11 +111,17 @@
 }
 
 .project-header {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.project-header-char {
   font-family: "Montserrat";
   font-size: 6rem;
   letter-spacing: 0.5rem;
   text-align: left;
   color: #ffffff;
+  animation: stagger 0.3s ease-in-out both;
 }
 
 .project-year-container {
@@ -233,6 +239,16 @@
   }
   to {
     background-color: #3e3d3d;
+  }
+}
+
+@keyframes stagger {
+  from {
+    transform-origin: bottom;
+    transform: rotateX(90deg) skewX(-10deg) translateY(-20%);
+  }
+  to {
+    transform: rotateX(0deg) skewX(0deg) translateY(0);
   }
 }
 

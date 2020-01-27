@@ -112,9 +112,21 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
                 "0"}${hoverProjectIdx + 1}`}</p>
               <div className={"row project-body"}>
                 <div className={"project-desc-container"}>
-                  <p className={"project-header"}>
-                    {PROJECTS[hoverProjectIdx].name}
-                  </p>
+                  <div className={"project-header"}>
+                    {PROJECTS[hoverProjectIdx].name
+                      .split("")
+                      .map((char, idx) => {
+                        if (char === " ") return <span>&nbsp;&nbsp;</span>
+                        return (
+                          <span
+                            className={"project-header-char"}
+                            style={{ animationDelay: `${idx * 0.05}s` }}
+                          >
+                            {char}
+                          </span>
+                        )
+                      })}
+                  </div>
                   <p className={"project-description"}>
                     {PROJECTS[hoverProjectIdx].description}
                   </p>
