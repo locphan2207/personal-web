@@ -51,9 +51,11 @@
 
 .close {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 30px;
+  top: 5px;
+  right: 5px;
+  width: 15px;
+  padding: 10px;
+  height: auto;
   cursor: pointer;
   transition: all 0.25s;
 }

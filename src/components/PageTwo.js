@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import "./PageTwo.css"
+import { ReactComponent as Close } from "../assets/close.svg"
 
 // Animation timeout delay (in millisecond)
 const PANE_OPEN_DURATION = 1000
@@ -168,21 +169,19 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
         </div>
         <div className={"pane mid-pane pane-hidden"}></div>
         <div className={"pane right-pane pane-hidden"}>
-          <p
+          <Close
             onClick={onClose}
             className={"close"}
             onMouseOver={onCloseHover}
             onMouseLeave={onCloseExit}
             style={
               isCloseHover
-                ? { color: "#ffffffe5" }
+                ? { fill: "#ffffffe5" }
                 : hoverProjectIdx >= 0
-                ? { color: PROJECTS[hoverProjectIdx].color }
+                ? { fill: PROJECTS[hoverProjectIdx].color }
                 : null
             }
-          >
-            X
-          </p>
+          />
           <p className={"projects-title project-hidden"}>{"PROJECTS"}</p>
           {PROJECTS.map((project, idx) => (
             <div
