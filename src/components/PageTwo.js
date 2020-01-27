@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react"
 import "./PageTwo.css"
 
+// Animation timeout delay (in millisecond)
 const PANE_OPEN_DURATION = 1000
 const TITLE_SHOW_DELAY = PANE_OPEN_DURATION / 3
 const TITLE_SHOW_DURATION = PANE_OPEN_DURATION / 2
-const LEFT_PANE_SHOW_DELAY = PANE_OPEN_DURATION / 8
+const LEFT_PANE_SHOW_DELAY = PANE_OPEN_DURATION / 3
+
+// Animation CSS delay (in second)
+const TITLE_LEFT_PANE_DELAY = 0.3
 
 function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
   const [isCloseHover, setCloseHover] = useState(false)
@@ -18,7 +22,7 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
     if (index !== hoverProjectIdx) {
       setHoverProjectIdx(index)
       setIsLeftPaneVisible(false)
-      setTimeout(() => animationLeftPane(), LEFT_PANE_SHOW_DELAY)
+      setTimeout(animationLeftPane, LEFT_PANE_SHOW_DELAY)
     }
   }
 
@@ -90,7 +94,7 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
       }, TITLE_SHOW_DELAY + (TITLE_SHOW_DURATION / projects.length) * (projects.length - i))
     }
 
-    setTimeout(() => animationLeftPane(), LEFT_PANE_SHOW_DELAY)
+    setTimeout(animationLeftPane, LEFT_PANE_SHOW_DELAY)
   }, [])
 
   return (
@@ -120,7 +124,10 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
                         return (
                           <span
                             className={"project-header-char"}
-                            style={{ animationDelay: `${idx * 0.05}s` }}
+                            style={{
+                              animationDelay: `${TITLE_LEFT_PANE_DELAY +
+                                idx * 0.03}s`,
+                            }}
                           >
                             {char}
                           </span>
