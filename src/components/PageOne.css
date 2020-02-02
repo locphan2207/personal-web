@@ -1,11 +1,70 @@
 /* Page One */
 .page-one {
-  background-color: #d7dadc;
+  background-color: #fafafa;
   display: flex;
   flex-direction: column;
 }
 
-.page-one > div {
-  display: flex;
-  align-items: center;
+.intro {
+  position: absolute;
+  top: 20%;
+  left: 5%;
+}
+
+.intro h1 {
+  font-family: Palatino Bold;
+  font-size: 130rem;
+  letter-spacing: 10rem;
+  color: #0c1d4af6;
+  text-shadow: 0 5px 6px #00000038;
+  text-align: left;
+}
+
+.intro h3 {
+  font-family: Palatino;
+  font-size: 60rem;
+  letter-spacing: 7rem;
+  color: #0c1d4a;
+  text-align: left;
+  margin: 2% 0 0 2%;
+}
+
+.top-left-svg {
+  position: absolute;
+  top: -10%;
+  left: -3%;
+  width: 50%;
+  height: auto;
+}
+
+.illu {
+  position: absolute;
+  bottom: 0;
+  right: -3%;
+  width: 50%;
+  height: auto;
+}
+
+.bubble-left {
+  position: absolute;
+  top: 45%;
+  left: -5%;
+  width: 10%;
+  height: auto;
+}
+
+.bubble-right {
+  position: absolute;
+  top: -8%;
+  right: -5%;
+  width: 10%;
+  height: auto;
+}
+
+.corner-leaves {
+  position: absolute;
+  bottom: -12%;
+  left: -6%;
+  width: 20%;
+  height: auto;
 }
