@@ -6,7 +6,8 @@
 .page {
   display: flex;
   width: 100vw;
-  min-height: calc(100vw / 1920 * 1080);
+  max-height: 100vh;
+  min-height: calc(100vw / 1920 * 1070);
   justify-content: center;
   align-items: center;
   overflow: hidden;

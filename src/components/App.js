@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import "./App.css"
+import NavBar from "./NavBar"
 import PageOne from "./PageOne"
 import PageTwo from "./PageTwo"
 
@@ -16,6 +17,7 @@ function App() {
 
   return (
     <div className="App">
+      <NavBar />
       <PageOne />
 
       {pageTwoVisible && (
