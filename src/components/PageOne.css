@@ -1,0 +1,11 @@
+/* Page One */
+.page-one {
+  background-color: #d7dadc;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-one > div {
+  display: flex;
+  align-items: center;
+}
