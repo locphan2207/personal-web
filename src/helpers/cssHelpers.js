@@ -5,6 +5,8 @@ const BUBBLE_IDS = [
   "Ellipse_11",
   "Ellipse_12",
   "Ellipse_13",
+  "bubble-left",
+  "bubble-right",
 ]
 
 const insideParentheses = /\(([^()]*)\)/
@@ -46,8 +48,9 @@ export const addKeyFramesForBubbles = () => {
         transform: translate(${currentXY[0]}, ${currentXY[1]});
       }
     }`)
+    const radius = (el.r || el.rx).baseVal.value
     pageOneSS.insertRule(`#${el.id} {
-      animation: ${Math.random() * 10 + 5}s float-bubble-${
+      animation: ${_randomDuration(radius)}s float-bubble-${
       el.id
     } linear infinite;
     }`)
@@ -74,4 +77,8 @@ const _randomPosition = (currPos = [0, 0]) => {
     parseInt(x) + Math.random() * 20 + 10,
     parseInt(y) + Math.random() * 20 + 10,
   ]
+}
+
+const _randomDuration = radius => {
+  return Math.random() * (100 / radius) + 10
 }
