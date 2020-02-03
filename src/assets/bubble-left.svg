@@ -7,6 +7,6 @@
     </linearGradient>
   </defs>
   <g id="bubble-left" opacity="0.2">
-    <ellipse id="Ellipse_9" data-name="Ellipse 9" cx="117.941" cy="101.941" rx="117.941" ry="101.941" opacity="0.8" fill="url(#linear-gradient-bubble-2)"/>
+    <ellipse id="bubble-left" data-name="Ellipse 9" cx="117.941" cy="101.941" rx="117.941" ry="101.941" opacity="0.8" fill="url(#linear-gradient-bubble-2)"/>
   </g>
 </svg>

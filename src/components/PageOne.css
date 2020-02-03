@@ -39,10 +39,11 @@
 
 .illu {
   position: absolute;
-  bottom: 0;
-  right: -3%;
+  bottom: -3%;
+  right: -5%;
   width: 50%;
   height: auto;
+  overflow: visible;
 }
 
 .bubble-left {
@@ -63,7 +64,7 @@
 
 .corner-leaves {
   position: absolute;
-  bottom: -12%;
+  bottom: -10%;
   left: -6%;
   width: 20%;
   height: auto;
