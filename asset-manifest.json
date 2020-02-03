@@ -1,26 +1,29 @@
 {
   "files": {
-    "main.css": "/personal-web/static/css/main.5d8ed444.chunk.css",
-    "main.js": "/personal-web/static/js/main.01d109bd.chunk.js",
-    "main.js.map": "/personal-web/static/js/main.01d109bd.chunk.js.map",
+    "main.css": "/personal-web/static/css/main.26d5a34c.chunk.css",
+    "main.js": "/personal-web/static/js/main.36be5202.chunk.js",
+    "main.js.map": "/personal-web/static/js/main.36be5202.chunk.js.map",
     "runtime-main.js": "/personal-web/static/js/runtime-main.adc82d22.js",
     "runtime-main.js.map": "/personal-web/static/js/runtime-main.adc82d22.js.map",
     "static/js/2.5d7ab468.chunk.js": "/personal-web/static/js/2.5d7ab468.chunk.js",
     "static/js/2.5d7ab468.chunk.js.map": "/personal-web/static/js/2.5d7ab468.chunk.js.map",
     "index.html": "/personal-web/index.html",
-    "precache-manifest.7b395838498b4fc8218859086a25389c.js": "/personal-web/precache-manifest.7b395838498b4fc8218859086a25389c.js",
+    "precache-manifest.5413ad4d06e7d471dcda7c7fd1941d6f.js": "/personal-web/precache-manifest.5413ad4d06e7d471dcda7c7fd1941d6f.js",
     "service-worker.js": "/personal-web/service-worker.js",
-    "static/css/main.5d8ed444.chunk.css.map": "/personal-web/static/css/main.5d8ed444.chunk.css.map",
+    "static/css/main.26d5a34c.chunk.css.map": "/personal-web/static/css/main.26d5a34c.chunk.css.map",
     "static/js/2.5d7ab468.chunk.js.LICENSE": "/personal-web/static/js/2.5d7ab468.chunk.js.LICENSE",
-    "static/media/App.css": "/personal-web/static/media/avatar.f49d9073.jpg",
+    "static/media/bubble-left.71c8e835.svg": "/personal-web/static/media/bubble-left.71c8e835.svg",
+    "static/media/bubble-right.a676ab2e.svg": "/personal-web/static/media/bubble-right.a676ab2e.svg",
     "static/media/close.87e05db0.svg": "/personal-web/static/media/close.87e05db0.svg",
-    "static/media/down-arrow.b62e4fef.svg": "/personal-web/static/media/down-arrow.b62e4fef.svg",
-    "static/media/human.67e08605.svg": "/personal-web/static/media/human.67e08605.svg"
+    "static/media/corner-leaves.364fac29.svg": "/personal-web/static/media/corner-leaves.364fac29.svg",
+    "static/media/illu-right.9c787239.svg": "/personal-web/static/media/illu-right.9c787239.svg",
+    "static/media/index.css": "/personal-web/static/media/palatino-linotype.96261bb9.ttf",
+    "static/media/top-left-svg.8ff82f45.svg": "/personal-web/static/media/top-left-svg.8ff82f45.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.adc82d22.js",
     "static/js/2.5d7ab468.chunk.js",
-    "static/css/main.5d8ed444.chunk.css",
-    "static/js/main.01d109bd.chunk.js"
+    "static/css/main.26d5a34c.chunk.css",
+    "static/js/main.36be5202.chunk.js"
   ]
 }
