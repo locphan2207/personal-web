@@ -60,7 +60,7 @@ export const addKeyFramesForBubbles = () => {
 const _getPageOneStyleSheet = () => {
   const styleSheetList = document.styleSheets
   for (const ss of styleSheetList) {
-    if (ss.href) continue // skip crossed-domain styles (Chrome doesn't allow to read)
+    if (ss.href.includes("fonts.googleapis.com")) continue // skip crossed-domain styles (Chrome doesn't allow to read)
     for (const rule of ss.cssRules) {
       if (rule.selectorText === ".page-one") {
         return ss
