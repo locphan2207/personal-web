@@ -60,7 +60,7 @@ export const addKeyFramesForBubbles = () => {
 const _getPageOneStyleSheet = () => {
   const styleSheetList = document.styleSheets
   for (const ss of styleSheetList) {
-    if (ss.href.includes("fonts.googleapis.com")) continue // skip crossed-domain styles (Chrome doesn't allow to read)
+    if (ss.href && ss.href.includes("fonts.googleapis.com")) continue // skip crossed-domain styles (Chrome doesn't allow to read)
     for (const rule of ss.cssRules) {
       if (rule.selectorText === ".page-one") {
         return ss
@@ -73,9 +73,10 @@ const _getPageOneStyleSheet = () => {
 const _randomPosition = (currPos = [0, 0]) => {
   const x = currPos[0]
   const y = currPos[1]
+  const randomNegative = () => (Math.random() < 0.5 ? -1 : 1)
   return [
-    parseInt(x) + Math.random() * 20 + 10,
-    parseInt(y) + Math.random() * 20 + 10,
+    parseInt(x) + (Math.random() * 20 + 10) * randomNegative(),
+    parseInt(y) + (Math.random() * 20 + 10) * randomNegative(),
   ]
 }
 
