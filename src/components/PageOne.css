@@ -12,21 +12,23 @@
 }
 
 .intro h1 {
-  font-family: Palatino Bold;
+  font-family: Palatino;
   font-size: 130rem;
   letter-spacing: 10rem;
   color: #0c1d4af6;
   text-shadow: 0 5rem 6rem #00000038;
   text-align: left;
+  font-weight: 600;
 }
 
 .intro h3 {
   font-family: Palatino;
   font-size: 60rem;
-  letter-spacing: 7rem;
+  letter-spacing: 3rem;
   color: #0c1d4a;
   text-align: left;
   margin: 2% 0 0 2%;
+  font-weight: 400;
 }
 
 .top-left-svg {

@@ -5,7 +5,8 @@
 
 @font-face {
   font-family: "Palatino Bold";
-  src: local("Palatino Bold"), url(./assets/llbof.ttf) format("truetype");
+  src: local("Palatino Bold"),
+    url(./assets/palatino-linotype-bold.ttf) format("truetype");
 }
 
 html,

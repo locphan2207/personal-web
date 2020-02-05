@@ -11,13 +11,14 @@ function App() {
   const [pageTwoVisible, setPageTwoVisible] = useState(false)
   const [hoverProjectIdx, setHoverProjectIdx] = useState(0)
 
-  const onOpen = () => {
+  const onWorkOpen = () => {
+    console.log("A")
     setPageTwoVisible(true)
   }
 
   return (
     <div className="App">
-      <NavBar />
+      <NavBar onWorkOpen={onWorkOpen} />
       <PageOne />
 
       {pageTwoVisible && (

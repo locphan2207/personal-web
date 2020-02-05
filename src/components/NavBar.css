@@ -13,4 +13,10 @@
   letter-spacing: 2rem;
   margin-left: 20rem;
   font-weight: 200;
+  cursor: pointer;
+}
+
+.nav-bar h5:hover {
+  color: #b1ceb4;
+  transition: color 0.2s ease-in-out;
 }
