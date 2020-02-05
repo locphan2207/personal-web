@@ -21,4 +21,5 @@
   height: auto;
   transition: 1s all ease-in-out;
   z-index: 1;
+  overflow: visible;
 }
