@@ -3,7 +3,7 @@ import "./PageTwo.css"
 import { ReactComponent as Close } from "../assets/close.svg"
 
 // Animation timeout delay (in millisecond)
-const PANE_OPEN_DURATION = 1000
+const PANE_OPEN_DURATION = 1000 // NOTE: PANE BECOME BUBBLE MOVE DURATION
 const TITLE_SHOW_DELAY = PANE_OPEN_DURATION / 3
 const TITLE_SHOW_DURATION = PANE_OPEN_DURATION / 2
 const LEFT_PANE_SHOW_DELAY = PANE_OPEN_DURATION / 3
@@ -11,8 +11,7 @@ const LEFT_PANE_SHOW_DELAY = PANE_OPEN_DURATION / 3
 // Animation CSS delay (in second)
 const TITLE_LEFT_PANE_DELAY = 0.3
 
-function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
-  const [isCloseHover, setCloseHover] = useState(false)
+function PageTwo({ setPageVisible, hoverProjectIdx, setHoverProjectIdx }) {
   const [isLeftPaneVisible, setIsLeftPaneVisible] = useState(false)
 
   const animationLeftPane = () => {
@@ -27,18 +26,7 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
     }
   }
 
-  const onCloseHover = () => {
-    setCloseHover(true)
-  }
-
-  const onCloseExit = () => {
-    setCloseHover(false)
-  }
-
   const onClose = () => {
-    const title = document.getElementsByClassName("projects-title")[0]
-    title.setAttribute("class", title.getAttribute("class") + " project-hidden")
-
     // Animate project titles
     // Start from the top down
     const projects = document.getElementsByClassName("project")
@@ -50,36 +38,13 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
       }, TITLE_SHOW_DELAY + (TITLE_SHOW_DURATION / projects.length) * i)
     }
 
-    const panes = document.getElementsByClassName("pane")
-    setTimeout(() => {
-      for (const pane of panes) {
-        const currClassName = pane.getAttribute("class")
-        pane.setAttribute("class", currClassName + " pane-hidden")
-      }
-    }, TITLE_SHOW_DURATION)
-
     setTimeout(
-      () => setPageTwoVisible(false),
+      () => setPageVisible("HOME"),
       TITLE_SHOW_DURATION + PANE_OPEN_DURATION
     )
   }
 
   useEffect(() => {
-    // Animate panes
-    const panes = document.getElementsByClassName("pane")
-    for (const pane of panes) {
-      const currClassName = pane.getAttribute("class")
-      pane.setAttribute("class", currClassName.replace("pane-hidden", ""))
-    }
-
-    const title = document.getElementsByClassName("projects-title")[0]
-    setTimeout(() => {
-      title.setAttribute(
-        "class",
-        title.getAttribute("class").replace("project-hidden", "")
-      )
-    }, PANE_OPEN_DURATION)
-
     // Animate project titles
     // Starts 0.5s after pane animation
     // Start from the bottom up
@@ -101,18 +66,9 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
   return (
     <>
       <div className={"page page-two"}>
-        <div
-          className={"pane left-pane pane-hidden"}
-          style={
-            hoverProjectIdx >= 0
-              ? {
-                  backgroundColor: PROJECTS[hoverProjectIdx].color,
-                }
-              : null
-          }
-        >
+        <div className={"left"}>
           {isLeftPaneVisible && (
-            <div className={"left-pane-body"}>
+            <div className={"left-body"}>
               <p className={"project-number"}>{`${hoverProjectIdx + 1 < 10 &&
                 "0"}${hoverProjectIdx + 1}`}</p>
               <div className={"row project-body"}>
@@ -167,41 +123,13 @@ function PageTwo({ setPageTwoVisible, hoverProjectIdx, setHoverProjectIdx }) {
             </div>
           )}
         </div>
-        <div className={"pane mid-pane pane-hidden"}></div>
-        <div className={"pane right-pane pane-hidden"}>
-          <Close
-            onClick={onClose}
-            className={"close"}
-            onMouseOver={onCloseHover}
-            onMouseLeave={onCloseExit}
-            style={
-              isCloseHover
-                ? { fill: "#ffffffe5" }
-                : hoverProjectIdx >= 0
-                ? { fill: PROJECTS[hoverProjectIdx].color }
-                : null
-            }
-          />
-          <p className={"projects-title project-hidden"}>{"PROJECTS"}</p>
+        <div className={"right"}>
           {PROJECTS.map((project, idx) => (
             <div
               key={project.name}
               className={"project-container"}
               onMouseOver={() => onProjectHover(idx)}
-              style={
-                idx === hoverProjectIdx
-                  ? { backgroundColor: "#aeafaf41" }
-                  : null
-              }
             >
-              <div
-                className={"dash"}
-                style={
-                  idx === hoverProjectIdx
-                    ? { backgroundColor: PROJECTS[idx].color, width: "3%" }
-                    : null
-                }
-              ></div>
               <p
                 className={"project project-hidden"}
                 style={

@@ -8,21 +8,21 @@ import PageTwo from "./PageTwo"
 // - CREATE A HELPER TO GENERATE KEYFRAMES BASED ON SPRING CONFIG
 
 function App() {
-  const [pageTwoVisible, setPageTwoVisible] = useState(false)
+  const [pageVisible, setPageVisible] = useState("HOME")
   const [hoverProjectIdx, setHoverProjectIdx] = useState(0)
 
   const onWorkOpen = () => {
-    setPageTwoVisible(true)
+    setPageVisible("WORK")
   }
 
   return (
     <div className="App">
       <NavBar onWorkOpen={onWorkOpen} />
-      <PageOne />
+      {pageVisible === "HOME" && <PageOne />}
 
-      {pageTwoVisible && (
+      {pageVisible === "WORK" && (
         <PageTwo
-          setPageTwoVisible={setPageTwoVisible}
+          setPageVisible={setPageVisible}
           hoverProjectIdx={hoverProjectIdx}
           setHoverProjectIdx={setHoverProjectIdx}
         />

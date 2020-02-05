@@ -14,35 +14,25 @@
   transition-timing-function: ease;
 }
 
-.pane-hidden {
+/* .pane-hidden {
   transform: translateY(100%);
-}
+} */
 
-.left-pane {
+.left {
   width: 50%;
   transition-duration: 0.5s;
   padding: 10vh 3vw;
   overflow: hidden;
 }
 
-.left-pane-body {
+.left-body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.mid-pane {
-  width: 10%;
-  background-color: #303030;
-  transition-duration: 0.75s;
-}
-
-.right-pane {
-  width: 40%;
-  background-color: #3e3d3d;
-  transition-duration: 1s;
-  box-shadow: 0px 7px 15px 0px #1f1f1f;
-  z-index: 2;
+.right {
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -60,35 +50,17 @@
   transition: all 0.25s;
 }
 
-.projects-title {
-  color: #ffffffe5;
-  font-size: 2.5rem;
-  font-family: "Montserrat";
-  font-weight: 400;
-  letter-spacing: 0.35rem;
-  margin: 10vh 5vw;
-  align-self: flex-end;
-  transition: 0.2s all ease-out;
-}
-
 .project-container {
   height: 70rem;
   width: 105%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-}
-
-.dash {
-  width: 0;
-  height: 2px;
-  transition: 0.2s width ease-out;
-  background-color: #aeafaf41;
-  margin-left: 20%;
+  cursor: pointer;
 }
 
 .project {
-  color: #ffffffe5;
+  color: #01426e34;
   font-size: 70rem;
   font-weight: 400;
   letter-spacing: 15rem;
