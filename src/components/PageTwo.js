@@ -29,7 +29,7 @@ function PageTwo({ setPageVisible, hoverProjectIdx, setHoverProjectIdx }) {
   const onClose = () => {
     // Animate project titles
     // Start from the top down
-    const projects = document.getElementsByClassName("project")
+    const projects = document.getElementsByClassName("project-title")
     for (let i = 0; i < PROJECTS.length; i++) {
       const project = projects[i]
       setTimeout(() => {
@@ -48,7 +48,7 @@ function PageTwo({ setPageVisible, hoverProjectIdx, setHoverProjectIdx }) {
     // Animate project titles
     // Starts 0.5s after pane animation
     // Start from the bottom up
-    const projects = document.getElementsByClassName("project")
+    const projects = document.getElementsByClassName("project-title")
     for (let i = projects.length - 1; i >= 0; i--) {
       const project = projects[i]
       setTimeout(() => {
@@ -124,14 +124,12 @@ function PageTwo({ setPageVisible, hoverProjectIdx, setHoverProjectIdx }) {
           )}
         </div>
         <div className={"right"}>
-          {PROJECTS.map((project, idx) => (
-            <div
-              key={project.name}
-              className={"project-container"}
-              onMouseOver={() => onProjectHover(idx)}
-            >
+          <div className={"project-titles"}>
+            {PROJECTS.map((project, idx) => (
               <p
-                className={"project project-hidden"}
+                key={project.name}
+                onMouseOver={() => onProjectHover(idx)}
+                className={"project-title project-hidden"}
                 style={
                   idx === hoverProjectIdx
                     ? { color: PROJECTS[idx].color }
@@ -140,8 +138,9 @@ function PageTwo({ setPageVisible, hoverProjectIdx, setHoverProjectIdx }) {
               >
                 {project.name}
               </p>
-            </div>
-          ))}
+            ))}
+          </div>
+          <div className={"vertical-bar"} />
         </div>
       </div>
     </>

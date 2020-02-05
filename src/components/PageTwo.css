@@ -1,11 +1,8 @@
 /* Page Two */
 .page-two {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  flex: 1;
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: row;
 }
 
 .pane {
@@ -13,10 +10,6 @@
   transition-property: all;
   transition-timing-function: ease;
 }
-
-/* .pane-hidden {
-  transform: translateY(100%);
-} */
 
 .left {
   width: 50%;
@@ -34,40 +27,32 @@
 .right {
   width: 50%;
   display: flex;
+  padding-right: 2%;
+}
+
+.project-titles {
+  display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-end;
 }
 
-.close {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 15px;
-  padding: 10px;
+.vertical-bar {
+  border-right: #0c1d4a1a 3px solid;
   height: auto;
-  cursor: pointer;
-  transition: all 0.25s;
 }
 
-.project-container {
-  height: 70rem;
-  width: 105%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+.project-title {
   cursor: pointer;
-}
-
-.project {
   color: #01426e34;
-  font-size: 70rem;
+  font-size: 50rem;
   font-weight: 400;
   letter-spacing: 15rem;
-  margin-left: 3%;
   opacity: 1;
-  transition: 0.2s all ease-out;
   font-weight: 700;
+  padding: 3rem 5rem;
+  transition: 0.2s all ease-out;
 }
 
 .project-hidden {
