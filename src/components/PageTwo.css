@@ -27,7 +27,7 @@
 .right {
   width: 50%;
   display: flex;
-  padding-right: 2%;
+  margin-right: 3%;
 }
 
 .project-titles {
@@ -36,10 +36,11 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-end;
+  overflow: hidden;
 }
 
 .vertical-bar {
-  border-right: #0c1d4a1a 3px solid;
+  border-right: #0c1d4a1a 2px solid;
   height: auto;
 }
 

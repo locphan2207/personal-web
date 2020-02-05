@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import "./PageTwo.css"
-import { ReactComponent as Close } from "../assets/close.svg"
 
 // Animation timeout delay (in millisecond)
 const PANE_OPEN_DURATION = 1000 // NOTE: PANE BECOME BUBBLE MOVE DURATION

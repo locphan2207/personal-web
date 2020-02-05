@@ -12,3 +12,13 @@
   overflow: hidden;
   position: relative;
 }
+
+.top-left-svg {
+  position: absolute;
+  top: -10%;
+  left: -3%;
+  width: 50%;
+  height: auto;
+  transition: 1s all ease-in-out;
+  z-index: 1;
+}

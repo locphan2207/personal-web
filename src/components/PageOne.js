@@ -15,7 +15,7 @@ function PageOne() {
   return (
     <div className="page page-one">
       <Illus className={"illu"} />
-      <TopLeftSVG className={"top-left-svg"} />
+      {/* <TopLeftSVG className={"top-left-svg"} /> */}
       <BubbleLeft className={"bubble-left"} />
       <BubbleRight className={"bubble-right"} />
       <CornerLeaves className={"corner-leaves"} />
