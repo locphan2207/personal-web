@@ -12,7 +12,6 @@ function App() {
   const [hoverProjectIdx, setHoverProjectIdx] = useState(0)
 
   const onWorkOpen = () => {
-    console.log("A")
     setPageTwoVisible(true)
   }
 

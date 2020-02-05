@@ -72,7 +72,7 @@
 }
 
 .project-container {
-  height: 6rem;
+  height: 70rem;
   width: 105%;
   display: flex;
   align-items: center;
@@ -89,13 +89,13 @@
 
 .project {
   color: #ffffffe5;
-  font-size: 2rem;
-  font-family: "Roboto Mono";
+  font-size: 70rem;
   font-weight: 400;
-  letter-spacing: 0.25rem;
+  letter-spacing: 15rem;
   margin-left: 3%;
   opacity: 1;
   transition: 0.2s all ease-out;
+  font-weight: 700;
 }
 
 .project-hidden {
@@ -104,12 +104,13 @@
 }
 
 .project-number {
-  font-family: "Montserrat";
-  font-size: 4rem;
-  letter-spacing: 0.35rem;
+  font-size: 50rem;
+  letter-spacing: 3rem;
   display: inline-block;
   align-self: flex-end;
   animation: slide-left 0.5s ease-out both;
+  font-weight: 600;
+  color: #768281;
 }
 
 .project-header {
@@ -118,11 +119,11 @@
 }
 
 .project-header-char {
-  font-family: "Montserrat";
-  font-size: 6rem;
-  letter-spacing: 0.5rem;
+  font-family: Palatino Bold;
+  font-size: 70rem;
+  letter-spacing: 5rem;
   text-align: left;
-  color: #ffffff;
+  color: #0c1d4a;
   animation: stagger 0.3s ease-in-out both;
 }
 
@@ -134,8 +135,7 @@
 
 .project-year-dash {
   height: 1px;
-  /* background-color: #ffffff80; */
-  margin: 1rem 0 1rem -50%;
+  margin: 10rem 0 10rem -50%;
   animation: slide-left 0.5s ease-out 0.5s both,
     reduce-width 1s ease-out 0.5s both, white-to-black 1s ease-out 0.5s both;
 }
@@ -145,12 +145,11 @@
 }
 
 .project-year {
-  font-family: "Montserrat";
   text-orientation: upright;
   writing-mode: vertical-lr;
-  color: #ffffff80;
+  color: #0c1d4a;
   width: auto;
-  font-size: 1.1rem;
+  font-size: 15rem;
   text-align: justify;
 }
 
@@ -175,13 +174,13 @@
 }
 
 .project-description {
+  font-family: Palatino;
   text-align: left;
   width: 85%;
   margin: 5% 0 8% 0;
-  font-size: 1.3rem;
-  letter-spacing: 0.1rem;
-  color: #ffffff80;
-  line-height: 1.8rem;
+  font-size: 20rem;
+  color: #0c1d4a;
+  line-height: 30rem;
 }
 
 .project-point-container {
@@ -191,12 +190,12 @@
 .project-point {
   text-align: left;
   margin: 3% 0;
-  font-size: 1.5rem;
+  font-size: 25rem;
   width: 90%;
-  letter-spacing: 0.1rem;
-  line-height: 2.1rem;
-  color: #ffffffd4;
-  font-weight: 400;
+  letter-spacing: 1rem;
+  line-height: 35rem;
+  color: #0c1d4a;
+  font-weight: 300;
 }
 
 @keyframes slide-left {
