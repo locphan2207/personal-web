@@ -1,12 +1,14 @@
 .App {
   height: 100%;
   text-align: center;
+  width: 100vw;
+  height: min(calc(100vw / 1920 * 1080), 100vh);
 }
 
 .page {
   display: flex;
-  width: 100vw;
-  height: min(calc(100vw / 1920 * 1080), 100vh);
+  width: inherit;
+  height: inherit;
   justify-content: center;
   align-items: center;
   overflow: hidden;
@@ -15,11 +17,21 @@
 
 .top-left-svg {
   position: absolute;
-  top: -10%;
-  left: -3%;
+  top: -1%;
+  left: -2%;
+  width: 55%;
+  height: auto;
+  z-index: 1;
+  overflow: visible;
+  /* background-color: red; */
+}
+
+.top-left-svg-2 {
+  position: absolute;
+  top: 0;
+  left: -15%;
   width: 50%;
   height: auto;
-  transition: 1s all ease-in-out;
   z-index: 1;
   overflow: visible;
 }

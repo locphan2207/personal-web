@@ -62,8 +62,8 @@
 }
 
 .project-number {
-  font-size: 50rem;
-  letter-spacing: 3rem;
+  font-size: 40rem;
+  letter-spacing: 2rem;
   display: inline-block;
   align-self: flex-end;
   animation: slide-left 0.5s ease-out both;
@@ -78,8 +78,8 @@
 
 .project-header-char {
   font-family: Palatino Bold;
-  font-size: 70rem;
-  letter-spacing: 5rem;
+  font-size: 60rem;
+  letter-spacing: 4rem;
   text-align: left;
   color: #0c1d4a;
   animation: stagger 0.3s ease-in-out both;
@@ -107,7 +107,7 @@
   writing-mode: vertical-lr;
   color: #0c1d4a;
   width: auto;
-  font-size: 15rem;
+  font-size: 13rem;
   text-align: justify;
 }
 
@@ -136,9 +136,9 @@
   text-align: left;
   width: 85%;
   margin: 5% 0 8% 0;
-  font-size: 20rem;
+  font-size: 18rem;
   color: #0c1d4a;
-  line-height: 30rem;
+  line-height: 25rem;
 }
 
 .project-point-container {
@@ -148,10 +148,10 @@
 .project-point {
   text-align: left;
   margin: 3% 0;
-  font-size: 25rem;
+  font-size: 20rem;
   width: 90%;
   letter-spacing: 1rem;
-  line-height: 35rem;
+  line-height: 30rem;
   color: #0c1d4a;
   font-weight: 300;
 }

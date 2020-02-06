@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1279.43" height="1114.421" viewBox="0 0 1279.43 1114.421">
+<svg id="top-left-svg-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1231.641" height="1050.856" viewBox="0 0 1231.641 1050.856">
   <defs>
-    <linearGradient id="linear-gradient-top-left-svg-top-left-svg-top-left-svg-top-left-svg" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#b1ceb4"/>
       <stop offset="1" stop-color="#91b1df"/>
     </linearGradient>
   </defs>
-  <path id="top-left-svg-2" d="M672,822c145.263,3.553,314.463-95.536,394.947-91.053C1209.653,738.9,1307.737,898.237,1322,1036s-190.105,146.526-198,246c.722,76.487,110,169,86,248s-295.957,59.515-456,68c-110.32,5.849,54.026,92-82,140s-498.945,85.12-544.105,86c-111.3,2.168,12.786-171.483-69.895-204s237.241-124.641,180-143.789-87.845-45.7-87.845-45.7L127.895,1267.2,218.1,739.71s142.371-44.946,267.793-22.973S526.737,818.447,672,822Z" transform="translate(-43.758 -710.098)" stroke="#707070" stroke-width="1" opacity="0.25" fill="url(#linear-gradient-top-left-svg)"/>
+  <path id="top-left-svg-2-2" data-name="top-left-svg-2" d="M982-324c-44,110-286,64-152,170S920-12,856,34s-98,46-68,126-54,76-132,98S580.5,405,468,378,428,183.5,284,214,194,380-24,282-279-114-208-396-18-676,98-666s36.5,192.5,150,202S452.5-616,594-616s109,55,206,128S1026-434,982-324Z" transform="translate(240.77 669.057)" opacity="0.4" fill="url(#linear-gradient)"/>
 </svg>
