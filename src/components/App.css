@@ -23,15 +23,4 @@
   height: auto;
   z-index: 1;
   overflow: visible;
-  /* background-color: red; */
-}
-
-.top-left-svg-2 {
-  position: absolute;
-  top: 0;
-  left: -15%;
-  width: 50%;
-  height: auto;
-  z-index: 1;
-  overflow: visible;
 }
