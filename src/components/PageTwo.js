@@ -79,6 +79,7 @@ function PageTwo({ setPageVisible, hoverProjectIdx, setHoverProjectIdx }) {
                         if (char === " ") return <span>&nbsp;&nbsp;</span>
                         return (
                           <span
+                            key={idx}
                             className={"project-header-char"}
                             style={{
                               animationDelay: `${TITLE_LEFT_PANE_DELAY +

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react"
 import "./PageOne.css"
-import { ReactComponent as TopLeftSVG } from "../assets/top-left-svg.svg"
 import { ReactComponent as Illus } from "../assets/illu-right.svg"
 import { ReactComponent as BubbleRight } from "../assets/bubble-right.svg"
 import { ReactComponent as BubbleLeft } from "../assets/bubble-left.svg"
@@ -15,7 +14,6 @@ function PageOne() {
   return (
     <div className="page page-one">
       <Illus className={"illu"} />
-      {/* <TopLeftSVG className={"top-left-svg"} /> */}
       <BubbleLeft className={"bubble-left"} />
       <BubbleRight className={"bubble-right"} />
       <CornerLeaves className={"corner-leaves"} />

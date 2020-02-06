@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="916.44" height="633.103" viewBox="0 0 916.44 633.103">
+<svg id="top-left-bubble" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="916.44" height="633.103" viewBox="0 0 916.44 633.103">
   <defs>
     <linearGradient id="linear-gradient-top-left-svg" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#b1ceb4"/>
@@ -6,8 +6,6 @@
     </linearGradient>
   </defs>
   <path id="top-left-svg" d="M1009.144-262c63.26,69.3,29.549,103.365-11.532,137.82s-82.279-22.208-152.793,0c-74.145,23.351-138.241,91-207.568,83.6-135.4-14.455-18.056-97.788-92.369-153.144s-140.5,34.57-216.216,0-2.4-100.9-32.667-161.441-67.664-42.357-88.414-80.721C166.113-512.556,156-614,156-614s100-56,140-58,330,24,368,32c11.491,2.419,275.539-20.4,368.207,0,41.117,9.051,74.955,129.514-34.595,109.333C939-510.616,978.222-295.876,1009.144-262Z" transform="translate(-155.47 672.639)" opacity="0.15" fill="url(#linear-gradient-top-left-svg)">
-    <animate id="top-left-svg-animation" attributeName="d" dur="500ms" begin="click" fill="freeze" to="M672,822c145.263,3.553,314.463-95.536,394.947-91.053C1209.653,738.9,1307.737,898.237,1322,1036s-190.105,146.526-198,246c.722,76.487,110,169,86,248s-295.957,59.515-456,68c-110.32,5.849,54.026,92-82,140s-498.945,85.12-544.105,86c-111.3,2.168,12.786-171.483-69.895-204s237.241-124.641,180-143.789-87.845-45.7-87.845-45.7L127.895,1267.2,218.1,739.71s142.371-44.946,267.793-22.973S526.737,818.447,672,822Z"/>
-    <!-- <animate id="top-left-svg-animation2" attributeName="transform" dur="500ms" begin="click" fill="freeze" to="translate(-43.758 -710.098)" />
-    <animate id="top-left-svg-animation3" attributeName="opacity" fill="freeze" dur="500ms" begin="click" to="1" /> -->
+  <path id="top-left-svg-2" d="M672,822c145.263,3.553,314.463-95.536,394.947-91.053C1209.653,738.9,1307.737,898.237,1322,1036s-190.105,146.526-198,246c.722,76.487,110,169,86,248s-295.957,59.515-456,68c-110.32,5.849,54.026,92-82,140s-498.945,85.12-544.105,86c-111.3,2.168,12.786-171.483-69.895-204s237.241-124.641,180-143.789-87.845-45.7-87.845-45.7L127.895,1267.2,218.1,739.71s142.371-44.946,267.793-22.973S526.737,818.447,672,822Z" transform="translate(-43.758 -710.098)" stroke="#707070" stroke-width="1" opacity="0.25" fill="url(#linear-gradient-top-left-svg)"/>
   </path>
 </svg>
