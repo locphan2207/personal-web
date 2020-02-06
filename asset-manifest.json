@@ -1,29 +1,28 @@
 {
   "files": {
-    "main.css": "/personal-web/static/css/main.9ae70eaa.chunk.css",
-    "main.js": "/personal-web/static/js/main.6adc876d.chunk.js",
-    "main.js.map": "/personal-web/static/js/main.6adc876d.chunk.js.map",
+    "main.css": "/personal-web/static/css/main.0729a69d.chunk.css",
+    "main.js": "/personal-web/static/js/main.dce220ad.chunk.js",
+    "main.js.map": "/personal-web/static/js/main.dce220ad.chunk.js.map",
     "runtime-main.js": "/personal-web/static/js/runtime-main.adc82d22.js",
     "runtime-main.js.map": "/personal-web/static/js/runtime-main.adc82d22.js.map",
     "static/js/2.5d7ab468.chunk.js": "/personal-web/static/js/2.5d7ab468.chunk.js",
     "static/js/2.5d7ab468.chunk.js.map": "/personal-web/static/js/2.5d7ab468.chunk.js.map",
     "index.html": "/personal-web/index.html",
-    "precache-manifest.42668321546873cf7cb8ae7b19278c35.js": "/personal-web/precache-manifest.42668321546873cf7cb8ae7b19278c35.js",
+    "precache-manifest.c98c55c1aec66c0f91d0d7dcff91b670.js": "/personal-web/precache-manifest.c98c55c1aec66c0f91d0d7dcff91b670.js",
     "service-worker.js": "/personal-web/service-worker.js",
-    "static/css/main.9ae70eaa.chunk.css.map": "/personal-web/static/css/main.9ae70eaa.chunk.css.map",
+    "static/css/main.0729a69d.chunk.css.map": "/personal-web/static/css/main.0729a69d.chunk.css.map",
     "static/js/2.5d7ab468.chunk.js.LICENSE": "/personal-web/static/js/2.5d7ab468.chunk.js.LICENSE",
     "static/media/bubble-left.d4b49858.svg": "/personal-web/static/media/bubble-left.d4b49858.svg",
     "static/media/bubble-right.d8db037c.svg": "/personal-web/static/media/bubble-right.d8db037c.svg",
-    "static/media/close.6b75e867.svg": "/personal-web/static/media/close.6b75e867.svg",
     "static/media/corner-leaves.b786cfd6.svg": "/personal-web/static/media/corner-leaves.b786cfd6.svg",
     "static/media/illu-right.6fa08b94.svg": "/personal-web/static/media/illu-right.6fa08b94.svg",
     "static/media/index.css": "/personal-web/static/media/palatino-linotype.96261bb9.ttf",
-    "static/media/top-left-svg.7f4a4cf4.svg": "/personal-web/static/media/top-left-svg.7f4a4cf4.svg"
+    "static/media/top-left-svg.d7a06453.svg": "/personal-web/static/media/top-left-svg.d7a06453.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.adc82d22.js",
     "static/js/2.5d7ab468.chunk.js",
-    "static/css/main.9ae70eaa.chunk.css",
-    "static/js/main.6adc876d.chunk.js"
+    "static/css/main.0729a69d.chunk.css",
+    "static/js/main.dce220ad.chunk.js"
   ]
 }
