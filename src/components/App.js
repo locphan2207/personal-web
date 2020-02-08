@@ -5,9 +5,6 @@ import NavBar, { PAGE_NAMES } from "./NavBar"
 import PageOne from "./PageOne"
 import PageTwo from "./PageTwo"
 import { ReactComponent as TopLeftSVG } from "assets/top-left-svg.svg"
-import { ReactComponent as BubbleRight } from "assets/bubble-right.svg"
-import { ReactComponent as BubbleLeft } from "assets/bubble-left.svg"
-import { ReactComponent as CornerLeaves } from "assets/corner-leaves.svg"
 import { addKeyFramesForBubbles } from "helpers/cssHelpers"
 
 const Snap = window.Snap
@@ -40,7 +37,7 @@ const animateToPage = pageName => {
 
 function App() {
   const [pageVisible, setPageVisible] = useState("HOME")
-  const [hoverProjectIdx, setHoverProjectIdx] = useState(0)
+  const [selectedProjectIdx, setSelectedProjectIdx] = useState(0)
 
   useEffect(() => {
     addKeyFramesForBubbles()
@@ -58,8 +55,8 @@ function App() {
       {pageVisible === "HOME" && <PageOne />}
       {pageVisible === "WORK" && (
         <PageTwo
-          hoverProjectIdx={hoverProjectIdx}
-          setHoverProjectIdx={setHoverProjectIdx}
+          selectedProjectIdx={selectedProjectIdx}
+          setSelectedProjectIdx={setSelectedProjectIdx}
         />
       )}
     </div>

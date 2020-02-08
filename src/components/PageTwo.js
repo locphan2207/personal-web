@@ -10,16 +10,16 @@ const LEFT_PANE_SHOW_DELAY = PANE_OPEN_DURATION / 3
 // Animation CSS delay (in second)
 const TITLE_LEFT_PANE_DELAY = 0.3
 
-function PageTwo({ hoverProjectIdx, setHoverProjectIdx }) {
+function PageTwo({ selectedProjectIdx, setSelectedProjectIdx }) {
   const [isLeftPaneVisible, setIsLeftPaneVisible] = useState(false)
 
   const animationLeftPane = () => {
     setIsLeftPaneVisible(true)
   }
 
-  const onProjectHover = index => {
-    if (index !== hoverProjectIdx) {
-      setHoverProjectIdx(index)
+  const onProjectSelect = index => {
+    if (index !== selectedProjectIdx) {
+      setSelectedProjectIdx(index)
       setIsLeftPaneVisible(false)
       setTimeout(animationLeftPane, LEFT_PANE_SHOW_DELAY)
     }
@@ -68,12 +68,12 @@ function PageTwo({ hoverProjectIdx, setHoverProjectIdx }) {
         <div className={"left"}>
           {isLeftPaneVisible && (
             <div className={"left-body"}>
-              <p className={"project-number"}>{`${hoverProjectIdx + 1 < 10 &&
-                "0"}${hoverProjectIdx + 1}`}</p>
+              <p className={"project-number"}>{`${selectedProjectIdx + 1 < 10 &&
+                "0"}${selectedProjectIdx + 1}`}</p>
               <div className={"row project-body"}>
                 <div className={"project-desc-container"}>
                   <div className={"project-header"}>
-                    {PROJECTS[hoverProjectIdx].name
+                    {PROJECTS[selectedProjectIdx].name
                       .split("")
                       .map((char, idx) => {
                         if (char === " ") return <span>&nbsp;&nbsp;</span>
@@ -92,10 +92,10 @@ function PageTwo({ hoverProjectIdx, setHoverProjectIdx }) {
                       })}
                   </div>
                   <p className={"project-description"}>
-                    {PROJECTS[hoverProjectIdx].description}
+                    {PROJECTS[selectedProjectIdx].description}
                   </p>
                   <div className={"project-point-container"}>
-                    {PROJECTS[hoverProjectIdx].bulletPoints.map(point => (
+                    {PROJECTS[selectedProjectIdx].bulletPoints.map(point => (
                       <p className={"project-point"} key={point}>
                         {point}
                       </p>
@@ -103,7 +103,7 @@ function PageTwo({ hoverProjectIdx, setHoverProjectIdx }) {
                   </div>
                 </div>
                 <div className={"project-year-container"}>
-                  {PROJECTS[hoverProjectIdx].years.map((year, idx) => (
+                  {PROJECTS[selectedProjectIdx].years.map((year, idx) => (
                     <div key={idx}>
                       <div className={"year-wrapper"}>
                         <p
@@ -128,10 +128,10 @@ function PageTwo({ hoverProjectIdx, setHoverProjectIdx }) {
             {PROJECTS.map((project, idx) => (
               <p
                 key={project.name}
-                onMouseOver={() => onProjectHover(idx)}
+                onMouseDown={() => onProjectSelect(idx)}
                 className={"project-title project-hidden"}
                 style={
-                  idx === hoverProjectIdx
+                  idx === selectedProjectIdx
                     ? { color: PROJECTS[idx].color }
                     : null
                 }
