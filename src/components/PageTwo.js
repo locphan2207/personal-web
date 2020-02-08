@@ -10,7 +10,7 @@ const LEFT_PANE_SHOW_DELAY = PANE_OPEN_DURATION / 3
 // Animation CSS delay (in second)
 const TITLE_LEFT_PANE_DELAY = 0.3
 
-function PageTwo({ setPageVisible, hoverProjectIdx, setHoverProjectIdx }) {
+function PageTwo({ hoverProjectIdx, setHoverProjectIdx }) {
   const [isLeftPaneVisible, setIsLeftPaneVisible] = useState(false)
 
   const animationLeftPane = () => {
@@ -25,23 +25,23 @@ function PageTwo({ setPageVisible, hoverProjectIdx, setHoverProjectIdx }) {
     }
   }
 
-  const onClose = () => {
-    // Animate project titles
-    // Start from the top down
-    const projects = document.getElementsByClassName("project-title")
-    for (let i = 0; i < PROJECTS.length; i++) {
-      const project = projects[i]
-      setTimeout(() => {
-        const currClassName = project.getAttribute("class")
-        project.setAttribute("class", currClassName + " project-hidden")
-      }, TITLE_SHOW_DELAY + (TITLE_SHOW_DURATION / projects.length) * i)
-    }
+  // const onClose = () => {
+  //   // Animate project titles
+  //   // Start from the top down
+  //   const projects = document.getElementsByClassName("project-title")
+  //   for (let i = 0; i < PROJECTS.length; i++) {
+  //     const project = projects[i]
+  //     setTimeout(() => {
+  //       const currClassName = project.getAttribute("class")
+  //       project.setAttribute("class", currClassName + " project-hidden")
+  //     }, TITLE_SHOW_DELAY + (TITLE_SHOW_DURATION / projects.length) * i)
+  //   }
 
-    setTimeout(
-      () => setPageVisible("HOME"),
-      TITLE_SHOW_DURATION + PANE_OPEN_DURATION
-    )
-  }
+  //   setTimeout(
+  //     () => setPageVisible("HOME"),
+  //     TITLE_SHOW_DURATION + PANE_OPEN_DURATION
+  //   )
+  // }
 
   useEffect(() => {
     // Animate project titles

@@ -1,13 +1,19 @@
 import React from "react"
 import "./NavBar.css"
 
-function NavBar({ onWorkOpen, onHomeOpen }) {
+export const PAGE_NAMES = {
+  HOME_PAGE: "HOME",
+  WORK_PAGE: "WORK",
+  SKILLS_PAGE: "SKILLS",
+  ABOUT_PAGE: "ABOUT",
+}
+
+function NavBar({ pageVisible, switchPage }) {
   return (
     <div className="nav-bar">
-      <h5 onClick={onHomeOpen}>{"HOME"}</h5>
-      <h5 onClick={onWorkOpen}>{"WORK"}</h5>
-      <h5>{"SKILLS"}</h5>
-      <h5>{"ABOUT"}</h5>
+      {Object.values(PAGE_NAMES).map(pageName => (
+        <h5 onClick={() => switchPage(pageName)}>{pageName}</h5>
+      ))}
     </div>
   )
 }

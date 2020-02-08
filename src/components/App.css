@@ -1,8 +1,8 @@
 .App {
-  height: 100%;
   text-align: center;
   width: 100vw;
   height: min(calc(100vw / 1920 * 1080), 100vh);
+  overflow: hidden;
 }
 
 .page {
@@ -18,9 +18,55 @@
 .top-left-svg {
   position: absolute;
   top: -18%;
-  left: -3%;
-  width: 55%;
+  left: 0;
+  width: 45%;
   height: auto;
-  z-index: 1;
   overflow: visible;
+  z-index: 1;
+}
+
+.bubble-left {
+  position: absolute;
+  top: 45%;
+  left: -5%;
+  width: 10%;
+  height: auto;
+  overflow: visible;
+}
+
+.bubble-right {
+  position: absolute;
+  top: -8%;
+  right: -5%;
+  width: 10%;
+  height: auto;
+  overflow: visible;
+}
+
+.corner-leaves {
+  position: absolute;
+  bottom: -10%;
+  left: -6%;
+  width: 20%;
+  height: auto;
+  animation: 10s jiggle linear infinite;
+  transform-origin: bottom;
+}
+
+@keyframes jiggle {
+  from {
+    transform: rotateZ(0deg);
+  }
+  25% {
+    transform: rotateZ(3deg);
+  }
+  50% {
+    transform: rotateZ(0deg);
+  }
+  75% {
+    transform: rotateZ(-3deg);
+  }
+  to {
+    transform: rotateZ(0deg);
+  }
 }
