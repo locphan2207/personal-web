@@ -1,6 +1,64 @@
 import React, { useRef, useState, useEffect } from "react"
 import "./NavBar.css"
 
+function NavBar({ pageVisible, switchPage }) {
+  const itemWidths = useRef({})
+  const previousPage = useRef(null)
+  const [bottomBarStyles, setBottomBarStyles] = useState({})
+
+  // Animation when switching page
+  useEffect(() => {
+    // Expand the width to the side (right of left from previous) of the new page
+    const expandedWidth = getExpandedWidthFromCurrentPage(
+      pageVisible,
+      previousPage.current,
+      itemWidths.current
+    )
+    setBottomBarStyles({
+      width: expandedWidth,
+      transform: isNewPageOnRightSide(pageVisible, previousPage.current)
+        ? `translateX(${getLeftOffset(
+            previousPage.current,
+            itemWidths.current
+          )})`
+        : `translateX(${getLeftOffset(pageVisible, itemWidths.current)})`,
+    })
+
+    // Then shrink it to side (right of left from previous) of the new page
+    setTimeout(
+      () =>
+        setBottomBarStyles({
+          width: itemWidths.current[pageVisible],
+          transform: `translateX(${getLeftOffset(
+            pageVisible,
+            itemWidths.current
+          )})`,
+        }),
+      100
+    )
+    previousPage.current = pageVisible
+  }, [pageVisible])
+
+  return (
+    <div className="nav-bar">
+      <div className="nav-names">
+        {NAV_NAMES_ORDER.map(pageName => (
+          <h5
+            ref={ref => {
+              if (ref) itemWidths.current[pageName] = ref.offsetWidth
+            }}
+            key={pageName}
+            onClick={() => switchPage(pageName)}
+          >
+            {pageName}
+          </h5>
+        ))}
+      </div>
+      <div className={"bottom-bar"} style={bottomBarStyles} />
+    </div>
+  )
+}
+
 export const PAGE_NAMES = {
   HOME_PAGE: "HOME",
   WORK_PAGE: "WORK",
@@ -38,67 +96,15 @@ const getExpandedWidthFromCurrentPage = (newPage, previousPage, itemWidths) => {
   return `calc(${width.join(" + ")})`
 }
 
-function NavBar({ pageVisible, switchPage }) {
-  const itemWidths = useRef({})
-  const previousPage = useRef(null)
-  const [bottomBarStyles, setBottomBarStyles] = useState({})
-
-  const getLeftOffset = pageName => {
-    let leftOffset = []
-    for (const currName of NAV_NAMES_ORDER) {
-      if (pageName !== currName) {
-        leftOffset.push(`${itemWidths.current[currName]}px`, "20rem")
-      } else {
-        return leftOffset.length ? `calc(${leftOffset.join(" + ")})` : "0px"
-      }
+const getLeftOffset = (pageName, itemWidths) => {
+  let leftOffset = []
+  for (const currName of NAV_NAMES_ORDER) {
+    if (pageName !== currName) {
+      leftOffset.push(`${itemWidths[currName]}px`, "20rem")
+    } else {
+      return leftOffset.length ? `calc(${leftOffset.join(" + ")})` : "0px"
     }
   }
-
-  // Animation when switching page
-  useEffect(() => {
-    // Expand the width to the side (right of left from previous) of the new page
-    const expandedWidth = getExpandedWidthFromCurrentPage(
-      pageVisible,
-      previousPage.current,
-      itemWidths.current
-    )
-    setBottomBarStyles({
-      width: expandedWidth,
-      transform: isNewPageOnRightSide(pageVisible, previousPage.current)
-        ? `translateX(${getLeftOffset(previousPage.current)})`
-        : `translateX(${getLeftOffset(pageVisible)})`,
-    })
-
-    // Then shrink it to side (right of left from previous) of the new page
-    setTimeout(
-      () =>
-        setBottomBarStyles({
-          width: itemWidths.current[pageVisible],
-          transform: `translateX(${getLeftOffset(pageVisible)})`,
-        }),
-      100
-    )
-    previousPage.current = pageVisible
-  }, [pageVisible])
-
-  return (
-    <div className="nav-bar">
-      <div className="nav-names">
-        {NAV_NAMES_ORDER.map(pageName => (
-          <h5
-            ref={ref => {
-              if (ref) itemWidths.current[pageName] = ref.offsetWidth
-            }}
-            key={pageName}
-            onClick={() => switchPage(pageName)}
-          >
-            {pageName}
-          </h5>
-        ))}
-      </div>
-      <div className={"bottom-bar"} style={bottomBarStyles} />
-    </div>
-  )
 }
 
 export default NavBar

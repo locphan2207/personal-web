@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import "./PageTwo.css"
 
 // Animation timeout delay (in millisecond)
@@ -12,6 +12,9 @@ const TITLE_LEFT_PANE_DELAY = 0.3
 
 function PageTwo({ selectedProjectIdx, setSelectedProjectIdx }) {
   const [isLeftPaneVisible, setIsLeftPaneVisible] = useState(false)
+  const [verticalBarStyles, setVerticalbarStyles] = useState({})
+  const titleHeights = useRef({})
+  const previousIdx = useRef(null)
 
   const animationLeftPane = () => {
     setIsLeftPaneVisible(true)
@@ -24,6 +27,39 @@ function PageTwo({ selectedProjectIdx, setSelectedProjectIdx }) {
       setTimeout(animationLeftPane, LEFT_PANE_SHOW_DELAY)
     }
   }
+
+  useEffect(() => {
+    setVerticalbarStyles({
+      height: getExpandedHeightFromCurrentTitle(
+        selectedProjectIdx,
+        previousIdx.current,
+        titleHeights.current
+      ),
+      transform:
+        selectedProjectIdx > previousIdx.current
+          ? `translateY(${getTopOffsetFromCurrentTitle(
+              previousIdx.current,
+              titleHeights.current
+            )})`
+          : `translateY(${getTopOffsetFromCurrentTitle(
+              selectedProjectIdx,
+              titleHeights.current
+            )})`,
+    })
+
+    setTimeout(
+      () =>
+        setVerticalbarStyles({
+          height: titleHeights.current[PROJECTS[selectedProjectIdx].name],
+          transform: `translateY(${getTopOffsetFromCurrentTitle(
+            selectedProjectIdx,
+            titleHeights.current
+          )})`,
+        }),
+      100
+    )
+    previousIdx.current = selectedProjectIdx
+  }, [selectedProjectIdx])
 
   // const onClose = () => {
   //   // Animate project titles
@@ -76,7 +112,8 @@ function PageTwo({ selectedProjectIdx, setSelectedProjectIdx }) {
                     {PROJECTS[selectedProjectIdx].name
                       .split("")
                       .map((char, idx) => {
-                        if (char === " ") return <span>&nbsp;&nbsp;</span>
+                        if (char === " ")
+                          return <span key={idx}>&nbsp;&nbsp;</span>
                         return (
                           <span
                             key={idx}
@@ -127,6 +164,9 @@ function PageTwo({ selectedProjectIdx, setSelectedProjectIdx }) {
           <div className={"project-titles"}>
             {PROJECTS.map((project, idx) => (
               <p
+                ref={ref => {
+                  if (ref) titleHeights.current[project.name] = ref.offsetHeight
+                }}
                 key={project.name}
                 onMouseDown={() => onProjectSelect(idx)}
                 className={"project-title project-hidden"}
@@ -140,7 +180,12 @@ function PageTwo({ selectedProjectIdx, setSelectedProjectIdx }) {
               </p>
             ))}
           </div>
-          <div className={"vertical-bar"} />
+          <div className={"vertical-bar"}>
+            <div
+              className={"vertical-bar-selection"}
+              style={verticalBarStyles}
+            />
+          </div>
         </div>
       </div>
     </>
@@ -203,5 +248,39 @@ const PROJECTS = [
     ],
   },
 ]
+
+const getExpandedHeightFromCurrentTitle = (
+  selectedIdx,
+  previousIdx,
+  itemHeights
+) => {
+  if (previousIdx === null) return itemHeights[PROJECTS[previousIdx]]
+  let height = []
+  for (const project of PROJECTS) {
+    if (
+      PROJECTS[selectedIdx].name === project.name ||
+      PROJECTS[previousIdx].name === project.name
+    ) {
+      if (height.length) {
+        height.push(`${itemHeights[project.name]}px`)
+        return height.length > 0 ? `calc(${height.join(" + ")})` : height[0]
+      }
+      height.push(`${itemHeights[project.name]}px`)
+    } else if (height.length) {
+      height.push(`${itemHeights[project.name]}px`)
+    }
+  }
+}
+
+const getTopOffsetFromCurrentTitle = (selectedIdx, itemHeights) => {
+  let topOffset = []
+  for (const project of PROJECTS) {
+    if (selectedIdx && PROJECTS[selectedIdx].name !== project.name) {
+      topOffset.push(`${itemHeights[project.name]}px`)
+    } else {
+      return topOffset.length > 0 ? `calc(${topOffset.join(" + ")})` : "0px"
+    }
+  }
+}
 
 export default PageTwo

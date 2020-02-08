@@ -41,8 +41,15 @@
 }
 
 .vertical-bar {
-  border-right: #0c1d4a1a 2px solid;
-  height: auto;
+  height: inherit;
+  background-color: #0c1d4a1a;
+  width: 2rem;
+}
+
+.vertical-bar-selection {
+  background-color: #01436e;
+  width: 2rem;
+  transition: height 0.2s ease, transform 0.2s ease;
 }
 
 .project-title {
