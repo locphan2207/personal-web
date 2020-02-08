@@ -83,3 +83,7 @@ const _randomPosition = (currPos = [0, 0]) => {
 const _randomDuration = radius => {
   return Math.random() * (100 / radius) + 10
 }
+
+export const convertRemToPixels = rem => {
+  return rem * parseFloat(getComputedStyle(document.documentElement).fontSize)
+}

@@ -5,6 +5,11 @@
   right: 4%;
   display: flex;
   z-index: 10;
+  flex-direction: column;
+}
+
+.nav-names {
+  display: flex;
 }
 
 .nav-bar h5 {
@@ -17,7 +22,16 @@
   padding-bottom: 5rem;
 }
 
+.nav-bar h5:first-of-type {
+  margin-left: 0rem;
+}
+
 .nav-bar h5:hover {
   color: #b1ceb4;
   transition: color 0.2s ease-in-out;
+}
+
+.bottom-bar {
+  background-color: #0c1d4a;
+  height: 1rem;
 }

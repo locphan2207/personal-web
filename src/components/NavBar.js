@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef } from "react"
 import "./NavBar.css"
 
 export const PAGE_NAMES = {
@@ -8,21 +8,54 @@ export const PAGE_NAMES = {
   ABOUT_PAGE: "ABOUT",
 }
 
+const NAV_NAMES_ORDER = [
+  PAGE_NAMES.HOME_PAGE,
+  PAGE_NAMES.WORK_PAGE,
+  PAGE_NAMES.SKILLS_PAGE,
+  PAGE_NAMES.ABOUT_PAGE,
+]
+
 function NavBar({ pageVisible, switchPage }) {
+  const itemWidths = useRef({})
+
+  const getLeftOffset = pageName => {
+    let leftOffset = []
+    for (const currName of NAV_NAMES_ORDER) {
+      if (pageName !== currName) {
+        leftOffset.push(`${itemWidths.current[currName]}px`, "20rem")
+      } else {
+        return leftOffset.length ? `calc(${leftOffset.join(" + ")})` : 0
+      }
+    }
+  }
+
+  console.log(itemWidths, pageVisible, {
+    width: itemWidths.current[pageVisible],
+    marginLeft: getLeftOffset(pageVisible),
+  })
+
   return (
     <div className="nav-bar">
-      {Object.values(PAGE_NAMES).map(pageName => (
-        <h5
-          onClick={() => switchPage(pageName)}
-          style={
-            pageVisible === pageName
-              ? { borderBottom: "#0c1d4a 2px solid" }
-              : null
-          }
-        >
-          {pageName}
-        </h5>
-      ))}
+      <div className="nav-names">
+        {NAV_NAMES_ORDER.map(pageName => (
+          <h5
+            ref={ref => {
+              if (ref) itemWidths.current[pageName] = ref.offsetWidth
+            }}
+            key={pageName}
+            onClick={() => switchPage(pageName)}
+          >
+            {pageName}
+          </h5>
+        ))}
+      </div>
+      <div
+        className={"bottom-bar"}
+        style={{
+          width: itemWidths.current[pageVisible],
+          marginLeft: getLeftOffset(pageVisible),
+        }}
+      />
     </div>
   )
 }
