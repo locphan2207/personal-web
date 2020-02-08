@@ -12,7 +12,16 @@ function NavBar({ pageVisible, switchPage }) {
   return (
     <div className="nav-bar">
       {Object.values(PAGE_NAMES).map(pageName => (
-        <h5 onClick={() => switchPage(pageName)}>{pageName}</h5>
+        <h5
+          onClick={() => switchPage(pageName)}
+          style={
+            pageVisible === pageName
+              ? { borderBottom: "#0c1d4a 2px solid" }
+              : null
+          }
+        >
+          {pageName}
+        </h5>
       ))}
     </div>
   )
