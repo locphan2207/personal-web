@@ -34,4 +34,5 @@
 .bottom-bar {
   background-color: #0c1d4a;
   height: 1rem;
+  transition: transform 0.1s linear, width 0.1s linear;
 }
