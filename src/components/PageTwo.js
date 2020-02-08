@@ -69,7 +69,7 @@ function PageTwo({ selectedProjectIdx, setSelectedProjectIdx }) {
   //     const project = projects[i]
   //     setTimeout(() => {
   //       const currClassName = project.getAttribute("class")
-  //       project.setAttribute("class", currClassName + " project-hidden")
+  //       project.setAttribute("class", currClassName + " hidden-below")
   //     }, TITLE_SHOW_DELAY + (TITLE_SHOW_DURATION / projects.length) * i)
   //   }
 
@@ -88,13 +88,18 @@ function PageTwo({ selectedProjectIdx, setSelectedProjectIdx }) {
       const project = projects[i]
       setTimeout(() => {
         const currClassName = project.getAttribute("class")
-        project.setAttribute(
-          "class",
-          currClassName.replace("project-hidden", "")
-        )
+        project.setAttribute("class", currClassName.replace("hidden-below", ""))
       }, TITLE_SHOW_DELAY + (TITLE_SHOW_DURATION / projects.length) * (projects.length - i))
     }
 
+    setTimeout(() => {
+      const verticalBar = document.getElementsByClassName("vertical-bar")[0]
+      const currClassName = verticalBar.getAttribute("class")
+      verticalBar.setAttribute(
+        "class",
+        currClassName.replace("hidden-above", "")
+      )
+    }, TITLE_SHOW_DELAY + TITLE_SHOW_DURATION / 2)
     setTimeout(animationLeftPane, LEFT_PANE_SHOW_DELAY)
   }, [])
 
@@ -169,7 +174,7 @@ function PageTwo({ selectedProjectIdx, setSelectedProjectIdx }) {
                 }}
                 key={project.name}
                 onMouseDown={() => onProjectSelect(idx)}
-                className={"project-title project-hidden"}
+                className={"project-title hidden-below"}
                 style={
                   idx === selectedProjectIdx
                     ? { color: PROJECTS[idx].color }
@@ -180,7 +185,7 @@ function PageTwo({ selectedProjectIdx, setSelectedProjectIdx }) {
               </p>
             ))}
           </div>
-          <div className={"vertical-bar"}>
+          <div className={"vertical-bar hidden-above"}>
             <div
               className={"vertical-bar-selection"}
               style={verticalBarStyles}

@@ -44,6 +44,7 @@
   height: inherit;
   background-color: #0c1d4a1a;
   width: 2rem;
+  transition: transform 0.3s ease-out;
 }
 
 .vertical-bar-selection {
@@ -64,8 +65,13 @@
   transition: 0.2s all ease-out;
 }
 
-.project-hidden {
+.hidden-below {
   transform: translateY(100%);
+  opacity: 0;
+}
+
+.hidden-above {
+  transform: translateY(-100%);
   opacity: 0;
 }
 
