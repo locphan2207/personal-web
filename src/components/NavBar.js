@@ -15,31 +15,27 @@ const NAV_NAMES_ORDER = [
   PAGE_NAMES.ABOUT_PAGE,
 ]
 
-const getLeftSidePage = pageName =>
-  NAV_NAMES_ORDER[NAV_NAMES_ORDER.findIndex(name => name === pageName) - 1]
-
 const isNewPageOnRightSide = (newPage, previousPage) => {
   const newIdx = NAV_NAMES_ORDER.findIndex(name => name === newPage)
   const previousIdx = NAV_NAMES_ORDER.findIndex(name => name === previousPage)
-  console.log(newPage, previousPage, newIdx, previousIdx)
   return newIdx > previousIdx
 }
 
 const getExpandedWidthFromCurrentPage = (newPage, previousPage, itemWidths) => {
   if (!previousPage) return itemWidths[newPage]
-  let width = 0
+  let width = []
   for (const page of NAV_NAMES_ORDER) {
     if (page === newPage || page === previousPage) {
-      if (width) {
-        width += itemWidths[page]
-        return width
+      if (width.length) {
+        width.push(`${itemWidths[page]}px`)
+        return width.length > 0 ? `calc(${width.join(" + ")})` : width[0]
       }
-      width += itemWidths[page]
-    } else if (width) {
-      width += itemWidths[page]
+      width.push(`${itemWidths[page]}px`, "20rem")
+    } else if (width.length) {
+      width.push(`${itemWidths[page]}px`, "20rem")
     }
   }
-  return 0
+  return `calc(${width.join(" + ")})`
 }
 
 function NavBar({ pageVisible, switchPage }) {
@@ -58,24 +54,22 @@ function NavBar({ pageVisible, switchPage }) {
     }
   }
 
+  // Animation when switching page
   useEffect(() => {
-    console.log(
-      previousPage.current,
-      pageVisible,
-      isNewPageOnRightSide(pageVisible, previousPage.current)
-    )
-    const newWidth = getExpandedWidthFromCurrentPage(
+    // Expand the width to the side (right of left from previous) of the new page
+    const expandedWidth = getExpandedWidthFromCurrentPage(
       pageVisible,
       previousPage.current,
       itemWidths.current
     )
     setBottomBarStyles({
-      width: newWidth,
+      width: expandedWidth,
       transform: isNewPageOnRightSide(pageVisible, previousPage.current)
         ? `translateX(${getLeftOffset(previousPage.current)})`
         : `translateX(${getLeftOffset(pageVisible)})`,
     })
 
+    // Then shrink it to side (right of left from previous) of the new page
     setTimeout(
       () =>
         setBottomBarStyles({
@@ -86,8 +80,6 @@ function NavBar({ pageVisible, switchPage }) {
     )
     previousPage.current = pageVisible
   }, [pageVisible])
-
-  console.log(bottomBarStyles)
 
   return (
     <div className="nav-bar">
@@ -104,9 +96,7 @@ function NavBar({ pageVisible, switchPage }) {
           </h5>
         ))}
       </div>
-      {/* {!!shouldRenderBottomBar && ( */}
       <div className={"bottom-bar"} style={bottomBarStyles} />
-      {/* )} */}
     </div>
   )
 }
