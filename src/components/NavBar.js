@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useRef, useState, useEffect } from "react"
 import "./NavBar.css"
 
 export const PAGE_NAMES = {
@@ -17,6 +17,7 @@ const NAV_NAMES_ORDER = [
 
 function NavBar({ pageVisible, switchPage }) {
   const itemWidths = useRef({})
+  const [shouldRenderBottomBar, setShouldRenderBottomBar] = useState(false)
 
   const getLeftOffset = pageName => {
     let leftOffset = []
@@ -29,10 +30,10 @@ function NavBar({ pageVisible, switchPage }) {
     }
   }
 
-  console.log(itemWidths, pageVisible, {
-    width: itemWidths.current[pageVisible],
-    marginLeft: getLeftOffset(pageVisible),
-  })
+  // Only render bottom bar after did mount (after first render to get the widths)
+  useEffect(() => {
+    setShouldRenderBottomBar(true)
+  }, [])
 
   return (
     <div className="nav-bar">
@@ -49,13 +50,15 @@ function NavBar({ pageVisible, switchPage }) {
           </h5>
         ))}
       </div>
-      <div
-        className={"bottom-bar"}
-        style={{
-          width: itemWidths.current[pageVisible],
-          marginLeft: getLeftOffset(pageVisible),
-        }}
-      />
+      {!!setShouldRenderBottomBar && (
+        <div
+          className={"bottom-bar"}
+          style={{
+            width: itemWidths.current[pageVisible],
+            marginLeft: getLeftOffset(pageVisible),
+          }}
+        />
+      )}
     </div>
   )
 }
