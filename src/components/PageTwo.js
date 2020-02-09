@@ -10,7 +10,7 @@ const LEFT_PANE_SHOW_DELAY = PANE_OPEN_DURATION / 3
 // Animation CSS delay (in second)
 const TITLE_LEFT_PANE_DELAY = 0.3
 
-function PageTwo() {
+function PageTwo({ isClosing, setClosingPage }) {
   const [selectedProjectIdx, setSelectedProjectIdx] = useState(0)
   const [isLeftPaneVisible, setIsLeftPaneVisible] = useState(false)
   const [verticalBarStyles, setVerticalbarStyles] = useState({})
@@ -62,23 +62,25 @@ function PageTwo() {
     previousIdx.current = selectedProjectIdx
   }, [selectedProjectIdx])
 
-  // const onClose = () => {
-  //   // Animate project titles
-  //   // Start from the top down
-  //   const projects = document.getElementsByClassName("project-title")
-  //   for (let i = 0; i < PROJECTS.length; i++) {
-  //     const project = projects[i]
-  //     setTimeout(() => {
-  //       const currClassName = project.getAttribute("class")
-  //       project.setAttribute("class", currClassName + " hidden-below")
-  //     }, TITLE_SHOW_DELAY + (TITLE_SHOW_DURATION / projects.length) * i)
-  //   }
+  const onClose = () => {
+    // Animate project titles
+    // Start from the top down
+    const projects = document.getElementsByClassName("project-title")
+    for (let i = 0; i < PROJECTS.length; i++) {
+      const project = projects[i]
+      setTimeout(() => {
+        const currClassName = project.getAttribute("class")
+        project.setAttribute("class", currClassName + " hidden-below")
+      }, TITLE_SHOW_DELAY + (TITLE_SHOW_DURATION / projects.length) * i)
+    }
 
-  //   setTimeout(
-  //     () => setPageVisible("HOME"),
-  //     TITLE_SHOW_DURATION + PANE_OPEN_DURATION
-  //   )
-  // }
+    return new Promise(resolve => {
+      setTimeout(
+        () => resolve("done"),
+        TITLE_SHOW_DURATION + PANE_OPEN_DURATION
+      )
+    })
+  }
 
   useEffect(() => {
     // Animate project titles
@@ -103,6 +105,16 @@ function PageTwo() {
     }, TITLE_SHOW_DELAY + TITLE_SHOW_DURATION / 2)
     setTimeout(animationLeftPane, LEFT_PANE_SHOW_DELAY)
   }, [])
+
+  useEffect(() => {
+    const willUnmountHandler = async () => {
+      if (isClosing) {
+        await onClose()
+        setClosingPage(null)
+      }
+    }
+    willUnmountHandler()
+  }, [isClosing, setClosingPage])
 
   return (
     <>

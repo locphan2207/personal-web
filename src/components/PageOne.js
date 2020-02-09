@@ -1,11 +1,20 @@
-import React from "react"
+import React, { useEffect } from "react"
 import "./PageOne.css"
 import { ReactComponent as Illus } from "../assets/illu-right.svg"
 import { ReactComponent as BubbleRight } from "assets/bubble-right.svg"
 import { ReactComponent as BubbleLeft } from "assets/bubble-left.svg"
 import { ReactComponent as CornerLeaves } from "assets/corner-leaves.svg"
 
-function PageOne() {
+function PageOne({ isClosing, setClosingPage }) {
+  useEffect(() => {
+    const willUnmountHandler = async () => {
+      if (isClosing) {
+        setClosingPage(null)
+      }
+    }
+    willUnmountHandler()
+  }, [isClosing, setClosingPage])
+
   return (
     <div className="page page-one">
       <Illus className={"illu"} />
