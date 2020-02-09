@@ -1,9 +1,0 @@
-<svg id="top-left-bubble" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="671" height="586" viewBox="0 0 671 586">
-  <defs>
-    <linearGradient id="linear-gradient-top-left-svg" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
-      <stop offset="0" stop-color="#b1ceb4"/>
-      <stop offset="1" stop-color="#91b1df"/>
-    </linearGradient>
-  </defs>
-  <path id="top-left-svg" d="M94.0006 497.5C105.304 561.283 237.68 430 280.001 464C322.321 498 344.001 610.5 397.001 579C433.413 557.358 473 376.5 525 444.5C577 512.5 670.303 444.5 670.303 389.965C670.303 335.431 568.064 295.911 553.5 229.5C541 172.5 604.5 153 596 111.5C584.091 53.3522 508 49.5 452 59.5C367.125 74.6564 244.173 182.171 225.5 98C221.398 79.5091 229.745 67.9587 225.5 49.5C207.384 -29.2859 25.4997 -3.50007 1.99988 66.5C-17.2071 123.713 160.145 149 144 187.5C127.855 226 76.6091 180 43.4999 272C31.0839 306.5 146.937 308.642 180.5 330C246.5 372 87.0006 458 94.0006 497.5Z" opacity="0.2" fill="url(#linear-gradient-top-left-svg)"/>
-</svg>
