@@ -6,13 +6,14 @@ import { ReactComponent as BubbleLeft } from "assets/bubble-left.svg"
 import { ReactComponent as CornerLeaves } from "assets/corner-leaves.svg"
 
 function PageOne({ isClosing, setClosingPage }) {
+  // Act as an alarm to parent for when its closing animation finishes
   useEffect(() => {
-    const willUnmountHandler = async () => {
+    const onCloseHandler = async () => {
       if (isClosing) {
         setClosingPage(null)
       }
     }
-    willUnmountHandler()
+    onCloseHandler()
   }, [isClosing, setClosingPage])
 
   return (

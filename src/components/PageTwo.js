@@ -106,14 +106,15 @@ function PageTwo({ isClosing, setClosingPage }) {
     setTimeout(animationLeftPane, LEFT_PANE_SHOW_DELAY)
   }, [])
 
+  // Act as an alarm to parent for when its closing animation finishes
   useEffect(() => {
-    const willUnmountHandler = async () => {
+    const onCloseHandler = async () => {
       if (isClosing) {
         await onClose()
         setClosingPage(null)
       }
     }
-    willUnmountHandler()
+    onCloseHandler()
   }, [isClosing, setClosingPage])
 
   return (

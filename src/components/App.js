@@ -14,9 +14,10 @@ import { animateToPage } from "helpers/svgHelpers"
 function App() {
   const [pageVisible, setPageVisible] = useState(PAGE_NAMES.HOME_PAGE)
   const [closingPage, setClosingPage] = useState(null)
-  const previousClosingPage = useRef(null)
   const nextPage = useRef(null)
 
+  // Trigger the closing animation and store the next page to ref
+  // So it can set the new page after closing animation finishes
   const switchPage = pageName => {
     animateToPage(pageName)
     setClosingPage(pageVisible)
@@ -27,10 +28,12 @@ function App() {
     addKeyFramesForBubbles()
   }, [])
 
+  // Act as a listener for when a page finishes its closing animation
+  // Will change the page when it knows the animation finishes (when closingPage goes to null)
   useEffect(() => {
-    if (!closingPage) {
-      if (previousClosingPage.current) setPageVisible(nextPage.current)
-    } else previousClosingPage.current = closingPage
+    if (!closingPage && nextPage.current) {
+      setPageVisible(nextPage.current)
+    }
   }, [closingPage])
 
   return (
