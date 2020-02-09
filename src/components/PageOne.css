@@ -40,3 +40,34 @@
   height: auto;
   overflow: visible;
 }
+
+.bubble-left {
+  position: absolute;
+  top: 45%;
+  left: -5%;
+  width: 10%;
+  height: auto;
+  overflow: visible;
+  transition: all 0.2s ease-in-out;
+}
+
+.bubble-right {
+  position: absolute;
+  top: -8%;
+  right: -5%;
+  width: 10%;
+  height: auto;
+  overflow: visible;
+  transition: all 0.2s ease-in-out;
+}
+
+.corner-leaves {
+  position: absolute;
+  bottom: -10%;
+  left: -6%;
+  width: 20%;
+  height: auto;
+  animation: 10s jiggle linear infinite;
+  transform-origin: bottom;
+  transition: all 0.2s ease-in-out;
+}

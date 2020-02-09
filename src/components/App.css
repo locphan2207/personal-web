@@ -25,34 +25,6 @@
   z-index: 1;
 }
 
-.bubble-left {
-  position: absolute;
-  top: 45%;
-  left: -5%;
-  width: 10%;
-  height: auto;
-  overflow: visible;
-}
-
-.bubble-right {
-  position: absolute;
-  top: -8%;
-  right: -5%;
-  width: 10%;
-  height: auto;
-  overflow: visible;
-}
-
-.corner-leaves {
-  position: absolute;
-  bottom: -10%;
-  left: -6%;
-  width: 20%;
-  height: auto;
-  animation: 10s jiggle linear infinite;
-  transform-origin: bottom;
-}
-
 @keyframes jiggle {
   from {
     transform: rotateZ(0deg);
@@ -69,4 +41,20 @@
   to {
     transform: rotateZ(0deg);
   }
+}
+
+/* Shared */
+.hidden {
+  opacity: 0;
+  transition: 0.2s opacity ease-in-out;
+}
+
+.hidden-below {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.hidden-above {
+  transform: translateY(-100%);
+  opacity: 0;
 }

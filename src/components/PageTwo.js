@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react"
 import "./PageTwo.css"
+import { useOnCloseWatcher } from "helpers/animationHelpers"
 
 // Animation timeout delay (in millisecond)
 const PANE_OPEN_DURATION = 1000 // NOTE: PANE BECOME BUBBLE MOVE DURATION
@@ -48,6 +49,7 @@ function PageTwo({ isClosing, setClosingPage }) {
       )
     })
   }
+  useOnCloseWatcher(isClosing, setClosingPage, onClose)
 
   useEffect(() => {
     setVerticalbarStyles({
@@ -105,17 +107,6 @@ function PageTwo({ isClosing, setClosingPage }) {
     }, TITLE_SHOW_DELAY + TITLE_SHOW_DURATION / 2)
     setTimeout(animationLeftPane, LEFT_PANE_SHOW_DELAY)
   }, [])
-
-  // Act as an alarm to parent for when its closing animation finishes
-  useEffect(() => {
-    const onCloseHandler = async () => {
-      if (isClosing) {
-        await onClose()
-        setClosingPage(null)
-      }
-    }
-    onCloseHandler()
-  }, [isClosing, setClosingPage])
 
   return (
     <>

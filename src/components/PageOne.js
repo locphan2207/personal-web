@@ -4,17 +4,21 @@ import { ReactComponent as Illus } from "../assets/illu-right.svg"
 import { ReactComponent as BubbleRight } from "assets/bubble-right.svg"
 import { ReactComponent as BubbleLeft } from "assets/bubble-left.svg"
 import { ReactComponent as CornerLeaves } from "assets/corner-leaves.svg"
+import { useOnCloseWatcher } from "helpers/animationHelpers"
 
 function PageOne({ isClosing, setClosingPage }) {
-  // Act as an alarm to parent for when its closing animation finishes
-  useEffect(() => {
-    const onCloseHandler = async () => {
-      if (isClosing) {
-        setClosingPage(null)
-      }
-    }
-    onCloseHandler()
-  }, [isClosing, setClosingPage])
+  const onClose = () => {
+    const bubbleRight = document.getElementsByClassName("bubble-right")[0]
+    bubbleRight.setAttribute(
+      "class",
+      bubbleRight.getAttribute("class") + " hidden-above"
+    )
+
+    return new Promise(resolve => {
+      setTimeout(() => resolve("done"), 200)
+    })
+  }
+  useOnCloseWatcher(isClosing, setClosingPage, onClose)
 
   return (
     <div className="page page-one">

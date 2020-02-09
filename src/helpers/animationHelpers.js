@@ -1,3 +1,5 @@
+import { useEffect } from "react"
+
 const BUBBLE_IDS = [
   "Ellipse_8",
   "Ellipse_9",
@@ -86,4 +88,19 @@ const _randomDuration = radius => {
 
 export const convertRemToPixels = rem => {
   return rem * parseFloat(getComputedStyle(document.documentElement).fontSize)
+}
+
+/* -------- SHARED HOOKS -------- */
+
+// Act as an alarm to parent for when its closing animation finishes
+export const useOnCloseWatcher = (isClosing, setClosingPage, onClose) => {
+  useEffect(() => {
+    const onCloseHandler = async () => {
+      if (isClosing) {
+        await onClose()
+        setClosingPage(null)
+      }
+    }
+    onCloseHandler()
+  }, [isClosing, onClose, setClosingPage])
 }

@@ -5,7 +5,7 @@ import NavBar, { PAGE_NAMES } from "./NavBar"
 import PageOne from "./PageOne"
 import PageTwo from "./PageTwo"
 import { ReactComponent as TopLeftSVG } from "assets/top-left-svg.svg"
-import { addKeyFramesForBubbles } from "helpers/cssHelpers"
+import { addKeyFramesForBubbles } from "helpers/animationHelpers"
 import { animateToPage } from "helpers/svgHelpers"
 
 // TODO:
