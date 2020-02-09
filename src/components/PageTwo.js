@@ -10,7 +10,8 @@ const LEFT_PANE_SHOW_DELAY = PANE_OPEN_DURATION / 3
 // Animation CSS delay (in second)
 const TITLE_LEFT_PANE_DELAY = 0.3
 
-function PageTwo({ selectedProjectIdx, setSelectedProjectIdx }) {
+function PageTwo() {
+  const [selectedProjectIdx, setSelectedProjectIdx] = useState(0)
   const [isLeftPaneVisible, setIsLeftPaneVisible] = useState(false)
   const [verticalBarStyles, setVerticalbarStyles] = useState({})
   const titleHeights = useRef({})
