@@ -29,6 +29,26 @@ function PageTwo({ isClosing, setClosingPage }) {
     }
   }
 
+  const onClose = () => {
+    // Animate project titles
+    // Start from the top down
+    const projects = document.getElementsByClassName("project-title")
+    for (let i = 0; i < PROJECTS.length; i++) {
+      const project = projects[i]
+      setTimeout(() => {
+        const currClassName = project.getAttribute("class")
+        project.setAttribute("class", currClassName + " hidden-below")
+      }, TITLE_SHOW_DELAY + (TITLE_SHOW_DURATION / projects.length) * i)
+    }
+
+    return new Promise(resolve => {
+      setTimeout(
+        () => resolve("done"),
+        TITLE_SHOW_DURATION + PANE_OPEN_DURATION
+      )
+    })
+  }
+
   useEffect(() => {
     setVerticalbarStyles({
       height: getExpandedHeightFromCurrentTitle(
@@ -61,26 +81,6 @@ function PageTwo({ isClosing, setClosingPage }) {
     )
     previousIdx.current = selectedProjectIdx
   }, [selectedProjectIdx])
-
-  const onClose = () => {
-    // Animate project titles
-    // Start from the top down
-    const projects = document.getElementsByClassName("project-title")
-    for (let i = 0; i < PROJECTS.length; i++) {
-      const project = projects[i]
-      setTimeout(() => {
-        const currClassName = project.getAttribute("class")
-        project.setAttribute("class", currClassName + " hidden-below")
-      }, TITLE_SHOW_DELAY + (TITLE_SHOW_DURATION / projects.length) * i)
-    }
-
-    return new Promise(resolve => {
-      setTimeout(
-        () => resolve("done"),
-        TITLE_SHOW_DURATION + PANE_OPEN_DURATION
-      )
-    })
-  }
 
   useEffect(() => {
     // Animate project titles

@@ -19,11 +19,16 @@ function App() {
   // Trigger the closing animation and store the next page to ref
   // So it can set the new page after closing animation finishes
   const switchPage = pageName => {
-    animateToPage(pageName)
     setClosingPage(pageVisible)
     nextPage.current = pageName
   }
 
+  // Animate top left svg when page has changed
+  useEffect(() => {
+    animateToPage(nextPage.current)
+  }, [pageVisible])
+
+  // Add random generated keyframes to bubbles
   useEffect(() => {
     addKeyFramesForBubbles()
   }, [])
