@@ -25,6 +25,10 @@
   z-index: 1;
 }
 
+.jiggle {
+  animation: 10s jiggle linear infinite;
+}
+
 @keyframes jiggle {
   from {
     transform: rotateZ(0deg);
@@ -57,4 +61,18 @@
 .hidden-above {
   transform: translateY(-100%);
   opacity: 0;
+}
+
+.hidden-left {
+  transform: translateX(-100%);
+  /* opacity: 0; */
+}
+
+.hidden-right {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.hidden-rotate-left {
+  transform: rotateZ(-30deg) translateX(-100%);
 }

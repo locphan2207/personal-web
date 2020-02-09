@@ -30,6 +30,30 @@ function PageTwo({ isClosing, setClosingPage }) {
     }
   }
 
+  const onOpen = () => {
+    // Animate project titles
+    // Starts 0.5s after pane animation
+    // Start from the bottom up
+    const projects = document.getElementsByClassName("project-title")
+    for (let i = projects.length - 1; i >= 0; i--) {
+      const project = projects[i]
+      setTimeout(() => {
+        const currClassName = project.getAttribute("class")
+        project.setAttribute("class", currClassName.replace("hidden-below", ""))
+      }, TITLE_SHOW_DELAY + (TITLE_SHOW_DURATION / projects.length) * (projects.length - i))
+    }
+
+    setTimeout(() => {
+      const verticalBar = document.getElementsByClassName("vertical-bar")[0]
+      const currClassName = verticalBar.getAttribute("class")
+      verticalBar.setAttribute(
+        "class",
+        currClassName.replace("hidden-above", "")
+      )
+    }, TITLE_SHOW_DELAY + TITLE_SHOW_DURATION / 2)
+    setTimeout(animationLeftPane, LEFT_PANE_SHOW_DELAY)
+  }
+
   const onClose = () => {
     // Animate project titles
     // Start from the top down
@@ -50,6 +74,10 @@ function PageTwo({ isClosing, setClosingPage }) {
     })
   }
   useOnCloseWatcher(isClosing, setClosingPage, onClose)
+
+  useEffect(() => {
+    onOpen()
+  }, [])
 
   useEffect(() => {
     setVerticalbarStyles({
@@ -83,30 +111,6 @@ function PageTwo({ isClosing, setClosingPage }) {
     )
     previousIdx.current = selectedProjectIdx
   }, [selectedProjectIdx])
-
-  useEffect(() => {
-    // Animate project titles
-    // Starts 0.5s after pane animation
-    // Start from the bottom up
-    const projects = document.getElementsByClassName("project-title")
-    for (let i = projects.length - 1; i >= 0; i--) {
-      const project = projects[i]
-      setTimeout(() => {
-        const currClassName = project.getAttribute("class")
-        project.setAttribute("class", currClassName.replace("hidden-below", ""))
-      }, TITLE_SHOW_DELAY + (TITLE_SHOW_DURATION / projects.length) * (projects.length - i))
-    }
-
-    setTimeout(() => {
-      const verticalBar = document.getElementsByClassName("vertical-bar")[0]
-      const currClassName = verticalBar.getAttribute("class")
-      verticalBar.setAttribute(
-        "class",
-        currClassName.replace("hidden-above", "")
-      )
-    }, TITLE_SHOW_DELAY + TITLE_SHOW_DURATION / 2)
-    setTimeout(animationLeftPane, LEFT_PANE_SHOW_DELAY)
-  }, [])
 
   return (
     <>

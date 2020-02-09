@@ -39,6 +39,8 @@
   width: 50%;
   height: auto;
   overflow: visible;
+  transition: all 500ms ease-in-out;
+  transform-origin: bottom;
 }
 
 .bubble-left {
@@ -48,17 +50,17 @@
   width: 10%;
   height: auto;
   overflow: visible;
-  transition: all 0.2s ease-in-out;
+  transition: all 500ms ease-in-out;
 }
 
 .bubble-right {
   position: absolute;
-  top: -8%;
-  right: -5%;
+  top: -3%;
+  right: -1%;
   width: 10%;
   height: auto;
   overflow: visible;
-  transition: all 0.2s ease-in-out;
+  transition: all 500ms ease-in-out;
 }
 
 .corner-leaves {
@@ -67,7 +69,7 @@
   left: -6%;
   width: 20%;
   height: auto;
-  animation: 10s jiggle linear infinite;
+  /* transform: rotateZ(0deg) translateX(0); */
+  transition: transform 500ms ease-in-out;
   transform-origin: bottom;
-  transition: all 0.2s ease-in-out;
 }
