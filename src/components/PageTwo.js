@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef } from "react"
 import "./PageTwo.css"
+import { ReactComponent as BubbleRight } from "assets/bubble-right.svg"
+import { ReactComponent as BubbleLeft } from "assets/bubble-left.svg"
+import { ReactComponent as CornerLeaves } from "assets/corner-leaves.svg"
 import { useOnCloseWatcher } from "helpers/animationHelpers"
 
 // Animation timeout delay (in millisecond)
@@ -31,6 +34,16 @@ function PageTwo({ isClosing, setClosingPage }) {
   }
 
   const onOpen = () => {
+    const bubbleRight = document.getElementsByClassName("bubble-right")[0]
+    const bubbleLeft = document.getElementsByClassName("bubble-left")[0]
+    const cornerLeaves = document.getElementsByClassName("corner-leaves")[0]
+    bubbleRight.setAttribute("class", "bubble-right")
+    bubbleLeft.setAttribute("class", "bubble-left")
+    cornerLeaves.setAttribute("class", "corner-leaves")
+    setTimeout(
+      () => cornerLeaves.setAttribute("class", "corner-leaves jiggle"),
+      600 // wait for "in" animation to finish then trigger jiggle animation
+    )
     // Animate project titles
     // Starts 0.5s after pane animation
     // Start from the bottom up
@@ -55,6 +68,18 @@ function PageTwo({ isClosing, setClosingPage }) {
   }
 
   const onClose = () => {
+    const bubbleRight = document.getElementsByClassName("bubble-right")[0]
+    const bubbleLeft = document.getElementsByClassName("bubble-left")[0]
+    const cornerLeaves = document.getElementsByClassName("corner-leaves")[0]
+    const illu = document.getElementsByClassName("illu")[0]
+    bubbleRight.setAttribute("class", "bubble-right hidden-right")
+    bubbleLeft.setAttribute("class", "bubble-left hidden-left")
+    cornerLeaves.setAttribute("class", "corner-leaves")
+    setTimeout(
+      () =>
+        cornerLeaves.setAttribute("class", "corner-leaves hidden-rotate-left"),
+      50 // wait to remove jiggle animation then do "out" animation
+    )
     // Animate project titles
     // Start from the top down
     const projects = document.getElementsByClassName("project-title")
@@ -113,96 +138,94 @@ function PageTwo({ isClosing, setClosingPage }) {
   }, [selectedProjectIdx])
 
   return (
-    <>
-      <div className={"page page-two"}>
-        <div className={"left"}>
-          {isLeftPaneVisible && (
-            <div className={"left-body"}>
-              <p className={"project-number"}>{`${selectedProjectIdx + 1 < 10 &&
-                "0"}${selectedProjectIdx + 1}`}</p>
-              <div className={"row project-body"}>
-                <div className={"project-desc-container"}>
-                  <div className={"project-header"}>
-                    {PROJECTS[selectedProjectIdx].name
-                      .split("")
-                      .map((char, idx) => {
-                        if (char === " ")
-                          return <span key={idx}>&nbsp;&nbsp;</span>
-                        return (
-                          <span
-                            key={idx}
-                            className={"project-header-char"}
-                            style={{
-                              animationDelay: `${TITLE_LEFT_PANE_DELAY +
-                                idx * 0.03}s`,
-                            }}
-                          >
-                            {char}
-                          </span>
-                        )
-                      })}
-                  </div>
-                  <p className={"project-description"}>
-                    {PROJECTS[selectedProjectIdx].description}
-                  </p>
-                  <div className={"project-point-container"}>
-                    {PROJECTS[selectedProjectIdx].bulletPoints.map(point => (
-                      <p className={"project-point"} key={point}>
-                        {point}
-                      </p>
-                    ))}
-                  </div>
-                </div>
-                <div className={"project-year-container"}>
-                  {PROJECTS[selectedProjectIdx].years.map((year, idx) => (
-                    <div key={idx}>
-                      <div className={"year-wrapper"}>
-                        <p
-                          className={`project-year ${
-                            idx % 2 === 0 ? "even" : "odd"
-                          }`}
-                          key={year}
+    <div className={"page page-two"}>
+      <BubbleLeft className={"bubble-left hidden-left"} />
+      <BubbleRight className={"bubble-right hidden-right"} />
+      <CornerLeaves className={"corner-leaves hidden-rotate-left"} />
+      <div className={"left"}>
+        {isLeftPaneVisible && (
+          <div className={"left-body"}>
+            <p className={"project-number"}>{`${selectedProjectIdx + 1 < 10 &&
+              "0"}${selectedProjectIdx + 1}`}</p>
+            <div className={"row project-body"}>
+              <div className={"project-desc-container"}>
+                <div className={"project-header"}>
+                  {PROJECTS[selectedProjectIdx].name
+                    .split("")
+                    .map((char, idx) => {
+                      if (char === " ")
+                        return <span key={idx}>&nbsp;&nbsp;</span>
+                      return (
+                        <span
+                          key={idx}
+                          className={"project-header-char"}
+                          style={{
+                            animationDelay: `${TITLE_LEFT_PANE_DELAY +
+                              idx * 0.03}s`,
+                          }}
                         >
-                          {year}
-                        </p>
-                      </div>
-                      {idx === 0 && <div className={"project-year-dash"} />}
-                    </div>
+                          {char}
+                        </span>
+                      )
+                    })}
+                </div>
+                <p className={"project-description"}>
+                  {PROJECTS[selectedProjectIdx].description}
+                </p>
+                <div className={"project-point-container"}>
+                  {PROJECTS[selectedProjectIdx].bulletPoints.map(point => (
+                    <p className={"project-point"} key={point}>
+                      {point}
+                    </p>
                   ))}
                 </div>
               </div>
+              <div className={"project-year-container"}>
+                {PROJECTS[selectedProjectIdx].years.map((year, idx) => (
+                  <div key={idx}>
+                    <div className={"year-wrapper"}>
+                      <p
+                        className={`project-year ${
+                          idx % 2 === 0 ? "even" : "odd"
+                        }`}
+                        key={year}
+                      >
+                        {year}
+                      </p>
+                    </div>
+                    {idx === 0 && <div className={"project-year-dash"} />}
+                  </div>
+                ))}
+              </div>
             </div>
-          )}
+          </div>
+        )}
+      </div>
+      <div className={"right"}>
+        <div className={"project-titles"}>
+          {PROJECTS.map((project, idx) => (
+            <p
+              ref={ref => {
+                if (ref) titleHeights.current[project.name] = ref.offsetHeight
+              }}
+              key={project.name}
+              onMouseDown={() => onProjectSelect(idx)}
+              className={"project-title hidden-below"}
+              style={
+                idx === selectedProjectIdx
+                  ? { color: PROJECTS[idx].color }
+                  : null
+              }
+            >
+              {project.name}
+            </p>
+          ))}
         </div>
-        <div className={"right"}>
-          <div className={"project-titles"}>
-            {PROJECTS.map((project, idx) => (
-              <p
-                ref={ref => {
-                  if (ref) titleHeights.current[project.name] = ref.offsetHeight
-                }}
-                key={project.name}
-                onMouseDown={() => onProjectSelect(idx)}
-                className={"project-title hidden-below"}
-                style={
-                  idx === selectedProjectIdx
-                    ? { color: PROJECTS[idx].color }
-                    : null
-                }
-              >
-                {project.name}
-              </p>
-            ))}
-          </div>
-          <div className={"vertical-bar hidden-above"}>
-            <div
-              className={"vertical-bar-selection"}
-              style={verticalBarStyles}
-            />
-          </div>
+        <div className={"vertical-bar hidden-above"}>
+          <div className={"vertical-bar-selection"} style={verticalBarStyles} />
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

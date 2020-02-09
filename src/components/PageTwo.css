@@ -160,6 +160,37 @@
   font-weight: 300;
 }
 
+.bubble-left {
+  position: absolute;
+  top: 45%;
+  left: -5%;
+  width: 10%;
+  height: auto;
+  overflow: visible;
+  transition: all 500ms ease-in-out;
+}
+
+.bubble-right {
+  position: absolute;
+  top: -3%;
+  right: -1%;
+  width: 10%;
+  height: auto;
+  overflow: visible;
+  transition: all 500ms ease-in-out;
+}
+
+.corner-leaves {
+  position: absolute;
+  bottom: -10%;
+  left: -6%;
+  width: 20%;
+  height: auto;
+  /* transform: rotateZ(0deg) translateX(0); */
+  transition: transform 500ms ease-in-out;
+  transform-origin: bottom;
+}
+
 @keyframes slide-left {
   from {
     transform: translateX(200%);
