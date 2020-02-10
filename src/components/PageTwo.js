@@ -38,16 +38,16 @@ function PageTwo({ isClosing, setClosingPage }) {
     const bubbleLeft = document.getElementsByClassName("bubble-left")[0]
     const cornerLeaves = document.getElementsByClassName("corner-leaves")[0]
 
-    bubbleRight.setAttribute("class", "bubble-right")
-    bubbleLeft.setAttribute("class", "bubble-left")
-    cornerLeaves.setAttribute("class", "corner-leaves")
+    setTimeout(() => bubbleRight.setAttribute("class", "bubble-right"), 500)
+    setTimeout(() => bubbleLeft.setAttribute("class", "bubble-left"), 1000)
+    setTimeout(() => cornerLeaves.setAttribute("class", "corner-leaves"), 1500)
 
     setTimeout(
       () => {
         cornerLeaves.setAttribute("class", "corner-leaves jiggle")
         addJiggleKeyFrames()
       },
-      600 // wait for "in" animation to finish then trigger jiggle animation
+      1500 + 600 // wait for "in" animation to finish then trigger jiggle animation
     )
 
     // Animate project titles
@@ -92,7 +92,7 @@ function PageTwo({ isClosing, setClosingPage }) {
       200
     )
 
-    cornerLeaves.setAttribute("class", "corner-leaves hidden-rotate-right")
+    cornerLeaves.setAttribute("class", "corner-leaves")
     setTimeout(
       () =>
         cornerLeaves.setAttribute("class", "corner-leaves hidden-rotate-right"),

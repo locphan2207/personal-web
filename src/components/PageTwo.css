@@ -171,9 +171,9 @@
 
 .page-two .bubble-left {
   position: absolute;
-  top: 5%;
+  top: 3%;
   left: 15%;
-  width: 5%;
+  width: 3%;
   height: auto;
   overflow: visible;
   transition: all 500ms ease-in-out;
