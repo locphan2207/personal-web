@@ -26,7 +26,7 @@
 }
 
 .jiggle {
-  animation: 10s jiggle linear infinite;
+  animation: 7s jiggle linear infinite;
 }
 
 /* Shared */
@@ -37,17 +37,17 @@
 
 .hidden-below {
   transform: translateY(100%) !important;
-  opacity: 0;
+  opacity: 0 !important;
 }
 
 .hidden-above {
   transform: translateY(-100%) !important;
-  opacity: 0;
+  opacity: 0 !important;
 }
 
 .hidden-left {
   transform: translateX(-100%) !important;
-  opacity: 0;
+  opacity: 0 !important;
 }
 
 .hidden-right {
@@ -61,4 +61,8 @@
 
 .hidden-rotate-right {
   transform: rotateZ(30deg) translateX(100%) !important;
+}
+
+.shrink-height {
+  height: 0px !important;
 }

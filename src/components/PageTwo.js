@@ -6,7 +6,7 @@ import { ReactComponent as CornerLeaves } from "assets/corner-leaves.svg"
 import { useOnCloseWatcher, addJiggleKeyFrames } from "helpers/animationHelpers"
 
 // Animation timeout delay (in millisecond)
-const PANE_OPEN_DURATION = 1000 // NOTE: PANE BECOME BUBBLE MOVE DURATION
+const PANE_OPEN_DURATION = 500 // NOTE: PANE BECOME BUBBLE MOVE DURATION
 const TITLE_SHOW_DELAY = PANE_OPEN_DURATION / 3
 const TITLE_SHOW_DURATION = PANE_OPEN_DURATION / 2
 const LEFT_PANE_SHOW_DELAY = PANE_OPEN_DURATION / 3
@@ -37,9 +37,11 @@ function PageTwo({ isClosing, setClosingPage }) {
     const bubbleRight = document.getElementsByClassName("bubble-right")[0]
     const bubbleLeft = document.getElementsByClassName("bubble-left")[0]
     const cornerLeaves = document.getElementsByClassName("corner-leaves")[0]
+
     bubbleRight.setAttribute("class", "bubble-right")
     bubbleLeft.setAttribute("class", "bubble-left")
     cornerLeaves.setAttribute("class", "corner-leaves")
+
     setTimeout(
       () => {
         cornerLeaves.setAttribute("class", "corner-leaves jiggle")
@@ -47,6 +49,7 @@ function PageTwo({ isClosing, setClosingPage }) {
       },
       600 // wait for "in" animation to finish then trigger jiggle animation
     )
+
     // Animate project titles
     // Starts 0.5s after pane animation
     // Start from the bottom up
@@ -61,12 +64,13 @@ function PageTwo({ isClosing, setClosingPage }) {
 
     setTimeout(() => {
       const verticalBar = document.getElementsByClassName("vertical-bar")[0]
-      const currClassName = verticalBar.getAttribute("class")
-      verticalBar.setAttribute(
-        "class",
-        currClassName.replace("hidden-above", "")
-      )
+      verticalBar.setAttribute("class", "vertical-bar")
+      const verticalBarSel = document.getElementsByClassName(
+        "vertical-bar-selection"
+      )[0]
+      verticalBarSel.setAttribute("class", "vertical-bar-selection")
     }, TITLE_SHOW_DELAY + TITLE_SHOW_DURATION / 2)
+
     setTimeout(animationLeftPane, LEFT_PANE_SHOW_DELAY)
   }
 
@@ -74,8 +78,20 @@ function PageTwo({ isClosing, setClosingPage }) {
     const bubbleRight = document.getElementsByClassName("bubble-right")[0]
     const bubbleLeft = document.getElementsByClassName("bubble-left")[0]
     const cornerLeaves = document.getElementsByClassName("corner-leaves")[0]
+    const verticalBar = document.getElementsByClassName("vertical-bar")[0]
+    const verticalBarSel = document.getElementsByClassName(
+      "vertical-bar-selection"
+    )[0]
+
     bubbleRight.setAttribute("class", "bubble-right hidden-below")
     bubbleLeft.setAttribute("class", "bubble-left hidden-above")
+
+    verticalBarSel.setAttribute("class", "vertical-bar-selection shrink-height")
+    setTimeout(
+      () => verticalBar.setAttribute("class", "vertical-bar shrink-height"),
+      200
+    )
+
     cornerLeaves.setAttribute("class", "corner-leaves hidden-rotate-right")
     setTimeout(
       () =>
@@ -224,8 +240,12 @@ function PageTwo({ isClosing, setClosingPage }) {
             </p>
           ))}
         </div>
-        <div className={"vertical-bar hidden-above"}>
-          <div className={"vertical-bar-selection"} style={verticalBarStyles} />
+        <div className={"vertical-bar-container"}>
+          <div
+            className={"vertical-bar-selection shrink-height"}
+            style={verticalBarStyles}
+          />
+          <div className={"vertical-bar shrink-height"} />
         </div>
       </div>
     </div>

@@ -40,17 +40,26 @@
   overflow: hidden;
 }
 
+.vertical-bar-container {
+  position: relative;
+  overflow: hidden;
+}
+
 .vertical-bar {
-  height: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
   background-color: #0c1d4a1a;
   width: 2rem;
-  transition: transform 0.3s ease-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .vertical-bar-selection {
   background-color: #01436e;
   width: 2rem;
-  transition: height 0.2s ease, transform 0.2s ease;
+  transition: all 0.2s ease;
+  transform-origin: center;
 }
 
 .project-title {
@@ -182,7 +191,7 @@
 
 .page-two .corner-leaves {
   position: absolute;
-  bottom: -10%;
+  bottom: -5%;
   right: -6%;
   width: 10%;
   height: auto;

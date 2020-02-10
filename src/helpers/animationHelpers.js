@@ -25,13 +25,13 @@ export const addJiggleKeyFrames = () => {
       transform: rotateZ(${angle}deg);
     }
     25% {
-      transform: rotateZ(${angle + 3}deg);
+      transform: rotateZ(${angle + 6}deg);
     }
     50% {
       transform: rotateZ(${angle}deg);
     }
     75% {
-      transform: rotateZ(${angle - 3}deg);
+      transform: rotateZ(${angle - 6}deg);
     }
     to {
       transform: rotateZ(${angle}deg);
