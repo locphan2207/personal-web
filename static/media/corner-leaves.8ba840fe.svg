@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="363.351" height="382.092" viewBox="0 0 363.351 382.092">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="349.349" height="314.552" viewBox="0 0 349.349 314.552">
   <defs>
     <linearGradient id="linear-gradient-leaves" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#b1ceb4"/>
       <stop offset="1" stop-color="#59675a"/>
     </linearGradient>
   </defs>
-  <g id="corner-leaves" transform="translate(339.281 -746.983) rotate(14)" opacity="0.67">
+  <g id="corner-leaves" transform="translate(80.772 -785.645)" opacity="0.67">
     <g id="leaf-left">
       <path id="Path_189" data-name="Path 189" d="M949.362,819.942c2.736,85.656-52.005,117.047-120.7,118.881q-2.394.064-4.766.078-4.779.033-9.465-.146C752.3,936.4,703.117,906.244,700.573,826.585c-2.633-82.438,109.284-189.55,117.681-197.473l.015-.008c.319-.3.482-.453.482-.453S946.625,734.295,949.362,819.942Z" transform="matrix(1, -0.017, 0.017, 1, -792.164, 173.659)" fill="url(#linear-gradient-leaves)"/>
       <path id="Path_190" data-name="Path 190" d="M767.862,891.752l35.323-52.528L767.934,897.4l.074,5.911q-3.868.029-7.661-.129l1.752-75.979-.048-.586.065-.113.168-7.18L723.6,763.164l38.637,50.789.137,1.517,1.323-57.4-33.412-58.228,33.506,48.143-.35-118.929v-.4l.011.389,2.218,93.732,30.45-38.074-30.35,46.149.665,51.347,28.021-50.113-27.918,57.662.37,28.552,40.751-69.806-40.626,79.768Z" transform="matrix(1, -0.017, 0.017, 1, -742.514, 189.971)" fill="#3f3d56"/>
