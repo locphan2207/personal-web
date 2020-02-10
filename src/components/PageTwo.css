@@ -249,7 +249,7 @@
 @keyframes stagger {
   from {
     transform-origin: bottom;
-    transform: rotateX(90deg) skewX(-10deg) translateY(-20%);
+    transform: rotateX(90deg) skewX(-10deg) translateY(-50%);
   }
   to {
     transform: rotateX(0deg) skewX(0deg) translateY(0);
