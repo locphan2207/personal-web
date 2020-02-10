@@ -4,7 +4,7 @@ import { ReactComponent as Illus } from "../assets/illu-right.svg"
 import { ReactComponent as BubbleRight } from "assets/bubble-right.svg"
 import { ReactComponent as BubbleLeft } from "assets/bubble-left.svg"
 import { ReactComponent as CornerLeaves } from "assets/corner-leaves.svg"
-import { useOnCloseWatcher } from "helpers/animationHelpers"
+import { useOnCloseWatcher, addJiggleKeyFrames } from "helpers/animationHelpers"
 
 function PageOne({ isClosing, setClosingPage }) {
   const onOpen = () => {
@@ -20,6 +20,7 @@ function PageOne({ isClosing, setClosingPage }) {
       600 // wait for "in" animation to finish then trigger jiggle animation
     )
     illu.setAttribute("class", "illu")
+    addJiggleKeyFrames()
   }
 
   const onClose = () => {
@@ -36,7 +37,6 @@ function PageOne({ isClosing, setClosingPage }) {
       50 // wait to remove jiggle animation then do "out" animation
     )
     illu.setAttribute("class", "illu hidden-below")
-
     return new Promise(resolve => {
       setTimeout(() => resolve("done"), 500)
     })

@@ -29,50 +29,36 @@
   animation: 10s jiggle linear infinite;
 }
 
-@keyframes jiggle {
-  from {
-    transform: rotateZ(0deg);
-  }
-  25% {
-    transform: rotateZ(3deg);
-  }
-  50% {
-    transform: rotateZ(0deg);
-  }
-  75% {
-    transform: rotateZ(-3deg);
-  }
-  to {
-    transform: rotateZ(0deg);
-  }
-}
-
 /* Shared */
 .hidden {
-  opacity: 0;
+  opacity: 0 !important;
   transition: 0.2s opacity ease-in-out;
 }
 
 .hidden-below {
-  transform: translateY(100%);
+  transform: translateY(100%) !important;
   opacity: 0;
 }
 
 .hidden-above {
-  transform: translateY(-100%);
+  transform: translateY(-100%) !important;
   opacity: 0;
 }
 
 .hidden-left {
-  transform: translateX(-100%);
-  /* opacity: 0; */
-}
-
-.hidden-right {
-  transform: translateX(100%);
+  transform: translateX(-100%) !important;
   opacity: 0;
 }
 
+.hidden-right {
+  transform: translateX(100%) !important;
+  opacity: 0 !important;
+}
+
 .hidden-rotate-left {
-  transform: rotateZ(-30deg) translateX(-100%);
+  transform: rotateZ(-30deg) translateX(-100%) !important;
+}
+
+.hidden-rotate-right {
+  transform: rotateZ(30deg) translateX(100%) !important;
 }

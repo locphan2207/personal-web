@@ -13,8 +13,38 @@ const BUBBLE_IDS = [
 
 const insideParentheses = /\(([^()]*)\)/
 
+export const addJiggleKeyFrames = () => {
+  const pageOneSS = _getStyleSheet(".App")
+  _deleteExistingRule("jiggle", pageOneSS)
+
+  console.log(pageOneSS)
+  const el = document.getElementsByClassName("corner-leaves")[0]
+  const angle = _getAngleFromMatrix(getComputedStyle(el).transform)
+  console.log(angle)
+  pageOneSS.insertRule(`@keyframes jiggle {
+    from {
+      transform: rotateZ(${angle}deg);
+    }
+    25% {
+      transform: rotateZ(${angle + 3}deg);
+    }
+    50% {
+      transform: rotateZ(${angle}deg);
+    }
+    75% {
+      transform: rotateZ(${angle - 3}deg);
+    }
+    to {
+      transform: rotateZ(${angle}deg);
+  }`)
+  // pageOneSS.insertRule(`.jiggle {
+  //   animation: 10s jiggle linear infinite;
+  // }`)
+  console.log(pageOneSS)
+}
+
 export const addKeyFramesForBubbles = () => {
-  const pageOneSS = _getPageOneStyleSheet()
+  const pageOneSS = _getStyleSheet(".page-one")
   const elements = []
   BUBBLE_IDS.forEach(id => {
     const el = document.getElementById(id)
@@ -59,12 +89,12 @@ export const addKeyFramesForBubbles = () => {
   }
 }
 
-const _getPageOneStyleSheet = () => {
+const _getStyleSheet = representedSelector => {
   const styleSheetList = document.styleSheets
   for (const ss of styleSheetList) {
     if (ss.href && ss.href.includes("fonts.googleapis.com")) continue // skip crossed-domain styles (Chrome doesn't allow to read)
     for (const rule of ss.cssRules) {
-      if (rule.selectorText === ".page-one") {
+      if (rule.selectorText === representedSelector) {
         return ss
       }
     }
@@ -86,8 +116,28 @@ const _randomDuration = radius => {
   return Math.random() * (100 / radius) + 10
 }
 
-export const convertRemToPixels = rem => {
+const _convertRemToPixels = rem => {
   return rem * parseFloat(getComputedStyle(document.documentElement).fontSize)
+}
+
+const _getAngleFromMatrix = matrixStr => {
+  // rotate(Xdeg) = matrix(cos(X), sin(X), -sin(X), cos(X), 0, 0);
+  // Xdeg = arcsin(X) or arccos(X)
+  const matrixValues = matrixStr.match(insideParentheses)[1].split(", ")
+  const sinValue = matrixValues[1]
+  return Math.round(Math.asin(sinValue) * (180 / Math.PI))
+}
+
+const _deleteExistingRule = (ruleName, stylesheet) => {
+  let idx
+  for (let i = 0; i < stylesheet.cssRules.length; i++) {
+    const rule = stylesheet.cssRules[i]
+    if (rule.name === ruleName) {
+      idx = i
+      break
+    }
+  }
+  if (idx) stylesheet.deleteRule(idx)
 }
 
 /* -------- SHARED HOOKS -------- */

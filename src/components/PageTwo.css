@@ -160,33 +160,33 @@
   font-weight: 300;
 }
 
-.bubble-left {
+.page-two .bubble-left {
   position: absolute;
-  top: 45%;
-  left: -5%;
+  top: 5%;
+  left: 15%;
+  width: 5%;
+  height: auto;
+  overflow: visible;
+  transition: all 500ms ease-in-out;
+}
+
+.page-two .bubble-right {
+  position: absolute;
+  bottom: 0;
+  right: 33%;
   width: 10%;
   height: auto;
   overflow: visible;
   transition: all 500ms ease-in-out;
 }
 
-.bubble-right {
-  position: absolute;
-  top: -3%;
-  right: -1%;
-  width: 10%;
-  height: auto;
-  overflow: visible;
-  transition: all 500ms ease-in-out;
-}
-
-.corner-leaves {
+.page-two .corner-leaves {
   position: absolute;
   bottom: -10%;
-  left: -6%;
-  width: 20%;
+  right: -6%;
+  width: 10%;
   height: auto;
-  /* transform: rotateZ(0deg) translateX(0); */
+  transform: rotateZ(-10deg);
   transition: transform 500ms ease-in-out;
   transform-origin: bottom;
 }

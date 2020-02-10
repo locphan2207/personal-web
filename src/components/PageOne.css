@@ -43,7 +43,7 @@
   transform-origin: bottom;
 }
 
-.bubble-left {
+.page-one .bubble-left {
   position: absolute;
   top: 45%;
   left: -5%;
@@ -53,7 +53,7 @@
   transition: all 500ms ease-in-out;
 }
 
-.bubble-right {
+.page-one .bubble-right {
   position: absolute;
   top: -3%;
   right: -1%;
@@ -63,13 +63,13 @@
   transition: all 500ms ease-in-out;
 }
 
-.corner-leaves {
+.page-one .corner-leaves {
   position: absolute;
-  bottom: -10%;
-  left: -6%;
-  width: 20%;
+  bottom: -5%;
+  left: -3%;
+  width: 15%;
   height: auto;
-  /* transform: rotateZ(0deg) translateX(0); */
+  transform: rotateZ(4deg);
   transition: transform 500ms ease-in-out;
   transform-origin: bottom;
 }

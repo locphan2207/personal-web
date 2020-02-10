@@ -71,15 +71,15 @@ function PageTwo({ isClosing, setClosingPage }) {
     const bubbleRight = document.getElementsByClassName("bubble-right")[0]
     const bubbleLeft = document.getElementsByClassName("bubble-left")[0]
     const cornerLeaves = document.getElementsByClassName("corner-leaves")[0]
-    const illu = document.getElementsByClassName("illu")[0]
-    bubbleRight.setAttribute("class", "bubble-right hidden-right")
-    bubbleLeft.setAttribute("class", "bubble-left hidden-left")
-    cornerLeaves.setAttribute("class", "corner-leaves")
+    bubbleRight.setAttribute("class", "bubble-right hidden-below")
+    bubbleLeft.setAttribute("class", "bubble-left hidden-above")
+    cornerLeaves.setAttribute("class", "corner-leaves hidden-rotate-right")
     setTimeout(
       () =>
-        cornerLeaves.setAttribute("class", "corner-leaves hidden-rotate-left"),
+        cornerLeaves.setAttribute("class", "corner-leaves hidden-rotate-right"),
       50 // wait to remove jiggle animation then do "out" animation
     )
+
     // Animate project titles
     // Start from the top down
     const projects = document.getElementsByClassName("project-title")
@@ -139,9 +139,9 @@ function PageTwo({ isClosing, setClosingPage }) {
 
   return (
     <div className={"page page-two"}>
-      <BubbleLeft className={"bubble-left hidden-left"} />
-      <BubbleRight className={"bubble-right hidden-right"} />
-      <CornerLeaves className={"corner-leaves hidden-rotate-left"} />
+      <BubbleLeft className={"bubble-left hidden-above"} />
+      <BubbleRight className={"bubble-right hidden-below"} />
+      <CornerLeaves className={"corner-leaves hidden-rotate-right"} />
       <div className={"left"}>
         {isLeftPaneVisible && (
           <div className={"left-body"}>
