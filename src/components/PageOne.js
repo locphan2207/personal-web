@@ -12,15 +12,15 @@ function PageOne({ isClosing, setClosingPage }) {
     const bubbleLeft = document.getElementsByClassName("bubble-left")[0]
     const cornerLeaves = document.getElementsByClassName("corner-leaves")[0]
     const illu = document.getElementsByClassName("illu")[0]
-    bubbleRight.setAttribute("class", "bubble-right")
+    setTimeout(() => bubbleRight.setAttribute("class", "bubble-right"), 300)
     bubbleLeft.setAttribute("class", "bubble-left")
-    cornerLeaves.setAttribute("class", "corner-leaves")
+    setTimeout(() => cornerLeaves.setAttribute("class", "corner-leaves"), 500)
     setTimeout(
       () => {
         cornerLeaves.setAttribute("class", "corner-leaves jiggle")
         addJiggleKeyFrames()
       },
-      600 // wait for "in" animation to finish then trigger jiggle animation
+      500 + 600 // wait for "in" animation to finish then trigger jiggle animation
     )
     illu.setAttribute("class", "illu")
   }

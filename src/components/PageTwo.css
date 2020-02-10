@@ -16,6 +16,7 @@
   transition-duration: 0.5s;
   padding: 10vh 3vw;
   overflow: hidden;
+  align-self: flex-start;
 }
 
 .left-body {

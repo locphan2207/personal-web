@@ -38,16 +38,16 @@ function PageTwo({ isClosing, setClosingPage }) {
     const bubbleLeft = document.getElementsByClassName("bubble-left")[0]
     const cornerLeaves = document.getElementsByClassName("corner-leaves")[0]
 
-    setTimeout(() => bubbleRight.setAttribute("class", "bubble-right"), 500)
-    setTimeout(() => bubbleLeft.setAttribute("class", "bubble-left"), 1000)
-    setTimeout(() => cornerLeaves.setAttribute("class", "corner-leaves"), 1500)
+    setTimeout(() => bubbleRight.setAttribute("class", "bubble-right"), 300)
+    setTimeout(() => bubbleLeft.setAttribute("class", "bubble-left"), 500)
+    setTimeout(() => cornerLeaves.setAttribute("class", "corner-leaves"), 1000)
 
     setTimeout(
       () => {
         cornerLeaves.setAttribute("class", "corner-leaves jiggle")
         addJiggleKeyFrames()
       },
-      1500 + 600 // wait for "in" animation to finish then trigger jiggle animation
+      1000 + 600 // wait for "in" animation to finish then trigger jiggle animation
     )
 
     // Animate project titles

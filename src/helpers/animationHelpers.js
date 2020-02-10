@@ -118,7 +118,12 @@ const _convertRemToPixels = rem => {
 const _getAngleFromMatrix = matrixStr => {
   // rotate(Xdeg) = matrix(cos(X), sin(X), -sin(X), cos(X), 0, 0);
   // Xdeg = arcsin(X) or arccos(X)
-  const matrixValues = matrixStr.match(insideParentheses)[1].split(", ")
+  let matrixValues
+  try {
+    matrixValues = matrixStr.match(insideParentheses)[1].split(", ")
+  } catch {
+    return 0
+  }
   const sinValue = matrixValues[1]
   return Math.round(Math.asin(sinValue) * (180 / Math.PI))
 }
