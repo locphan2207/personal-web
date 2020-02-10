@@ -16,11 +16,13 @@ function PageOne({ isClosing, setClosingPage }) {
     bubbleLeft.setAttribute("class", "bubble-left")
     cornerLeaves.setAttribute("class", "corner-leaves")
     setTimeout(
-      () => cornerLeaves.setAttribute("class", "corner-leaves jiggle"),
+      () => {
+        cornerLeaves.setAttribute("class", "corner-leaves jiggle")
+        addJiggleKeyFrames()
+      },
       600 // wait for "in" animation to finish then trigger jiggle animation
     )
     illu.setAttribute("class", "illu")
-    addJiggleKeyFrames()
   }
 
   const onClose = () => {

@@ -6,6 +6,10 @@ function NavBar({ pageVisible, switchPage }) {
   const previousPage = useRef(null)
   const [bottomBarStyles, setBottomBarStyles] = useState({})
 
+  const clickHandler = pageName => {
+    if (pageName !== pageVisible) switchPage(pageName)
+  }
+
   // Animation when switching page
   useEffect(() => {
     // Expand the width to the side (right of left from previous) of the new page
@@ -48,7 +52,7 @@ function NavBar({ pageVisible, switchPage }) {
               if (ref) itemWidths.current[pageName] = ref.offsetWidth
             }}
             key={pageName}
-            onClick={() => switchPage(pageName)}
+            onClick={() => clickHandler(pageName)}
           >
             {pageName}
           </h5>

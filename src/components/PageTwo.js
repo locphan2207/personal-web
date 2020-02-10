@@ -3,7 +3,7 @@ import "./PageTwo.css"
 import { ReactComponent as BubbleRight } from "assets/bubble-right.svg"
 import { ReactComponent as BubbleLeft } from "assets/bubble-left.svg"
 import { ReactComponent as CornerLeaves } from "assets/corner-leaves.svg"
-import { useOnCloseWatcher } from "helpers/animationHelpers"
+import { useOnCloseWatcher, addJiggleKeyFrames } from "helpers/animationHelpers"
 
 // Animation timeout delay (in millisecond)
 const PANE_OPEN_DURATION = 1000 // NOTE: PANE BECOME BUBBLE MOVE DURATION
@@ -41,7 +41,10 @@ function PageTwo({ isClosing, setClosingPage }) {
     bubbleLeft.setAttribute("class", "bubble-left")
     cornerLeaves.setAttribute("class", "corner-leaves")
     setTimeout(
-      () => cornerLeaves.setAttribute("class", "corner-leaves jiggle"),
+      () => {
+        cornerLeaves.setAttribute("class", "corner-leaves jiggle")
+        addJiggleKeyFrames()
+      },
       600 // wait for "in" animation to finish then trigger jiggle animation
     )
     // Animate project titles

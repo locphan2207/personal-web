@@ -14,13 +14,12 @@ const BUBBLE_IDS = [
 const insideParentheses = /\(([^()]*)\)/
 
 export const addJiggleKeyFrames = () => {
-  const pageOneSS = _getStyleSheet(".App")
+  let pageOneSS = _getStyleSheet(".App")
   _deleteExistingRule("jiggle", pageOneSS)
 
-  console.log(pageOneSS)
   const el = document.getElementsByClassName("corner-leaves")[0]
   const angle = _getAngleFromMatrix(getComputedStyle(el).transform)
-  console.log(angle)
+
   pageOneSS.insertRule(`@keyframes jiggle {
     from {
       transform: rotateZ(${angle}deg);
@@ -37,10 +36,6 @@ export const addJiggleKeyFrames = () => {
     to {
       transform: rotateZ(${angle}deg);
   }`)
-  // pageOneSS.insertRule(`.jiggle {
-  //   animation: 10s jiggle linear infinite;
-  // }`)
-  console.log(pageOneSS)
 }
 
 export const addKeyFramesForBubbles = () => {
@@ -129,7 +124,7 @@ const _getAngleFromMatrix = matrixStr => {
 }
 
 const _deleteExistingRule = (ruleName, stylesheet) => {
-  let idx
+  let idx = null
   for (let i = 0; i < stylesheet.cssRules.length; i++) {
     const rule = stylesheet.cssRules[i]
     if (rule.name === ruleName) {
@@ -137,7 +132,7 @@ const _deleteExistingRule = (ruleName, stylesheet) => {
       break
     }
   }
-  if (idx) stylesheet.deleteRule(idx)
+  if (idx !== null) stylesheet.deleteRule(idx)
 }
 
 /* -------- SHARED HOOKS -------- */
