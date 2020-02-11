@@ -5,7 +5,7 @@ import avatar from "assets/avatar.png"
 import { ReactComponent as Triangle } from "assets/triangle.svg"
 import { useOnCloseWatcher } from "helpers/animationHelpers"
 
-function PageOne({ isClosing, setClosingPage }) {
+function PageOne({ isClosing, setClosingPage, explore }) {
   const onOpen = () => {}
 
   const onClose = () => {}
@@ -31,7 +31,7 @@ function PageOne({ isClosing, setClosingPage }) {
           <br />
           beautiful and interactive websites.
         </p>
-        <div className="explore-container">
+        <div className="explore-container" onClick={explore}>
           <p>EXPLORE ME</p>
           <Triangle className="triangle" />
         </div>
