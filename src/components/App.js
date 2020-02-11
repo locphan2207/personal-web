@@ -11,7 +11,8 @@ import PageTwo from "./PageTwo"
 // - SWITCH TO NEW DESIGN
 
 function App() {
-  const [pageVisible, setPageVisible] = useState(PAGE_NAMES.HOME_PAGE)
+  // const [pageVisible, setPageVisible] = useState(PAGE_NAMES.HOME_PAGE)
+  const [pageVisible, setPageVisible] = useState(PAGE_NAMES.WORK_PAGE)
   const [closingPage, setClosingPage] = useState(null)
   const nextPage = useRef(null)
 

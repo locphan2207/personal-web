@@ -1,14 +1,9 @@
 /* Page Two */
 .page-two {
-  background-color: #fafafa;
   display: flex;
-  flex-direction: row;
-}
-
-.pane {
-  height: 100%;
-  transition-property: all;
-  transition-timing-function: ease;
+  justify-content: flex-end;
+  padding: 11%;
+  width: 100%;
 }
 
 .left {
@@ -19,25 +14,17 @@
   align-self: flex-start;
 }
 
-.left-body {
+.desc-body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   z-index: 2;
 }
 
-.right {
-  width: 50%;
-  display: flex;
-  margin-right: 3%;
-}
-
 .project-titles {
   display: flex;
-  flex: 1;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-end;
+  align-items: flex-start;
   overflow: hidden;
 }
 
@@ -153,21 +140,6 @@
   font-size: 18rem;
   color: #0c1d4a;
   line-height: 25rem;
-}
-
-.project-point-container {
-  margin: 5%;
-}
-
-.project-point {
-  text-align: left;
-  margin: 3% 0;
-  font-size: 20rem;
-  width: 90%;
-  letter-spacing: 1rem;
-  line-height: 30rem;
-  color: #0c1d4a;
-  font-weight: 300;
 }
 
 @keyframes slide-left {
