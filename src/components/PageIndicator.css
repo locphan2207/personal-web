@@ -1,0 +1,16 @@
+/* Page indicator */
+.page-numbers {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  height: 40%;
+}
+
+.page-numbers h5 {
+  color: #a8a5a3;
+  font-family: Palatino Bold;
+  font-size: 20rem;
+}

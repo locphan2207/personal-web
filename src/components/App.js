@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react"
 
 import "./App.css"
 import NavBar, { PAGE_NAMES } from "./NavBar"
+import PageIndicator from "./PageIndicator"
 import PageOne from "./PageOne"
 import PageTwo from "./PageTwo"
 
@@ -37,7 +38,12 @@ function App() {
 
   return (
     <div className="App">
+      <div className="left-vertical-bar">
+        <p>{"scroll"}</p>
+      </div>
+      <div className="right-vertical-bar" />
       <NavBar pageVisible={pageVisible} switchPage={switchPage} />
+      <PageIndicator pageVisible={pageVisible} />
       {pageVisible === PAGE_NAMES.HOME_PAGE && (
         <PageOne
           isClosing={closingPage === PAGE_NAMES.HOME_PAGE}

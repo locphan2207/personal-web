@@ -2,11 +2,12 @@
 .nav-bar {
   position: absolute;
   bottom: 5%;
-  right: 0;
+  right: 5%;
   display: flex;
   z-index: 10;
   flex-direction: column;
-  transform: rotateZ(90deg) translateX(-50%);
+  transform: rotateZ(90deg) translateY(50%);
+  transform-origin: right;
 }
 
 .nav-names {

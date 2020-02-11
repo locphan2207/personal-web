@@ -8,13 +8,40 @@
   flex-direction: column;
   align-items: center;
   position: relative;
+  /* background-color: gray; */
 }
 
 .page {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   overflow: hidden;
+}
+
+.right-vertical-bar {
+  width: 1rem;
+  height: 37%;
+  background-color: #5b544f;
+  position: absolute;
+  right: 5%;
+  top: 10%;
+}
+
+.left-vertical-bar {
+  width: 1rem;
+  height: 24%;
+  background-color: #5b544f;
+  position: absolute;
+  left: 5%;
+  bottom: 5%;
+}
+
+.left-vertical-bar p {
+  position: absolute;
+  top: -20%;
+  left: 0;
+  transform: rotateZ(90deg) translateY(250%);
+  transform-origin: right;
+  color: #5b544f;
+  font-size: 15rem;
+  font-weight: 700;
 }
 
 /* Shared */
