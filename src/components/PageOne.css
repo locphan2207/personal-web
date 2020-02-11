@@ -55,7 +55,7 @@
   height: 100%;
 }
 
-.page-one p {
+.greeting {
   font-size: 20rem;
   line-height: 30rem;
   color: #a8a5a3;
@@ -64,6 +64,25 @@
   margin-left: 25rem;
 }
 
-.page-one p span {
+.greeting span {
   color: #eeb669;
+}
+
+.explore-container {
+  display: flex;
+  margin-left: 25rem;
+  margin-top: 100rem;
+}
+
+.explore-container p {
+  font-weight: 600;
+  color: #f2f2f2;
+  font-size: 25rem;
+  margin-right: 20rem;
+}
+
+.explore-container .triangle {
+  width: auto;
+  height: 15rem;
+  align-self: center;
 }
