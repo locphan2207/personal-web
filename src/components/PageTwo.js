@@ -2,6 +2,10 @@ import React, { useState, useEffect, useRef } from "react"
 import "./PageTwo.css"
 import { useOnCloseWatcher } from "helpers/animationHelpers"
 import { ReactComponent as Triangle } from "assets/triangle.svg"
+import sbk from "assets/sbk.png"
+import food from "assets/food.png"
+import dataBlock from "assets/data-block.png"
+import emotion from "assets/emotion.png"
 
 // Animation timeout delay (in millisecond)
 const PANE_OPEN_DURATION = 500 // NOTE: PANE BECOME BUBBLE MOVE DURATION
@@ -71,6 +75,10 @@ function PageTwo({ isClosing, setClosingPage }) {
 
   return (
     <div className={"page-two"}>
+      <div className="project-img">
+        <img src={PROJECTS[selectedProjectIdx].img} alt={"project"} />
+        <div className="gradient" />
+      </div>
       <div className={"project-titles"}>
         {PROJECTS.map((project, idx) => (
           <p
@@ -119,9 +127,9 @@ function PageTwo({ isClosing, setClosingPage }) {
                 )
               })}
             </div>
-            <p className={"project-description"}>
+            <div className={"project-description"}>
               {PROJECTS[selectedProjectIdx].description}
-            </p>
+            </div>
             <a
               className="more-container"
               href={PROJECTS[selectedProjectIdx].link}
@@ -143,6 +151,7 @@ const PROJECTS = [
     name: "SBK",
     color: "#187b57",
     link: "https://getsbk.com",
+    img: sbk,
     years: ["2018", "2020"],
     description: (
       <p>
@@ -157,6 +166,7 @@ const PROJECTS = [
     name: "Food Stories",
     color: "#4184a0",
     link: "http://food-stories.herokuapp.com/#/",
+    img: food,
     years: ["2018"],
     description: (
       <p>
@@ -171,6 +181,7 @@ const PROJECTS = [
     name: "Data Block",
     color: "#3C887E",
     link: "https://locphan2207.github.io/Data-block/",
+    img: dataBlock,
     years: ["2018"],
     description: (
       <p>
@@ -184,6 +195,7 @@ const PROJECTS = [
     name: "Emotion Diary",
     color: "#ad5050",
     link: "https://github.com/locphan2207/Emotion-Diary",
+    img: emotion,
     years: ["2018"],
     description: (
       <p>

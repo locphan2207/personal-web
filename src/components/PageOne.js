@@ -20,7 +20,7 @@ function PageOne({ isClosing, setClosingPage, explore }) {
       <div className="name-container">
         <h1>Tan Loc</h1>
         <div className="last-name-img">
-          <img src={avatar} className="image" alt={"face"} />
+          <img src={avatar} alt={"face"} />
           <div className="gradient" />
           <h2 className="last-name">Phan</h2>
         </div>
