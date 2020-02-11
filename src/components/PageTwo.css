@@ -2,29 +2,16 @@
 .page-two {
   display: flex;
   justify-content: flex-end;
-  padding: 8% 5%;
+  padding: 8% 0;
   width: 100%;
-  height: 100%;
-}
-
-.desc-body {
-  width: 37%;
-  min-width: 37%;
-  max-width: 37%;
-  height: 100%;
-  margin-left: 5%;
-  margin-right: 50rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
 }
 
 .project-titles {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  position: relative;
   margin-top: 10%;
+  position: relative;
 }
 
 .project-title {
@@ -35,20 +22,20 @@
   font-weight: 400;
   letter-spacing: 2rem;
   line-height: 75rem;
-  transition: 0.2s all ease-out;
+  transition: 0.2s color ease-out, 0.4s transform ease-out,
+    0.4s opacity ease-out;
   z-index: 3;
 }
 
 .project-img {
-  margin-right: -140rem;
+  position: absolute;
+  top: -50%;
+  right: 250rem;
   overflow: hidden;
-  position: relative;
-  background-color: red;
-  height: auto;
 }
 
 .project-img img {
-  height: auto;
+  height: calc(0.45 * min(100vw, 1640px));
 }
 
 .project-img .gradient {
@@ -60,10 +47,23 @@
   height: 100%;
 }
 
+.desc-body {
+  width: 37%;
+  min-width: 37%;
+  max-width: 37%;
+  height: 100%;
+  margin-left: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: relative;
+}
+
 .project-tags {
   display: flex;
   justify-content: flex-start;
-  margin-top: 150rem;
+  margin-top: 250rem;
+  margin-right: 50rem;
 }
 
 .project-tag-char {
@@ -73,6 +73,10 @@
   font-weight: 300;
   animation: stagger 0.3s ease-in-out both;
   white-space: pre;
+}
+
+.project-description {
+  margin-right: 50rem;
 }
 
 .project-description > p {
@@ -91,8 +95,8 @@
 
 .project-year-container {
   position: absolute;
-  top: 10%;
-  right: calc(5% + 15rem);
+  top: 0;
+  right: 10%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -129,6 +133,7 @@
 
 .more-container {
   margin-top: 40rem;
+  margin-right: 50rem;
   display: flex;
   align-items: flex-end;
   cursor: pointer;

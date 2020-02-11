@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect } from "react"
 import "./PageTwo.css"
 import { useOnCloseWatcher } from "helpers/animationHelpers"
 import { ReactComponent as Triangle } from "assets/triangle.svg"
@@ -8,63 +8,48 @@ import dataBlock from "assets/data-block.png"
 import emotion from "assets/emotion.png"
 
 // Animation timeout delay (in millisecond)
-const PANE_OPEN_DURATION = 500 // NOTE: PANE BECOME BUBBLE MOVE DURATION
-const TITLE_SHOW_DELAY = PANE_OPEN_DURATION / 3
-const TITLE_SHOW_DURATION = PANE_OPEN_DURATION / 2
-const LEFT_PANE_SHOW_DELAY = PANE_OPEN_DURATION / 3
-
+const TITLE_SHOW_DURATION = 800
 // Animation CSS delay (in second)
-const TITLE_LEFT_PANE_DELAY = 0.3
+const TAG_CHAR_DELAY = 0.3
 
 function PageTwo({ isClosing, setClosingPage }) {
   const [selectedProjectIdx, setSelectedProjectIdx] = useState(0)
   const [isDescriptionVisible, setIsDescriptionVisible] = useState(false)
 
-  const animateDescription = () => {
-    setIsDescriptionVisible(true)
-  }
-
   const onProjectSelect = index => {
     if (index !== selectedProjectIdx) {
       setSelectedProjectIdx(index)
       setIsDescriptionVisible(false)
-      setTimeout(animateDescription, LEFT_PANE_SHOW_DELAY)
+      setTimeout(() => setIsDescriptionVisible(true), 100)
     }
   }
 
   const onOpen = () => {
-    // Animate project titles
-    // Starts 0.5s after pane animation
-    // Start from the bottom up
+    // Animate project titles, start from the bottom up
     const projects = document.getElementsByClassName("project-title")
     for (let i = projects.length - 1; i >= 0; i--) {
       const project = projects[i]
       setTimeout(() => {
-        const currClassName = project.getAttribute("class")
-        project.setAttribute("class", currClassName.replace("hidden-below", ""))
-      }, TITLE_SHOW_DELAY + (TITLE_SHOW_DURATION / projects.length) * (projects.length - i))
+        project.setAttribute("class", "project-title")
+      }, (TITLE_SHOW_DURATION / projects.length) * (projects.length - i))
     }
 
-    setTimeout(animateDescription, LEFT_PANE_SHOW_DELAY)
+    setIsDescriptionVisible(true)
   }
 
   const onClose = () => {
-    // Animate project titles
-    // Start from the top down
+    // Animate project titles, start from the top down
     const projects = document.getElementsByClassName("project-title")
     for (let i = 0; i < PROJECTS.length; i++) {
       const project = projects[i]
       setTimeout(() => {
         const currClassName = project.getAttribute("class")
         project.setAttribute("class", currClassName + " hidden-below")
-      }, TITLE_SHOW_DELAY + (TITLE_SHOW_DURATION / projects.length) * i)
+      }, (TITLE_SHOW_DURATION / projects.length) * i)
     }
 
     return new Promise(resolve => {
-      setTimeout(
-        () => resolve("done"),
-        TITLE_SHOW_DURATION + PANE_OPEN_DURATION
-      )
+      setTimeout(() => resolve("done"), TITLE_SHOW_DURATION)
     })
   }
   useOnCloseWatcher(isClosing, setClosingPage, onClose)
@@ -75,11 +60,11 @@ function PageTwo({ isClosing, setClosingPage }) {
 
   return (
     <div className={"page-two"}>
-      <div className="project-img">
-        <img src={PROJECTS[selectedProjectIdx].img} alt={"project"} />
-        <div className="gradient" />
-      </div>
       <div className={"project-titles"}>
+        <div className="project-img">
+          <img src={PROJECTS[selectedProjectIdx].img} alt={"project"} />
+          <div className="gradient" />
+        </div>
         {PROJECTS.map((project, idx) => (
           <p
             key={project.name}
@@ -119,7 +104,7 @@ function PageTwo({ isClosing, setClosingPage }) {
                     key={idx}
                     className={"project-tag-char"}
                     style={{
-                      animationDelay: `${TITLE_LEFT_PANE_DELAY + idx * 0.03}s`,
+                      animationDelay: `${TAG_CHAR_DELAY + idx * 0.03}s`,
                     }}
                   >
                     {char}

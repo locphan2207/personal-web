@@ -1,11 +1,13 @@
 .App {
   width: 100vw;
   height: 100vh;
-  /* height: min(calc(100vw / 1920 * 1080), 100vh); */
   max-width: 1640px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  margin: 0 1%;
+  overflow: hidden;
 }
 
 .right-vertical-bar {
@@ -13,7 +15,7 @@
   height: 47%;
   background-color: #5b544f;
   position: absolute;
-  right: 5%;
+  right: 0;
   top: 10%;
 }
 
@@ -22,7 +24,7 @@
   height: 24%;
   background-color: #5b544f;
   position: absolute;
-  left: 5%;
+  left: 0;
   bottom: 5%;
 }
 
@@ -43,22 +45,22 @@
 }
 
 .hidden-below {
-  transform: translateY(100%) !important;
+  transform: translateY(200%) !important;
   opacity: 0 !important;
 }
 
 .hidden-above {
-  transform: translateY(-100%) !important;
+  transform: translateY(-200%) !important;
   opacity: 0 !important;
 }
 
 .hidden-left {
-  transform: translateX(-100%) !important;
+  transform: translateX(-200%) !important;
   opacity: 0 !important;
 }
 
 .hidden-right {
-  transform: translateX(100%) !important;
+  transform: translateX(200%) !important;
   opacity: 0 !important;
 }
 
