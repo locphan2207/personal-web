@@ -15,20 +15,6 @@
   position: relative;
 }
 
-.top-left-svg {
-  position: absolute;
-  top: -18%;
-  left: 0;
-  width: 45%;
-  height: auto;
-  overflow: visible;
-  z-index: 1;
-}
-
-.jiggle {
-  animation: 7s jiggle linear infinite;
-}
-
 /* Shared */
 .hidden {
   opacity: 0 !important;

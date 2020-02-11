@@ -170,37 +170,6 @@
   font-weight: 300;
 }
 
-.page-two .bubble-left {
-  position: absolute;
-  top: 3%;
-  left: 15%;
-  width: 3%;
-  height: auto;
-  overflow: visible;
-  transition: all 500ms ease-in-out;
-}
-
-.page-two .bubble-right {
-  position: absolute;
-  bottom: 0;
-  right: 33%;
-  width: 10%;
-  height: auto;
-  overflow: visible;
-  transition: all 500ms ease-in-out;
-}
-
-.page-two .corner-leaves {
-  position: absolute;
-  bottom: -5%;
-  right: -6%;
-  width: 10%;
-  height: auto;
-  transform: rotateZ(-10deg);
-  transition: transform 500ms ease-in-out;
-  transform-origin: bottom;
-}
-
 @keyframes slide-left {
   from {
     transform: translateX(200%);

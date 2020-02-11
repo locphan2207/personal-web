@@ -4,9 +4,6 @@ import "./App.css"
 import NavBar, { PAGE_NAMES } from "./NavBar"
 import PageOne from "./PageOne"
 import PageTwo from "./PageTwo"
-import { ReactComponent as TopLeftSVG } from "assets/top-left-svg.svg"
-import { addKeyFramesForBubbles } from "helpers/animationHelpers"
-import { animateToPage } from "helpers/svgHelpers"
 
 // TODO:
 // - CREATE A HELPER TO GENERATE KEYFRAMES BASED ON SPRING CONFIG
@@ -25,14 +22,10 @@ function App() {
   }
 
   // Animate top left svg when page has changed
-  useEffect(() => {
-    animateToPage(nextPage.current)
-  }, [pageVisible])
+  useEffect(() => {}, [pageVisible])
 
   // Add random generated keyframes to bubbles
-  useEffect(() => {
-    addKeyFramesForBubbles()
-  }, [])
+  useEffect(() => {}, [])
 
   // Act as a listener for when a page finishes its closing animation
   // Will change the page when it knows the animation finishes (when closingPage goes to null)
@@ -45,7 +38,6 @@ function App() {
   return (
     <div className="App">
       <NavBar pageVisible={pageVisible} switchPage={switchPage} />
-      <TopLeftSVG className={"top-left-svg"} />
       {pageVisible === PAGE_NAMES.HOME_PAGE && (
         <PageOne
           isClosing={closingPage === PAGE_NAMES.HOME_PAGE}

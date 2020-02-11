@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useRef } from "react"
 import "./PageTwo.css"
-import { ReactComponent as BubbleRight } from "assets/bubble-right.svg"
-import { ReactComponent as BubbleLeft } from "assets/bubble-left.svg"
-import { ReactComponent as CornerLeaves } from "assets/corner-leaves.svg"
-import { useOnCloseWatcher, addJiggleKeyFrames } from "helpers/animationHelpers"
+import { useOnCloseWatcher } from "helpers/animationHelpers"
 
 // Animation timeout delay (in millisecond)
 const PANE_OPEN_DURATION = 500 // NOTE: PANE BECOME BUBBLE MOVE DURATION
@@ -34,22 +31,6 @@ function PageTwo({ isClosing, setClosingPage }) {
   }
 
   const onOpen = () => {
-    const bubbleRight = document.getElementsByClassName("bubble-right")[0]
-    const bubbleLeft = document.getElementsByClassName("bubble-left")[0]
-    const cornerLeaves = document.getElementsByClassName("corner-leaves")[0]
-
-    setTimeout(() => bubbleRight.setAttribute("class", "bubble-right"), 300)
-    setTimeout(() => bubbleLeft.setAttribute("class", "bubble-left"), 500)
-    setTimeout(() => cornerLeaves.setAttribute("class", "corner-leaves"), 1000)
-
-    setTimeout(
-      () => {
-        cornerLeaves.setAttribute("class", "corner-leaves jiggle")
-        addJiggleKeyFrames()
-      },
-      1000 + 600 // wait for "in" animation to finish then trigger jiggle animation
-    )
-
     // Animate project titles
     // Starts 0.5s after pane animation
     // Start from the bottom up
@@ -75,30 +56,6 @@ function PageTwo({ isClosing, setClosingPage }) {
   }
 
   const onClose = () => {
-    const bubbleRight = document.getElementsByClassName("bubble-right")[0]
-    const bubbleLeft = document.getElementsByClassName("bubble-left")[0]
-    const cornerLeaves = document.getElementsByClassName("corner-leaves")[0]
-    const verticalBar = document.getElementsByClassName("vertical-bar")[0]
-    const verticalBarSel = document.getElementsByClassName(
-      "vertical-bar-selection"
-    )[0]
-
-    bubbleRight.setAttribute("class", "bubble-right hidden-below")
-    bubbleLeft.setAttribute("class", "bubble-left hidden-above")
-
-    verticalBarSel.setAttribute("class", "vertical-bar-selection shrink-height")
-    setTimeout(
-      () => verticalBar.setAttribute("class", "vertical-bar shrink-height"),
-      200
-    )
-
-    cornerLeaves.setAttribute("class", "corner-leaves")
-    setTimeout(
-      () =>
-        cornerLeaves.setAttribute("class", "corner-leaves hidden-rotate-right"),
-      50 // wait to remove jiggle animation then do "out" animation
-    )
-
     // Animate project titles
     // Start from the top down
     const projects = document.getElementsByClassName("project-title")
@@ -158,9 +115,6 @@ function PageTwo({ isClosing, setClosingPage }) {
 
   return (
     <div className={"page page-two"}>
-      <BubbleLeft className={"bubble-left hidden-above"} />
-      <BubbleRight className={"bubble-right hidden-below"} />
-      <CornerLeaves className={"corner-leaves hidden-rotate-right"} />
       <div className={"left"}>
         {isLeftPaneVisible && (
           <div className={"left-body"}>
