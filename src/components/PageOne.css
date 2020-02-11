@@ -1,32 +1,59 @@
 /* Page One */
 .page-one {
   display: flex;
+  justify-content: center;
   flex-direction: column;
+  padding: 11% 10%;
 }
 
-.intro {
+.name-container {
+  display: flex;
+}
+
+.name-container h1 {
+  font-family: Palatino Bold;
+  font-size: 150rem;
+  letter-spacing: 5rem;
+  color: #eeb669;
+  text-align: left;
+}
+
+.last-name-img {
+  position: relative;
+  width: 50%;
+  height: auto;
+}
+
+.last-name {
   position: absolute;
-  top: 20%;
+  left: 10%;
+  top: 0;
+  font-family: Palatino Bold;
+  font-size: 150rem;
+  letter-spacing: 5rem;
+  text-align: left;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 3rem;
+  -webkit-text-stroke-color: #eeb669;
+}
+
+.image {
+  position: absolute;
   left: 5%;
-  z-index: 2;
+  top: 0;
+  width: 25vw;
 }
 
-.intro h1 {
-  font-family: Palatino;
-  font-size: 130rem;
-  letter-spacing: 10rem;
-  color: #0c1d4af6;
-  text-shadow: 0 5rem 6rem #00000038;
-  text-align: left;
-  font-weight: 600;
+.page-one p {
+  width: 35%;
+  font-size: 25rem;
+  letter-spacing: 1.7rem;
+  line-height: 45rem;
+  color: #a8a5a3;
+  font-weight: 200;
+  margin: 45rem 0 0 25rem;
 }
 
-.intro h3 {
-  font-family: Palatino;
-  font-size: 60rem;
-  letter-spacing: 3rem;
-  color: #0c1d4a;
-  text-align: left;
-  margin: 2% 0 0 2%;
-  font-weight: 400;
+.page-one p span {
+  color: #eeb669;
 }

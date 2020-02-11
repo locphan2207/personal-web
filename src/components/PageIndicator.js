@@ -11,7 +11,7 @@ function PageIndicator({ pageVisible }) {
           key={pageName}
           style={
             pageVisible === pageName
-              ? { color: "#9E5D24", fontSize: "40rem" }
+              ? { color: "#9e5d24", fontSize: "40rem" }
               : null
           }
         >{`0${index + 1}`}</h5>
