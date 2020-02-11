@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import "./PageTwo.css"
 import { useOnCloseWatcher } from "helpers/animationHelpers"
+import { ReactComponent as Triangle } from "assets/triangle.svg"
 
 // Animation timeout delay (in millisecond)
 const PANE_OPEN_DURATION = 500 // NOTE: PANE BECOME BUBBLE MOVE DURATION
@@ -14,8 +15,6 @@ const TITLE_LEFT_PANE_DELAY = 0.3
 function PageTwo({ isClosing, setClosingPage }) {
   const [selectedProjectIdx, setSelectedProjectIdx] = useState(0)
   const [isDescriptionVisible, setIsDescriptionVisible] = useState(false)
-  const titleHeights = useRef({})
-  const previousIdx = useRef(null)
 
   const animateDescription = () => {
     setIsDescriptionVisible(true)
@@ -70,66 +69,71 @@ function PageTwo({ isClosing, setClosingPage }) {
     onOpen()
   }, []) // eslint-disable-line
 
-  useEffect(() => {
-    previousIdx.current = selectedProjectIdx
-  }, [selectedProjectIdx])
-
   return (
     <div className={"page-two"}>
       <div className={"project-titles"}>
         {PROJECTS.map((project, idx) => (
           <p
-            ref={ref => {
-              if (ref) titleHeights.current[project.name] = ref.offsetHeight
-            }}
             key={project.name}
             onMouseDown={() => onProjectSelect(idx)}
             className={"project-title hidden-below"}
-            style={
-              idx === selectedProjectIdx ? { color: PROJECTS[idx].color } : null
-            }
+            style={idx === selectedProjectIdx ? { color: "#EEB669" } : null}
           >
             {project.name}
           </p>
         ))}
       </div>
-      {isDescriptionVisible && (
-        <div className={"desc-body"}>
-          <div className={"project-year-container"}>
-            {PROJECTS[selectedProjectIdx].years.map((year, idx) => (
-              <div key={idx}>
-                <div className={"year-wrapper"}>
-                  <p
-                    className={`project-year ${idx % 2 === 0 ? "even" : "odd"}`}
-                    key={year}
-                  >
-                    {year}
-                  </p>
+
+      <div className={"desc-body"}>
+        {isDescriptionVisible && (
+          <>
+            <div className={"project-year-container"}>
+              {PROJECTS[selectedProjectIdx].years.map((year, idx) => (
+                <div key={idx}>
+                  <div className={"year-wrapper"}>
+                    <p
+                      className={`project-year ${
+                        idx % 2 === 0 ? "even" : "odd"
+                      }`}
+                      key={year}
+                    >
+                      {year}
+                    </p>
+                  </div>
+                  {idx === 0 && <div className={"project-year-dash"} />}
                 </div>
-                {idx === 0 && <div className={"project-year-dash"} />}
-              </div>
-            ))}
-          </div>
-          <div className={"project-tags"}>
-            {PROJECTS[selectedProjectIdx].tags.split("").map((char, idx) => {
-              return (
-                <span
-                  key={idx}
-                  className={"project-tag-char"}
-                  style={{
-                    animationDelay: `${TITLE_LEFT_PANE_DELAY + idx * 0.03}s`,
-                  }}
-                >
-                  {char}
-                </span>
-              )
-            })}
-          </div>
-          <p className={"project-description"}>
-            {PROJECTS[selectedProjectIdx].description}
-          </p>
-        </div>
-      )}
+              ))}
+            </div>
+            <div className={"project-tags"}>
+              {PROJECTS[selectedProjectIdx].tags.split("").map((char, idx) => {
+                return (
+                  <span
+                    key={idx}
+                    className={"project-tag-char"}
+                    style={{
+                      animationDelay: `${TITLE_LEFT_PANE_DELAY + idx * 0.03}s`,
+                    }}
+                  >
+                    {char}
+                  </span>
+                )
+              })}
+            </div>
+            <p className={"project-description"}>
+              {PROJECTS[selectedProjectIdx].description}
+            </p>
+            <a
+              className="more-container"
+              href={PROJECTS[selectedProjectIdx].link}
+              // eslint-disable-next-line react/jsx-no-target-blank
+              target="_blank"
+            >
+              <p>more</p>
+              <Triangle className="triangle" />
+            </a>
+          </>
+        )}
+      </div>
     </div>
   )
 }
@@ -138,37 +142,57 @@ const PROJECTS = [
   {
     name: "SBK",
     color: "#187b57",
-    link: "getsbk.com",
+    link: "https://getsbk.com",
     years: ["2018", "2020"],
-    description:
-      "Smarkets is a betting exchange that offers the best odds with lowest commision. At Smarkets, I contributed directly to building a competitive online sportsbook application from its early stages to having thousands of users.",
+    description: (
+      <p>
+        Contributed directly to building a cross-platform mobile application
+        using <span>React Native</span> from the early stages to the app store
+        launch with the increase in user numbers from <span>0 to 9000</span>
+      </p>
+    ),
     tags: "Fullstack · Mobile dev",
   },
   {
     name: "Food Stories",
     color: "#4184a0",
-    link: "food-stories.com",
+    link: "http://food-stories.herokuapp.com/#/",
     years: ["2018"],
-    description:
-      "A CRUD full stack web to share cooking recipes, built with Ruby on Rails and React/Redux.",
-    tags: "Fullstack · Mobile dev",
+    description: (
+      <p>
+        Food Stories is a full-stack web application that is inspired by Kitchen
+        Stories. The project is built entirely on <span>Ruby on Rails</span>{" "}
+        backend and with <span>React-Redux</span> frontend
+      </p>
+    ),
+    tags: "Fullstack · Web app",
   },
   {
     name: "Data Block",
     color: "#3C887E",
-    link: "food-stories.com",
+    link: "https://locphan2207.github.io/Data-block/",
     years: ["2018"],
-    description: "A data game built solely on Javascript with D3.js",
+    description: (
+      <p>
+        A cross-platform mobile app to keep track of users' emotions, built with{" "}
+        <span>React Native</span> and <span>Firebase</span>
+      </p>
+    ),
     tags: "Fullstack · Mobile dev",
   },
   {
     name: "Emotion Diary",
     color: "#ad5050",
-    link: "food-stories.com",
+    link: "https://github.com/locphan2207/Emotion-Diary",
     years: ["2018"],
-    description:
-      "A cross-platform mobile app which keeps track of users’ emotions everyday, built with React Native and Firebase.",
-    tags: "Fullstack · Mobile dev",
+    description: (
+      <p>
+        A game built with <span>JavaScript</span>. Players protect a character
+        from being hit by big blocks of data falling down from the sky by
+        controlling the shield using the mouse
+      </p>
+    ),
+    tags: "Frontend · Web game",
   },
 ]
 

@@ -2,14 +2,16 @@
 .page-two {
   display: flex;
   justify-content: flex-end;
-  margin: 10% 5%;
+  padding: 10% 5%;
+  width: inherit;
+  height: inherit;
 }
 
 .desc-body {
-  width: 40%;
+  width: 37%;
   height: 100%;
-  /* margin-top: 10%; */
-  margin-right: 2%;
+  margin-left: 5%;
+  margin-right: 50rem;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -19,24 +21,24 @@
   flex-direction: column;
   align-items: flex-start;
   overflow: hidden;
+  align-self: center;
 }
 
 .project-title {
+  font-family: Palatino Bold;
   cursor: pointer;
-  color: #01426e34;
-  font-size: 50rem;
+  color: #f2f2f2;
+  font-size: 55rem;
   font-weight: 400;
-  letter-spacing: 15rem;
-  opacity: 1;
-  font-weight: 700;
-  padding: 3rem 5rem;
+  letter-spacing: 2rem;
+  line-height: 75rem;
   transition: 0.2s all ease-out;
 }
 
 .project-tags {
   display: flex;
   justify-content: flex-start;
-  margin-top: 100rem;
+  margin-top: 150rem;
 }
 
 .project-tag-char {
@@ -48,17 +50,24 @@
   white-space: pre;
 }
 
-.project-description {
+.project-description > p {
   width: 100%;
   font-size: 20rem;
   color: #a8a5a3;
-  line-height: 30rem;
+  line-height: 35rem;
   font-weight: 200;
   text-align: right;
   margin-top: 30rem;
 }
 
+.project-description > p > span {
+  color: #eeb669;
+}
+
 .project-year-container {
+  position: absolute;
+  top: 10%;
+  right: calc(5% + 15rem);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -91,6 +100,32 @@
 
 .project-year.odd {
   animation: slide-down 0.5s ease-out 0.5s both;
+}
+
+.more-container {
+  margin-top: 40rem;
+  display: flex;
+  align-items: flex-end;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.more-container p {
+  font-weight: 600;
+  color: #f2f2f2;
+  font-size: 20rem;
+  margin-right: 10rem;
+}
+
+.more-container:hover p {
+  color: #c97328;
+}
+
+.more-container .triangle {
+  width: auto;
+  height: 7rem;
+  align-self: center;
+  transform: rotateZ(-90deg);
 }
 
 @keyframes slide-left {
