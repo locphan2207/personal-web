@@ -20,15 +20,17 @@ function PageOne({ isClosing, setClosingPage }) {
         <h1>Tan Loc</h1>
         <div className="last-name-img">
           <img src={avatar} className={"image"} alt={"face"} />
+          <div className={"gradient"} />
           <h2 className="last-name">Phan</h2>
         </div>
+        <p>
+          Hi there,
+          <br />
+          I'm a <span>software engineer</span> who loves building functional,
+          <br />
+          beautiful and interactive websites.
+        </p>
       </div>
-      <p>
-        Hi there,
-        <br />
-        I'm a <span>software engineer</span> who loves building functional,
-        beautiful and interactive websites.
-      </p>
     </div>
   )
 }
