@@ -1,11 +1,12 @@
 /* Nav bar */
 .nav-bar {
   position: absolute;
-  top: 3%;
-  right: 4%;
+  bottom: 5%;
+  right: 0;
   display: flex;
   z-index: 10;
   flex-direction: column;
+  transform: rotateZ(90deg) translateX(-50%);
 }
 
 .nav-names {
@@ -13,13 +14,13 @@
 }
 
 .nav-bar h5 {
-  color: #0c1d4ad7;
-  font-size: 20rem;
-  letter-spacing: 2rem;
-  margin-left: 20rem;
+  color: #a8a5a3;
+  font-size: 15rem;
+  /* letter-spacing: 2rem; */
+  margin-left: 15rem;
   font-weight: 400;
   cursor: pointer;
-  padding-bottom: 5rem;
+  padding-bottom: 3rem;
 }
 
 .nav-bar h5:first-of-type {
@@ -27,12 +28,12 @@
 }
 
 .nav-bar h5:hover {
-  color: #b1ceb4;
+  color: #9e5d24;
   transition: color 0.2s ease-in-out;
 }
 
 .bottom-bar {
-  background-color: #01436e;
+  background-color: #9e5d24;
   height: 1rem;
   transition: transform 0.2s ease, width 0.2s ease;
 }

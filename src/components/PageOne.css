@@ -1,6 +1,5 @@
 /* Page One */
 .page-one {
-  background-color: #fafafa;
   display: flex;
   flex-direction: column;
 }
