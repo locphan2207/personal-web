@@ -10,6 +10,7 @@ import { animateToPage } from "helpers/svgHelpers"
 
 // TODO:
 // - CREATE A HELPER TO GENERATE KEYFRAMES BASED ON SPRING CONFIG
+// - SWITCH TO NEW DESIGN
 
 function App() {
   const [pageVisible, setPageVisible] = useState(PAGE_NAMES.HOME_PAGE)
