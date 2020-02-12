@@ -8,8 +8,8 @@ function PageThree({ isClosing, setClosingPage }) {
   const [shouldShowStrokeText, setShouldShowStrokeText] = useState(true)
   const [selected, setSelected] = useState(SKILLS.languages[0])
 
-  //   const onClose = () => {}
-  //   useOnCloseWatcher(isClosing, setClosingPage, onClose)
+  const onClose = () => {}
+  useOnCloseWatcher(isClosing, setClosingPage, onClose)
 
   useEffect(() => {
     setShouldShowStrokeText(false)
