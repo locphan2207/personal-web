@@ -5,6 +5,8 @@ import NavBar, { PAGE_NAMES } from "./NavBar"
 import PageIndicator from "./PageIndicator"
 import PageOne from "./PageOne"
 import PageTwo from "./PageTwo"
+import PageThree from "./PageThree"
+import PageFour from "./PageFour"
 
 // TODO:
 // - CREATE A HELPER TO GENERATE KEYFRAMES BASED ON SPRING CONFIG
@@ -54,6 +56,18 @@ function App() {
       {pageVisible === PAGE_NAMES.WORK_PAGE && (
         <PageTwo
           isClosing={closingPage === PAGE_NAMES.WORK_PAGE}
+          setClosingPage={setClosingPage}
+        />
+      )}
+      {pageVisible === PAGE_NAMES.SKILLS_PAGE && (
+        <PageThree
+          isClosing={closingPage === PAGE_NAMES.SKILLS_PAGE}
+          setClosingPage={setClosingPage}
+        />
+      )}
+      {pageVisible === PAGE_NAMES.ABOUT_PAGE && (
+        <PageFour
+          isClosing={closingPage === PAGE_NAMES.ABOUT_PAGE}
           setClosingPage={setClosingPage}
         />
       )}

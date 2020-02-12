@@ -1,0 +1,7 @@
+/* Page Four */
+.page-four {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8% 0;
+  width: 100%;
+}
