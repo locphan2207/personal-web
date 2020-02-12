@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/personal-web/static/css/main.26c3d608.chunk.css",
-    "main.js": "/personal-web/static/js/main.c81f25ed.chunk.js",
-    "main.js.map": "/personal-web/static/js/main.c81f25ed.chunk.js.map",
+    "main.css": "/personal-web/static/css/main.f00b7fe7.chunk.css",
+    "main.js": "/personal-web/static/js/main.260e8d64.chunk.js",
+    "main.js.map": "/personal-web/static/js/main.260e8d64.chunk.js.map",
     "runtime-main.js": "/personal-web/static/js/runtime-main.adc82d22.js",
     "runtime-main.js.map": "/personal-web/static/js/runtime-main.adc82d22.js.map",
     "static/js/2.a026d2ec.chunk.js": "/personal-web/static/js/2.a026d2ec.chunk.js",
     "static/js/2.a026d2ec.chunk.js.map": "/personal-web/static/js/2.a026d2ec.chunk.js.map",
     "index.html": "/personal-web/index.html",
-    "precache-manifest.17236f318b4962a7e550132abcfe3d34.js": "/personal-web/precache-manifest.17236f318b4962a7e550132abcfe3d34.js",
+    "precache-manifest.d95cc46d21ab3a4b08ec32c7964dd8c3.js": "/personal-web/precache-manifest.d95cc46d21ab3a4b08ec32c7964dd8c3.js",
     "service-worker.js": "/personal-web/service-worker.js",
-    "static/css/main.26c3d608.chunk.css.map": "/personal-web/static/css/main.26c3d608.chunk.css.map",
+    "static/css/main.f00b7fe7.chunk.css.map": "/personal-web/static/css/main.f00b7fe7.chunk.css.map",
     "static/js/2.a026d2ec.chunk.js.LICENSE": "/personal-web/static/js/2.a026d2ec.chunk.js.LICENSE",
     "static/media/avatar.png": "/personal-web/static/media/avatar.e36b085c.png",
     "static/media/data-block.png": "/personal-web/static/media/data-block.a2b46e1c.png",
@@ -18,12 +18,12 @@
     "static/media/food.png": "/personal-web/static/media/food.ba701ce5.png",
     "static/media/index.css": "/personal-web/static/media/palatino-linotype.96261bb9.ttf",
     "static/media/sbk.png": "/personal-web/static/media/sbk.e40e380a.png",
-    "static/media/triangle.7ac3a98d.svg": "/personal-web/static/media/triangle.7ac3a98d.svg"
+    "static/media/triangle.e13e40e3.svg": "/personal-web/static/media/triangle.e13e40e3.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.adc82d22.js",
     "static/js/2.a026d2ec.chunk.js",
-    "static/css/main.26c3d608.chunk.css",
-    "static/js/main.c81f25ed.chunk.js"
+    "static/css/main.f00b7fe7.chunk.css",
+    "static/js/main.260e8d64.chunk.js"
   ]
 }
