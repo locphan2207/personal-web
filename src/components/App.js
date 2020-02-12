@@ -7,12 +7,13 @@ import PageOne from "./PageOne"
 import PageTwo from "./PageTwo"
 import PageThree from "./PageThree"
 import PageFour from "./PageFour"
+import { throttle } from "helpers/animationHelpers"
 
 // TODO:
 // - CREATE A HELPER TO GENERATE KEYFRAMES BASED ON SPRING CONFIG
 // - SWITCH TO NEW DESIGN
 
-const SCROLL_COUNT_TO_PAGE = 10
+const SCROLL_COUNT_TO_PAGE = 100
 
 let WHEEL_TRACK = 0
 
@@ -42,18 +43,20 @@ function App() {
   }, [isScrollingToPage])
 
   useEffect(() => {
-    window.addEventListener("wheel", e => {
-      WHEEL_TRACK = e.wheelDeltaY > 0 ? WHEEL_TRACK + 1 : WHEEL_TRACK - 1
-      if (WHEEL_TRACK > SCROLL_COUNT_TO_PAGE) {
-        setIsScrollingToPage(1)
-        WHEEL_TRACK = 0
-        setTimeout(() => setIsScrollingToPage(0), 100)
-      } else if (WHEEL_TRACK <= -SCROLL_COUNT_TO_PAGE) {
-        setIsScrollingToPage(-1)
-        WHEEL_TRACK = 0
-        setTimeout(() => setIsScrollingToPage(0), 100)
-      }
-    })
+    window.addEventListener(
+      "wheel",
+      throttle(e => {
+        WHEEL_TRACK = e.deltaY > 0 ? WHEEL_TRACK + 1 : WHEEL_TRACK - 1
+        console.log(WHEEL_TRACK, e)
+        if (WHEEL_TRACK > SCROLL_COUNT_TO_PAGE) {
+          setIsScrollingToPage(1)
+          WHEEL_TRACK = 0
+        } else if (WHEEL_TRACK <= -SCROLL_COUNT_TO_PAGE) {
+          setIsScrollingToPage(-1)
+          WHEEL_TRACK = 0
+        }
+      }, 300)
+    )
   }, [])
 
   // Act as a listener for when a page finishes its closing animation
@@ -61,6 +64,7 @@ function App() {
   useEffect(() => {
     if (!closingPage && nextPage.current) {
       setPageVisible(nextPage.current)
+      setIsScrollingToPage(0)
     }
   }, [closingPage])
 
