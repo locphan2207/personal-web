@@ -17,7 +17,7 @@
 .project-title {
   font-family: Palatino Bold;
   cursor: pointer;
-  color: #f2f2f2;
+  color: #f2f2f2ec;
   font-size: 55rem;
   font-weight: 400;
   letter-spacing: 2rem;
@@ -36,6 +36,7 @@
 
 .project-img img {
   height: calc(0.45 * min(100vw, 1640px));
+  animation: appear 1s ease-out both;
 }
 
 .project-img .gradient {
@@ -87,6 +88,7 @@
   font-weight: 200;
   text-align: right;
   margin-top: 30rem;
+  animation: appear 1s ease-out both;
 }
 
 .project-description > p > span {
@@ -138,6 +140,7 @@
   align-items: flex-end;
   cursor: pointer;
   text-decoration: none;
+  animation: slide-left 0.5s ease-out 1s both;
 }
 
 .more-container p {
@@ -173,6 +176,15 @@
   }
   to {
     width: 200%;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 

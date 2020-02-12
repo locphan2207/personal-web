@@ -61,10 +61,12 @@ function PageTwo({ isClosing, setClosingPage }) {
   return (
     <div className={"page-two"}>
       <div className={"project-titles"}>
-        <div className="project-img">
-          <img src={PROJECTS[selectedProjectIdx].img} alt={"project"} />
-          <div className="gradient" />
-        </div>
+        {isDescriptionVisible && (
+          <div className="project-img">
+            <img src={PROJECTS[selectedProjectIdx].img} alt={"project"} />
+            <div className="gradient" />
+          </div>
+        )}
         {PROJECTS.map((project, idx) => (
           <p
             key={project.name}
