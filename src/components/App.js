@@ -13,7 +13,7 @@ import { throttle } from "helpers/animationHelpers"
 // - CREATE A HELPER TO GENERATE KEYFRAMES BASED ON SPRING CONFIG
 // - SWITCH TO NEW DESIGN
 
-const SCROLL_COUNT_TO_PAGE = 100
+const SCROLL_COUNT_TO_PAGE = 5
 
 let WHEEL_TRACK = 0
 
@@ -55,7 +55,7 @@ function App() {
           setIsScrollingToPage(-1)
           WHEEL_TRACK = 0
         }
-      }, 300)
+      }, 100)
     )
   }, [])
 
