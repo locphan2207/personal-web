@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 
 import "./App.css"
-import NavBar, { PAGE_NAMES } from "./NavBar"
+import NavBar, { PAGE_NAMES, NAV_NAMES_ORDER } from "./NavBar"
 import PageIndicator from "./PageIndicator"
 import PageOne from "./PageOne"
 import PageTwo from "./PageTwo"
@@ -12,9 +12,14 @@ import PageFour from "./PageFour"
 // - CREATE A HELPER TO GENERATE KEYFRAMES BASED ON SPRING CONFIG
 // - SWITCH TO NEW DESIGN
 
+const SCROLL_COUNT_TO_PAGE = 10
+
+let WHEEL_TRACK = 0
+
 function App() {
   const [pageVisible, setPageVisible] = useState(PAGE_NAMES.HOME_PAGE)
   const [closingPage, setClosingPage] = useState(null)
+  const [isScrollingToPage, setIsScrollingToPage] = useState(0)
   const nextPage = useRef(null)
 
   // Trigger the closing animation and store the next page to ref
@@ -24,11 +29,32 @@ function App() {
     nextPage.current = pageName
   }
 
-  // Animate top left svg when page has changed
-  useEffect(() => {}, [pageVisible])
+  useEffect(() => {
+    const currIdx = NAV_NAMES_ORDER.findIndex(item => pageVisible === item)
+    const prevPage = NAV_NAMES_ORDER[currIdx - 1]
+    const nextPage = NAV_NAMES_ORDER[currIdx + 1]
+    if (isScrollingToPage === 1) {
+      switchPage(nextPage)
+    } else if (isScrollingToPage === -1) {
+      switchPage(prevPage)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isScrollingToPage])
 
-  // Add random generated keyframes to bubbles
-  useEffect(() => {}, [])
+  useEffect(() => {
+    window.addEventListener("wheel", e => {
+      WHEEL_TRACK = e.wheelDeltaY > 0 ? WHEEL_TRACK + 1 : WHEEL_TRACK - 1
+      if (WHEEL_TRACK > SCROLL_COUNT_TO_PAGE) {
+        setIsScrollingToPage(1)
+        WHEEL_TRACK = 0
+        setTimeout(() => setIsScrollingToPage(0), 100)
+      } else if (WHEEL_TRACK <= -SCROLL_COUNT_TO_PAGE) {
+        setIsScrollingToPage(-1)
+        WHEEL_TRACK = 0
+        setTimeout(() => setIsScrollingToPage(0), 100)
+      }
+    })
+  }, [])
 
   // Act as a listener for when a page finishes its closing animation
   // Will change the page when it knows the animation finishes (when closingPage goes to null)
