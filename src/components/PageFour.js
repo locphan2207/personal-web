@@ -13,7 +13,32 @@ function PageFour({ isClosing, setClosingPage }) {
     onOpen()
   }, [])
 
-  return <div className="page-four"></div>
+  return (
+    <div className="page-four">
+      <p>I'm excited to connect!</p>
+      <div className="links">
+        {Object.keys(LINKS).map(key => (
+          <a href={LINKS[key].link} target="_blank">
+            {LINKS[key].text}
+          </a>
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export default PageFour
+
+const LINKS = {
+  resume: {
+    text: "Resume",
+    link:
+      "https://drive.google.com/file/d/1H_1wwGCeihMXe8bFbX51B36xL42ZrC45/view?usp=sharing",
+  },
+  email: { text: "Email", link: "mailto:locphan2207@gmail.com" },
+  linkedin: {
+    text: "LinkedIn",
+    link: "https://www.linkedin.com/in/tanloc-phan/",
+  },
+  github: { text: "GitHub", link: "https://github.com/locphan2207" },
+}

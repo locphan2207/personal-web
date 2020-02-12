@@ -1,7 +1,32 @@
 /* Page Four */
 .page-four {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   padding: 8% 0;
   width: 100%;
+}
+
+.page-four p {
+  font-size: 60rem;
+  font-weight: 200;
+  color: #a8a5a3;
+}
+
+.links {
+  margin-top: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.links a {
+  color: #a8a5a3;
+  font-size: 40rem;
+  font-weight: 700;
+}
+
+.links a:hover {
+  color: #9e5d24;
 }
