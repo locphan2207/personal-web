@@ -1,17 +1,20 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 
 import "./PageThree.css"
+import StrokeOutlineText from "./StrokeOutlineText"
 import { useOnCloseWatcher } from "helpers/animationHelpers"
 
 function PageThree({ isClosing, setClosingPage }) {
-  const onOpen = () => {}
+  const [shouldShowStrokeText, setShouldShowStrokeText] = useState(true)
+  const [selected, setSelected] = useState(SKILLS.languages[0])
 
-  const onClose = () => {}
-  useOnCloseWatcher(isClosing, setClosingPage, onClose)
+  //   const onClose = () => {}
+  //   useOnCloseWatcher(isClosing, setClosingPage, onClose)
 
   useEffect(() => {
-    onOpen()
-  }, [])
+    setShouldShowStrokeText(false)
+    setTimeout(() => setShouldShowStrokeText(true), 100)
+  }, [selected])
 
   return (
     <div className="page-three">
@@ -25,19 +28,30 @@ function PageThree({ isClosing, setClosingPage }) {
               gridColumn: `${idx + 1} / span 1`,
               gridRow: `${(idx % 2) + 1} / span 1`,
             }}
+            selected={selected}
+            setSelected={setSelected}
           />
         ))}
       </div>
+      {shouldShowStrokeText && (
+        <StrokeOutlineText className="skill-svg-container" text={selected} />
+      )}
     </div>
   )
 }
 
-const SkillGroup = ({ groupName, skills }) => {
+const SkillGroup = ({ groupName, skills, setSelected, selected }) => {
   return (
     <div className="skill-group">
       <div className="skill-column">
         {skills.map(skill => (
-          <p key={skill}>{skill}</p>
+          <p
+            key={skill}
+            onClick={() => setSelected(skill)}
+            style={selected === skill ? { color: "#f2f2f2" } : null}
+          >
+            {skill}
+          </p>
         ))}
       </div>
       <div className="group-name">

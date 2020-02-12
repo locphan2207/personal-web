@@ -35,10 +35,15 @@
   letter-spacing: 3rem;
   margin-bottom: 20rem;
   color: #c79766;
+  cursor: pointer;
 }
 
 .skill-column p:last-child {
   margin-bottom: 0;
+}
+
+.skill-column p:hover {
+  color: #5b544f;
 }
 
 .group-name p {
@@ -46,4 +51,34 @@
   font-size: 15rem;
   font-weight: 700;
   writing-mode: vertical-rl;
+  transition: color 0.2s ease-out;
+}
+
+.skill-svg-container {
+  width: 50%;
+  height: 100%;
+  float: right;
+  padding-left: 10%;
+  animation: draw 1s both;
+}
+
+.skill-svg-container text {
+  /* stroke-dasharray: 3; */
+  animation: draw 10s linear forwards;
+  font-size: 120rem;
+  stroke-dasharray: 50;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+@keyframes draw {
+  from {
+    stroke-dasharray: 100;
+  }
+  50% {
+    stroke-dasharray: 300;
+  }
+  to {
+    stroke-dasharray: 1000;
+  }
 }
