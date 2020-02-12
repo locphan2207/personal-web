@@ -104,7 +104,7 @@ const getLeftOffset = (pageName, itemWidths) => {
   let leftOffset = []
   for (const currName of NAV_NAMES_ORDER) {
     if (pageName !== currName) {
-      leftOffset.push(`${itemWidths[currName]}px`, "15rem")
+      leftOffset.push(`${itemWidths[currName]}px`, "20rem")
     } else {
       return leftOffset.length ? `calc(${leftOffset.join(" + ")})` : "0px"
     }

@@ -1,7 +1,7 @@
 /* Nav bar */
 .nav-bar {
   position: absolute;
-  bottom: 5%;
+  bottom: 10%;
   right: 0;
   display: flex;
   z-index: 10;
@@ -16,8 +16,8 @@
 
 .nav-bar h5 {
   color: #a8a5a3;
-  font-size: 15rem;
-  margin-left: 15rem;
+  font-size: 20rem;
+  margin-left: 20rem;
   font-weight: 400;
   cursor: pointer;
   padding-bottom: 3rem;
