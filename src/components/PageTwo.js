@@ -7,7 +7,7 @@ import food from "assets/food.png"
 import dataBlock from "assets/data-block.png"
 import emotion from "assets/emotion.png"
 
-export const PAGE_TWO_WHEEL_RANGE = [0, 20]
+export const PAGE_TWO_WHEEL_RANGE = [0, 5]
 // Animation timeout delay (in millisecond)
 const TITLE_SHOW_DURATION = 800
 // Animation CSS delay (in second)
