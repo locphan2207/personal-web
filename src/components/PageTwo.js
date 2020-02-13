@@ -7,9 +7,9 @@ import food from "assets/food.png"
 import dataBlock from "assets/data-block.png"
 import emotion from "assets/emotion.png"
 
-export const PAGE_TWO_WHEEL_RANGE = [0, 4]
+export const PAGE_TWO_WHEEL_RANGE = [0, 3]
 // Animation timeout delay (in millisecond)
-const TITLE_SHOW_DURATION = 800
+const TITLE_SHOW_DURATION = 500
 // Animation CSS delay (in second)
 const TAG_CHAR_DELAY = 0.3
 
@@ -60,7 +60,7 @@ function PageTwo({ isClosing, setClosingPage, wheelTrack }) {
   }, []) // eslint-disable-line
 
   useEffect(() => {
-    if ([1, 2, 3].includes(wheelTrack)) {
+    if ([0, 1, 2, 3].includes(wheelTrack)) {
       onProjectSelect(wheelTrack)
     }
   }, [wheelTrack])
@@ -79,7 +79,11 @@ function PageTwo({ isClosing, setClosingPage, wheelTrack }) {
             key={project.name}
             onMouseDown={() => onProjectSelect(idx)}
             className={"project-title hidden-below"}
-            style={idx === selectedProjectIdx ? { color: "#EEB669" } : null}
+            style={
+              idx === selectedProjectIdx
+                ? { color: "#EEB669", transform: "scale(1.3)" }
+                : null
+            }
           >
             {project.name}
           </p>

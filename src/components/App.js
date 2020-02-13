@@ -23,6 +23,7 @@ function App() {
   const [pageVisible, setPageVisible] = useState(PAGE_NAMES.HOME_PAGE)
   const [closingPage, setClosingPage] = useState(null)
   const [wheelTrack, setWheelTrack] = useState(0)
+  const [scrollTextRotateDeg, setScrollTextRotateDeg] = useState(0)
   const nextPage = useRef(null)
   const isInThrottle = useRef(false)
 
@@ -34,8 +35,10 @@ function App() {
   }
 
   const handleOnWheel = e => {
-    if (isInThrottle.current) console.log("IS IN THROTTLE")
     if (closingPage || isInThrottle.current) return
+    setScrollTextRotateDeg(
+      e.deltaY > 0 ? scrollTextRotateDeg + 100 : scrollTextRotateDeg - 100
+    )
     isInThrottle.current = true
     setTimeout(() => (isInThrottle.current = false), 100)
 
@@ -72,7 +75,7 @@ function App() {
       onWheel={handleOnWheel}
     >
       <div className="left-vertical-bar">
-        <p style={{ transform: `rotateZ(${(scrollPercent / 100) * 360}deg)` }}>
+        <p style={{ transform: `rotateZ(${scrollTextRotateDeg}deg)` }}>
           {"scroll"}
         </p>
       </div>

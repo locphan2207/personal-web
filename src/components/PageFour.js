@@ -5,7 +5,7 @@ import { useOnCloseWatcher } from "helpers/animationHelpers"
 
 export const PAGE_FOUR_WHEEL_RANGE = [0, 0]
 
-function PageFour({ isClosing, setClosingPage }) {
+function PageFour({ isClosing, setClosingPage, wheelTrack }) {
   const onOpen = () => {}
 
   const onClose = () => {}

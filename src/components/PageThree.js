@@ -4,9 +4,9 @@ import "./PageThree.css"
 import StrokeOutlineText from "./StrokeOutlineText"
 import { useOnCloseWatcher } from "helpers/animationHelpers"
 
-export const PAGE_THREE_WHEEL_RANGE = [0, 3]
+export const PAGE_THREE_WHEEL_RANGE = [0, 18]
 
-function PageThree({ isClosing, setClosingPage }) {
+function PageThree({ isClosing, setClosingPage, wheelTrack }) {
   const [shouldShowStrokeText, setShouldShowStrokeText] = useState(true)
   const [selected, setSelected] = useState(SKILLS.languages[0])
 
@@ -17,6 +17,11 @@ function PageThree({ isClosing, setClosingPage }) {
     setShouldShowStrokeText(false)
     setTimeout(() => setShouldShowStrokeText(true), 100)
   }, [selected])
+
+  useEffect(() => {
+    if (wheelTrack >= 0 && wheelTrack <= 18)
+      setSelected(SKILLS_LIST[wheelTrack])
+  }, [wheelTrack])
 
   return (
     <div className="page-three">
@@ -71,3 +76,5 @@ const SKILLS = {
   tools: ["AWS", "Git"],
   backend: ["Flask", "Rails", "Django", "Postgresql", "MongoDB"],
 }
+
+const SKILLS_LIST = Object.values(SKILLS).reduce((i, e) => [...i, ...e], [])
