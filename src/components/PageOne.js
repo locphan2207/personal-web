@@ -5,7 +5,7 @@ import avatar from "assets/avatar.png"
 import { ReactComponent as Triangle } from "assets/triangle.svg"
 import { useOnCloseWatcher } from "helpers/animationHelpers"
 
-export const PAGE_ONE_WHEEL_RANGE = [0, 3]
+export const PAGE_ONE_WHEEL_RANGE = [0, 5]
 
 function PageOne({ isClosing, setClosingPage, explore, wheelTrack }) {
   const onClose = () => {}
@@ -24,6 +24,7 @@ function PageOne({ isClosing, setClosingPage, explore, wheelTrack }) {
       ? { transform: "translateY(400%)" }
       : null
 
+  console.log(wheelTrack)
   return (
     <div className="page-one">
       <div className="intro-container">

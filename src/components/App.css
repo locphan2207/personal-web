@@ -22,7 +22,8 @@
 
 .scroll-indicator {
   width: 2rem;
-  background-color: #c97328;
+  /* background-color: #c97328; */
+  background: linear-gradient(to bottom, #eeb669, #c97328);
   position: absolute;
   right: 0;
   transition: height 0.5s ease-in-out;

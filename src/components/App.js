@@ -19,7 +19,7 @@ const PAGE_WHEEL_RANGES = {
   [PAGE_NAMES.ABOUT_PAGE]: PAGE_FOUR_WHEEL_RANGE,
 }
 
-const THROTTLE_TIME = 1000
+const THROTTLE_TIME = 500
 
 function App() {
   const [pageVisible, setPageVisible] = useState(PAGE_NAMES.HOME_PAGE)
