@@ -7,7 +7,6 @@ import PageOne, { PAGE_ONE_WHEEL_RANGE } from "./PageOne"
 import PageTwo, { PAGE_TWO_WHEEL_RANGE } from "./PageTwo"
 import PageThree, { PAGE_THREE_WHEEL_RANGE } from "./PageThree"
 import PageFour, { PAGE_FOUR_WHEEL_RANGE } from "./PageFour"
-import { throttle } from "helpers/animationHelpers"
 
 // TODO:
 // - CREATE A HELPER TO GENERATE KEYFRAMES BASED ON SPRING CONFIG
@@ -59,7 +58,13 @@ function App() {
   }, [closingPage])
 
   return (
-    <div className="App" onWheel={handleOnWheel}>
+    <div
+      className="App"
+      // Event listeners should be inline instead of using window.addEventListeners
+      // In-line will send the correct function handler with correct state and props of the component
+      // Otherwise, window.addEventListeners will only send in 1 version of the handler with only init state values
+      onWheel={handleOnWheel}
+    >
       <div className="left-vertical-bar">
         <p>{"scroll"}</p>
       </div>

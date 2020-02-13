@@ -140,18 +140,6 @@ const _deleteExistingRule = (ruleName, stylesheet) => {
   if (idx !== null) stylesheet.deleteRule(idx)
 }
 
-/* -------- SHARED HELPERS -------- */
-export const throttle = (f, limit) => {
-  let inThrottle
-  return (...arg) => {
-    if (!inThrottle) {
-      f(...arg)
-      inThrottle = true
-      setTimeout(() => (inThrottle = false), limit)
-    } else console.log("Throttling for " + limit + "ms")
-  }
-}
-
 /* -------- SHARED HOOKS -------- */
 
 // Act as an alarm to parent for when its closing animation finishes

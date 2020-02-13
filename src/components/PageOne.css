@@ -43,16 +43,11 @@
 
 .img {
   position: absolute;
-  right: 0;
+  right: -10%;
   top: 0;
   overflow: hidden;
 }
 
-@media only screen and (min-width: 1200px) {
-  .img {
-    right: 0;
-  }
-}
 .img img {
   width: 23vw;
   opacity: 0.5;
@@ -60,7 +55,7 @@
 
 @media only screen and (min-width: 1200px) {
   .img img {
-    width: 17vw;
+    width: 20vw;
   }
 }
 .img .gradient {
