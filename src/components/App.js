@@ -37,9 +37,7 @@ function App() {
     if (isInThrottle.current) console.log("IS IN THROTTLE")
     if (closingPage || isInThrottle.current) return
     isInThrottle.current = true
-    setTimeout(() => (isInThrottle.current = false), 500)
-
-    console.log(wheelTrack)
+    setTimeout(() => (isInThrottle.current = false), 100)
 
     const nextWheelTrack = e.deltaY > 0 ? wheelTrack + 1 : wheelTrack - 1
     const currPageIdx = NAV_NAMES_ORDER.findIndex(item => item === pageVisible)
@@ -63,6 +61,8 @@ function App() {
     }
   }, [closingPage])
 
+  const scrollPercent = (wheelTrack / PAGE_WHEEL_RANGES[pageVisible][1]) * 100
+
   return (
     <div
       className="App"
@@ -72,9 +72,18 @@ function App() {
       onWheel={handleOnWheel}
     >
       <div className="left-vertical-bar">
-        <p>{"scroll"}</p>
+        <p style={{ transform: `rotateZ(${(scrollPercent / 100) * 360}deg)` }}>
+          {"scroll"}
+        </p>
       </div>
-      <div className="right-vertical-bar" />
+      <div className="right-vertical-bar">
+        <div
+          className="scroll-indicator"
+          style={{
+            height: `${scrollPercent}%`,
+          }}
+        />
+      </div>
       <NavBar pageVisible={pageVisible} switchPage={switchPage} />
       <PageIndicator pageVisible={pageVisible} />
       {pageVisible === PAGE_NAMES.HOME_PAGE && (

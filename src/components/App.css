@@ -7,7 +7,8 @@
   align-items: center;
   position: relative;
   margin: 0 1%;
-  overflow: hidden;
+  /* overflow: hidden; */
+  /* overflow-x: hidden; */
 }
 
 .right-vertical-bar {
@@ -17,6 +18,17 @@
   position: absolute;
   right: 0;
   top: 10%;
+  display: flex;
+  align-items: center;
+}
+
+.scroll-indicator {
+  width: 2rem;
+  background-color: #c97328;
+  position: absolute;
+  right: 0;
+  height: 40%;
+  transition: height 0.5s ease-in-out;
 }
 
 .left-vertical-bar {
@@ -32,8 +44,8 @@
   position: absolute;
   top: -20%;
   left: 0;
-  transform: rotateZ(90deg) translateY(250%);
-  transform-origin: right;
+  writing-mode: vertical-rl;
+  transition: transform 0.5s linear;
   color: #5b544f;
   font-size: 15rem;
   font-weight: 700;

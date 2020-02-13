@@ -63,7 +63,6 @@
 }
 
 .skill-svg-container text {
-  /* stroke-dasharray: 3; */
   animation: draw 10s linear forwards;
   font-size: 120rem;
   stroke-dasharray: 50;
