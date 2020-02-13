@@ -68,6 +68,7 @@ const SkillGroup = ({ groupName, skills, setSelected, selected }) => {
           </p>
         ))}
       </div>
+      <div className="vertical-bar" />
       <div className="group-name">
         <p>{groupName}</p>
       </div>

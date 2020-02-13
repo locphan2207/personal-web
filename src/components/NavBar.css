@@ -31,7 +31,7 @@
 }
 
 .left-bar {
-  background-color: #9e5d24;
+  background: linear-gradient(to bottom, #eeb669, #c97328);
   width: 1rem;
   transition: transform 0.2s ease-in-out, height 0.2s ease-in-out;
 }

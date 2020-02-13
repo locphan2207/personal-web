@@ -24,7 +24,6 @@ function PageOne({ isClosing, setClosingPage, explore, wheelTrack }) {
       ? { transform: "translateY(400%)" }
       : null
 
-  console.log(wheelTrack)
   return (
     <div className="page-one">
       <div className="intro-container">
