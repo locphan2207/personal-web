@@ -17,12 +17,14 @@ function PageOne({ isClosing, setClosingPage, explore }) {
 
   return (
     <div className="page-one">
-      <div className="name-container">
-        <h1>Tan Loc</h1>
-        <div className="last-name-img">
+      <div className="intro-container">
+        <div className="name-container">
+          <h1>Tan Loc</h1>
+          <h1 className="last-name">Phan</h1>
+        </div>
+        <div className="img">
           <img src={avatar} alt={"face"} />
           <div className="gradient" />
-          <h2 className="last-name">Phan</h2>
         </div>
         <p className="greeting">
           Hi there,

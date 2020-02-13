@@ -6,11 +6,15 @@
   width: 100%;
 }
 
-.name-container {
+.intro-container {
   position: relative;
   display: flex;
   flex-direction: column;
   margin-left: 10%;
+}
+
+.name-container {
+  display: flex;
 }
 
 .name-container h1 {
@@ -21,46 +25,44 @@
   text-align: left;
 }
 
-.last-name-img {
+.last-name {
+  /* position: absolute;
+  left: 5%;
+  top: 0; */
+  font-family: Palatino Bold;
+  font-size: 150rem;
+  letter-spacing: 5rem;
+  text-align: left;
+  margin-left: 50rem;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 3rem;
+  -webkit-text-stroke-color: #eeb669;
+  z-index: 2;
+}
+
+.img {
   position: absolute;
-  right: -80%;
+  right: 0;
   top: 0;
   overflow: hidden;
 }
 
 @media only screen and (min-width: 1200px) {
-  .last-name-img {
-    position: absolute;
-    right: -95%;
-    top: 0;
+  .img {
+    right: 0;
   }
 }
-
-.last-name {
-  position: absolute;
-  left: 5%;
-  top: 0;
-  font-family: Palatino Bold;
-  font-size: 150rem;
-  letter-spacing: 5rem;
-  text-align: left;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke-width: 3rem;
-  -webkit-text-stroke-color: #eeb669;
-}
-
-.last-name-img img {
+.img img {
   width: 23vw;
   opacity: 0.5;
 }
 
 @media only screen and (min-width: 1200px) {
-  .last-name-img img {
+  .img img {
     width: 17vw;
-    opacity: 0.5;
   }
 }
-.last-name-img .gradient {
+.img .gradient {
   background: linear-gradient(#0000001f, #dfb58410);
   position: absolute;
   top: 0;

@@ -15,12 +15,10 @@ import { throttle } from "helpers/animationHelpers"
 
 const SCROLL_COUNT_TO_PAGE = 5
 
-let WHEEL_TRACK = 0
-
 function App() {
   const [pageVisible, setPageVisible] = useState(PAGE_NAMES.HOME_PAGE)
   const [closingPage, setClosingPage] = useState(null)
-  const [isScrollingToPage, setIsScrollingToPage] = useState(0)
+  const [wheelTrack, setWheelTrack] = useState(0)
   const nextPage = useRef(null)
 
   // Trigger the closing animation and store the next page to ref
@@ -30,33 +28,18 @@ function App() {
     nextPage.current = pageName
   }
 
-  useEffect(() => {
-    const currIdx = NAV_NAMES_ORDER.findIndex(item => pageVisible === item)
-    const prevPage = NAV_NAMES_ORDER[currIdx - 1]
-    const nextPage = NAV_NAMES_ORDER[currIdx + 1]
-    if (isScrollingToPage === 1) {
-      switchPage(nextPage)
-    } else if (isScrollingToPage === -1) {
-      switchPage(prevPage)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isScrollingToPage])
-
-  useEffect(() => {
+  const addWheelTracking = () => {
     window.addEventListener(
       "wheel",
       throttle(e => {
-        WHEEL_TRACK = e.deltaY > 0 ? WHEEL_TRACK + 1 : WHEEL_TRACK - 1
-        console.log(WHEEL_TRACK, e)
-        if (WHEEL_TRACK > SCROLL_COUNT_TO_PAGE) {
-          setIsScrollingToPage(1)
-          WHEEL_TRACK = 0
-        } else if (WHEEL_TRACK <= -SCROLL_COUNT_TO_PAGE) {
-          setIsScrollingToPage(-1)
-          WHEEL_TRACK = 0
-        }
+        setWheelTrack(e.deltaY > 0 ? wheelTrack + 1 : wheelTrack - 1)
+        console.log(wheelTrack, e)
       }, 100)
     )
+  }
+
+  useEffect(() => {
+    addWheelTracking()
   }, [])
 
   // Act as a listener for when a page finishes its closing animation
@@ -64,7 +47,7 @@ function App() {
   useEffect(() => {
     if (!closingPage && nextPage.current) {
       setPageVisible(nextPage.current)
-      setIsScrollingToPage(0)
+      setWheelTrack(0)
     }
   }, [closingPage])
 
@@ -81,24 +64,28 @@ function App() {
           isClosing={closingPage === PAGE_NAMES.HOME_PAGE}
           setClosingPage={setClosingPage}
           explore={() => switchPage(PAGE_NAMES.WORK_PAGE)}
+          wheelTrack={wheelTrack}
         />
       )}
       {pageVisible === PAGE_NAMES.WORK_PAGE && (
         <PageTwo
           isClosing={closingPage === PAGE_NAMES.WORK_PAGE}
           setClosingPage={setClosingPage}
+          wheelTrack={wheelTrack}
         />
       )}
       {pageVisible === PAGE_NAMES.SKILLS_PAGE && (
         <PageThree
           isClosing={closingPage === PAGE_NAMES.SKILLS_PAGE}
           setClosingPage={setClosingPage}
+          wheelTrack={wheelTrack}
         />
       )}
       {pageVisible === PAGE_NAMES.ABOUT_PAGE && (
         <PageFour
           isClosing={closingPage === PAGE_NAMES.ABOUT_PAGE}
           setClosingPage={setClosingPage}
+          wheelTrack={wheelTrack}
         />
       )}
     </div>
