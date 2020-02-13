@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react"
 import "./NavBar.css"
 
 function NavBar({ pageVisible, switchPage }) {
-  const itemWidths = useRef({})
+  const itemHeights = useRef({})
   const previousPage = useRef(null)
   const [bottomBarStyles, setBottomBarStyles] = useState({})
 
@@ -12,44 +12,45 @@ function NavBar({ pageVisible, switchPage }) {
 
   // Animation when switching page
   useEffect(() => {
-    // Expand the width to the side (right of left from previous) of the new page
-    const expandedWidth = getExpandedWidthFromCurrentPage(
+    // Expand the height to the side (right of left from previous) of the new page
+    const expandedHeight = getExpandedHeightFromCurrentPage(
       pageVisible,
       previousPage.current,
-      itemWidths.current
+      itemHeights.current
     )
     setBottomBarStyles({
-      width: expandedWidth,
+      height: expandedHeight,
       transform: isNewPageOnRightSide(pageVisible, previousPage.current)
-        ? `translateX(${getLeftOffset(
+        ? `translateY(${getTopOffset(
             previousPage.current,
-            itemWidths.current
+            itemHeights.current
           )})`
-        : `translateX(${getLeftOffset(pageVisible, itemWidths.current)})`,
+        : `translateY(${getTopOffset(pageVisible, itemHeights.current)})`,
     })
 
     // Then shrink it to side (right of left from previous) of the new page
     setTimeout(
       () =>
         setBottomBarStyles({
-          width: itemWidths.current[pageVisible],
-          transform: `translateX(${getLeftOffset(
+          height: itemHeights.current[pageVisible],
+          transform: `translateY(${getTopOffset(
             pageVisible,
-            itemWidths.current
+            itemHeights.current
           )})`,
         }),
-      100
+      300
     )
     previousPage.current = pageVisible
   }, [pageVisible])
 
   return (
     <div className="nav-bar">
+      <div className={"left-bar"} style={bottomBarStyles} />
       <div className="nav-names">
         {NAV_NAMES_ORDER.map(pageName => (
           <h5
             ref={ref => {
-              if (ref) itemWidths.current[pageName] = ref.offsetWidth
+              if (ref) itemHeights.current[pageName] = ref.offsetHeight
             }}
             key={pageName}
             onClick={() => clickHandler(pageName)}
@@ -58,7 +59,6 @@ function NavBar({ pageVisible, switchPage }) {
           </h5>
         ))}
       </div>
-      <div className={"bottom-bar"} style={bottomBarStyles} />
     </div>
   )
 }
@@ -83,30 +83,34 @@ const isNewPageOnRightSide = (newPage, previousPage) => {
   return newIdx > previousIdx
 }
 
-const getExpandedWidthFromCurrentPage = (newPage, previousPage, itemWidths) => {
-  if (!previousPage) return itemWidths[newPage]
-  let width = []
+const getExpandedHeightFromCurrentPage = (
+  newPage,
+  previousPage,
+  itemHeights
+) => {
+  if (!previousPage) return itemHeights[newPage]
+  let height = []
   for (const page of NAV_NAMES_ORDER) {
     if (page === newPage || page === previousPage) {
-      if (width.length) {
-        width.push(`${itemWidths[page]}px`)
-        return width.length > 0 ? `calc(${width.join(" + ")})` : width[0]
+      if (height.length) {
+        height.push(`${itemHeights[page]}px`)
+        return height.length > 0 ? `calc(${height.join(" + ")})` : height[0]
       }
-      width.push(`${itemWidths[page]}px`, "20rem")
-    } else if (width.length) {
-      width.push(`${itemWidths[page]}px`, "20rem")
+      height.push(`${itemHeights[page]}px`, "20rem")
+    } else if (height.length) {
+      height.push(`${itemHeights[page]}px`, "20rem")
     }
   }
-  return `calc(${width.join(" + ")})`
+  return `calc(${height.join(" + ")})`
 }
 
-const getLeftOffset = (pageName, itemWidths) => {
-  let leftOffset = []
+const getTopOffset = (pageName, itemHeights) => {
+  let topOffset = []
   for (const currName of NAV_NAMES_ORDER) {
     if (pageName !== currName) {
-      leftOffset.push(`${itemWidths[currName]}px`, "20rem")
+      topOffset.push(`${itemHeights[currName]}px`, "20rem")
     } else {
-      return leftOffset.length ? `calc(${leftOffset.join(" + ")})` : "0px"
+      return topOffset.length ? `calc(${topOffset.join(" + ")})` : "0px"
     }
   }
 }

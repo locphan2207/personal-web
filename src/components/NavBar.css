@@ -4,27 +4,25 @@
   bottom: 10%;
   right: 0;
   display: flex;
-  z-index: 10;
-  flex-direction: column;
-  transform: rotateZ(90deg) translateY(50%);
-  transform-origin: right;
 }
 
 .nav-names {
   display: flex;
+  flex-direction: column;
 }
 
 .nav-bar h5 {
   color: #a8a5a3;
   font-size: 20rem;
-  margin-left: 20rem;
+  margin-top: 20rem;
   font-weight: 400;
   cursor: pointer;
-  padding-bottom: 3rem;
+  padding-left: 3rem;
+  writing-mode: vertical-rl;
 }
 
 .nav-bar h5:first-of-type {
-  margin-left: 0rem;
+  margin-top: 0rem;
 }
 
 .nav-bar h5:hover {
@@ -32,8 +30,8 @@
   transition: color 0.2s ease-in-out;
 }
 
-.bottom-bar {
+.left-bar {
   background-color: #9e5d24;
-  height: 1rem;
-  transition: transform 0.2s ease, width 0.2s ease;
+  width: 1rem;
+  transition: transform 0.2s ease-in-out, height 0.2s ease-in-out;
 }
