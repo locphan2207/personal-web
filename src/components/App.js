@@ -3,17 +3,22 @@ import React, { useState, useEffect, useRef } from "react"
 import "./App.css"
 import NavBar, { PAGE_NAMES, NAV_NAMES_ORDER } from "./NavBar"
 import PageIndicator from "./PageIndicator"
-import PageOne from "./PageOne"
-import PageTwo from "./PageTwo"
-import PageThree from "./PageThree"
-import PageFour from "./PageFour"
+import PageOne, { PAGE_ONE_WHEEL_RANGE } from "./PageOne"
+import PageTwo, { PAGE_TWO_WHEEL_RANGE } from "./PageTwo"
+import PageThree, { PAGE_THREE_WHEEL_RANGE } from "./PageThree"
+import PageFour, { PAGE_FOUR_WHEEL_RANGE } from "./PageFour"
 import { throttle } from "helpers/animationHelpers"
 
 // TODO:
 // - CREATE A HELPER TO GENERATE KEYFRAMES BASED ON SPRING CONFIG
 // - SWITCH TO NEW DESIGN
 
-const SCROLL_COUNT_TO_PAGE = 5
+const PAGE_WHEEL_RANGES = {
+  [PAGE_NAMES.HOME_PAGE]: PAGE_ONE_WHEEL_RANGE,
+  [PAGE_NAMES.WORK_PAGE]: PAGE_TWO_WHEEL_RANGE,
+  [PAGE_NAMES.SKILLS_PAGE]: PAGE_THREE_WHEEL_RANGE,
+  [PAGE_NAMES.ABOUT_PAGE]: PAGE_FOUR_WHEEL_RANGE,
+}
 
 function App() {
   const [pageVisible, setPageVisible] = useState(PAGE_NAMES.HOME_PAGE)
@@ -28,31 +33,33 @@ function App() {
     nextPage.current = pageName
   }
 
-  const addWheelTracking = () => {
-    window.addEventListener(
-      "wheel",
-      throttle(e => {
-        setWheelTrack(e.deltaY > 0 ? wheelTrack + 1 : wheelTrack - 1)
-        console.log(wheelTrack, e)
-      }, 100)
-    )
+  const handleOnWheel = e => {
+    if (closingPage) return
+
+    const nextWheelTrack = e.deltaY < 0 ? wheelTrack + 1 : wheelTrack - 1
+    const currPageIdx = NAV_NAMES_ORDER.findIndex(item => item === pageVisible)
+    const nextPage = NAV_NAMES_ORDER[currPageIdx + 1]
+    const prevPage = NAV_NAMES_ORDER[currPageIdx - 1]
+    if (nextWheelTrack > PAGE_WHEEL_RANGES[pageVisible][1]) {
+      if (nextPage) switchPage(nextPage)
+    } else if (nextWheelTrack < PAGE_WHEEL_RANGES[pageVisible][0]) {
+      if (prevPage) switchPage(prevPage)
+    } else {
+      setWheelTrack(nextWheelTrack)
+    }
   }
 
-  useEffect(() => {
-    addWheelTracking()
-  }, [])
-
   // Act as a listener for when a page finishes its closing animation
-  // Will change the page when it knows the animation finishes (when closingPage goes to null)
+  // when it knows the animation finishes (when closingPage goes to null)
   useEffect(() => {
     if (!closingPage && nextPage.current) {
       setPageVisible(nextPage.current)
-      setWheelTrack(0)
+      setWheelTrack(PAGE_WHEEL_RANGES[nextPage.current][0])
     }
   }, [closingPage])
 
   return (
-    <div className="App">
+    <div className="App" onWheel={handleOnWheel}>
       <div className="left-vertical-bar">
         <p>{"scroll"}</p>
       </div>
@@ -65,6 +72,7 @@ function App() {
           setClosingPage={setClosingPage}
           explore={() => switchPage(PAGE_NAMES.WORK_PAGE)}
           wheelTrack={wheelTrack}
+          switchPage={switchPage}
         />
       )}
       {pageVisible === PAGE_NAMES.WORK_PAGE && (

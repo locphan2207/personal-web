@@ -4,6 +4,8 @@ import "./PageThree.css"
 import StrokeOutlineText from "./StrokeOutlineText"
 import { useOnCloseWatcher } from "helpers/animationHelpers"
 
+export const PAGE_THREE_WHEEL_RANGE = [0, 20]
+
 function PageThree({ isClosing, setClosingPage }) {
   const [shouldShowStrokeText, setShouldShowStrokeText] = useState(true)
   const [selected, setSelected] = useState(SKILLS.languages[0])

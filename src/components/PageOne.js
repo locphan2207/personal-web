@@ -5,20 +5,26 @@ import avatar from "assets/avatar.png"
 import { ReactComponent as Triangle } from "assets/triangle.svg"
 import { useOnCloseWatcher } from "helpers/animationHelpers"
 
-function PageOne({ isClosing, setClosingPage, explore }) {
-  const onOpen = () => {}
+export const PAGE_ONE_WHEEL_RANGE = [0, 20]
 
+const inWheelRange = wheelTrack =>
+  wheelTrack >= PAGE_ONE_WHEEL_RANGE[0] && wheelTrack <= PAGE_ONE_WHEEL_RANGE[1]
+
+function PageOne({ isClosing, setClosingPage, explore, wheelTrack }) {
   const onClose = () => {}
   useOnCloseWatcher(isClosing, setClosingPage, onClose)
-
-  useEffect(() => {
-    onOpen()
-  }, [])
 
   return (
     <div className="page-one">
       <div className="intro-container">
-        <div className="name-container">
+        <div
+          className="name-container"
+          style={
+            inWheelRange(wheelTrack)
+              ? { transform: `translateY(${wheelTrack * -50}rem)` }
+              : null
+          }
+        >
           <h1>Tan Loc</h1>
           <h1 className="last-name">Phan</h1>
         </div>
@@ -26,7 +32,14 @@ function PageOne({ isClosing, setClosingPage, explore }) {
           <img src={avatar} alt={"face"} />
           <div className="gradient" />
         </div>
-        <p className="greeting">
+        <p
+          className="greeting"
+          style={
+            inWheelRange(wheelTrack)
+              ? { transform: `translateY(${wheelTrack * -10}rem)` }
+              : null
+          }
+        >
           Hi there,
           <br />
           I'm a <span>software engineer</span> who loves building functional,

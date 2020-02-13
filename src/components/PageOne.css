@@ -15,6 +15,7 @@
 
 .name-container {
   display: flex;
+  transition: transform 0.3s ease-out;
 }
 
 .name-container h1 {
@@ -78,6 +79,7 @@
   font-weight: 200;
   margin-top: 45rem;
   margin-left: 25rem;
+  transition: transform 0.3s ease-in-out;
 }
 
 .greeting span {

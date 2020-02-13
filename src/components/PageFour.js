@@ -3,6 +3,8 @@ import React, { useEffect } from "react"
 import "./PageFour.css"
 import { useOnCloseWatcher } from "helpers/animationHelpers"
 
+export const PAGE_FOUR_WHEEL_RANGE = [0, 0]
+
 function PageFour({ isClosing, setClosingPage }) {
   const onOpen = () => {}
 
@@ -18,7 +20,7 @@ function PageFour({ isClosing, setClosingPage }) {
       <p>I'm excited to connect!</p>
       <div className="links">
         {Object.keys(LINKS).map(key => (
-          <a href={LINKS[key].link} target="_blank">
+          <a key={key} href={LINKS[key].link} target="_blank">
             {LINKS[key].text}
           </a>
         ))}

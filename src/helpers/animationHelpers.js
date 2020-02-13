@@ -142,14 +142,13 @@ const _deleteExistingRule = (ruleName, stylesheet) => {
 
 /* -------- SHARED HELPERS -------- */
 export const throttle = (f, limit) => {
-  console.log(f, limit)
   let inThrottle
   return (...arg) => {
     if (!inThrottle) {
       f(...arg)
       inThrottle = true
       setTimeout(() => (inThrottle = false), limit)
-    } else console.log("IS THROTTLING")
+    } else console.log("Throttling for " + limit + "ms")
   }
 }
 
