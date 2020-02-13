@@ -13,7 +13,7 @@ const TITLE_SHOW_DURATION = 500
 // Animation CSS delay (in second)
 const TAG_CHAR_DELAY = 0.3
 
-function PageTwo({ isClosing, setClosingPage, wheelTrack }) {
+function PageTwo({ isClosing, setClosingPage, wheelTrack, setWheelTrack }) {
   const [selectedProjectIdx, setSelectedProjectIdx] = useState(0)
   const [isDescriptionVisible, setIsDescriptionVisible] = useState(false)
 
@@ -60,10 +60,18 @@ function PageTwo({ isClosing, setClosingPage, wheelTrack }) {
   }, []) // eslint-disable-line
 
   useEffect(() => {
-    if ([0, 1, 2, 3].includes(wheelTrack)) {
+    if (wheelTrack >= 0 || wheelTrack <= 3) {
       onProjectSelect(wheelTrack)
     }
   }, [wheelTrack])
+
+  useEffect(() => {
+    console.log(selectedProjectIdx, wheelTrack)
+    if (wheelTrack !== selectedProjectIdx) {
+      console.log("H")
+      setWheelTrack(selectedProjectIdx)
+    }
+  }, [selectedProjectIdx])
 
   return (
     <div className={"page-two"}>

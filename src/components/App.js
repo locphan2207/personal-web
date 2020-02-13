@@ -103,6 +103,7 @@ function App() {
           isClosing={closingPage === PAGE_NAMES.WORK_PAGE}
           setClosingPage={setClosingPage}
           wheelTrack={wheelTrack}
+          setWheelTrack={setWheelTrack}
         />
       )}
       {pageVisible === PAGE_NAMES.SKILLS_PAGE && (
@@ -110,6 +111,7 @@ function App() {
           isClosing={closingPage === PAGE_NAMES.SKILLS_PAGE}
           setClosingPage={setClosingPage}
           wheelTrack={wheelTrack}
+          setWheelTrack={setWheelTrack}
         />
       )}
       {pageVisible === PAGE_NAMES.ABOUT_PAGE && (
