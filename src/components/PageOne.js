@@ -5,7 +5,7 @@ import avatar from "assets/avatar.png"
 import { ReactComponent as Triangle } from "assets/triangle.svg"
 import { useOnCloseWatcher } from "helpers/animationHelpers"
 
-export const PAGE_ONE_WHEEL_RANGE = [0, 20]
+export const PAGE_ONE_WHEEL_RANGE = [0, 5]
 
 const inWheelRange = wheelTrack =>
   wheelTrack >= PAGE_ONE_WHEEL_RANGE[0] && wheelTrack <= PAGE_ONE_WHEEL_RANGE[1]
@@ -17,14 +17,7 @@ function PageOne({ isClosing, setClosingPage, explore, wheelTrack }) {
   return (
     <div className="page-one">
       <div className="intro-container">
-        <div
-          className="name-container"
-          style={
-            inWheelRange(wheelTrack)
-              ? { transform: `translateY(${wheelTrack * -50}rem)` }
-              : null
-          }
-        >
+        <div className="name-container">
           <h1>Tan Loc</h1>
           <h1 className="last-name">Phan</h1>
         </div>

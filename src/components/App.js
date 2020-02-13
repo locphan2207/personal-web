@@ -35,7 +35,7 @@ function App() {
   const handleOnWheel = e => {
     if (closingPage) return
 
-    const nextWheelTrack = e.deltaY < 0 ? wheelTrack + 1 : wheelTrack - 1
+    const nextWheelTrack = e.deltaY > 0 ? wheelTrack + 1 : wheelTrack - 1
     const currPageIdx = NAV_NAMES_ORDER.findIndex(item => item === pageVisible)
     const nextPage = NAV_NAMES_ORDER[currPageIdx + 1]
     const prevPage = NAV_NAMES_ORDER[currPageIdx - 1]

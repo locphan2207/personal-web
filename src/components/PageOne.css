@@ -27,9 +27,6 @@
 }
 
 .last-name {
-  /* position: absolute;
-  left: 5%;
-  top: 0; */
   font-family: Palatino Bold;
   font-size: 150rem;
   letter-spacing: 5rem;
@@ -38,7 +35,7 @@
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 3rem;
   -webkit-text-stroke-color: #eeb669;
-  z-index: 2;
+  z-index: 3;
 }
 
 .img {
