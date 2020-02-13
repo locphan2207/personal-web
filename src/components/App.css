@@ -25,7 +25,6 @@
   background-color: #c97328;
   position: absolute;
   right: 0;
-  height: 40%;
   transition: height 0.5s ease-in-out;
 }
 
