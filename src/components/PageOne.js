@@ -11,10 +11,16 @@ function PageOne({ isClosing, setClosingPage, explore, wheelTrack }) {
   const onClose = () => {}
   useOnCloseWatcher(isClosing, setClosingPage, onClose)
 
+  const highlight1Styles =
+    wheelTrack >= 1 ? { color: "#eeb669", fontSize: "22rem" } : null
+
+  const highlight2Styles =
+    wheelTrack >= 2 ? { backgroundSize: "100% 2rem" } : null
+
   const exploreTextStyles =
-    wheelTrack === 2
+    wheelTrack === 3
       ? { transform: "translateY(200%)" }
-      : wheelTrack >= 3
+      : wheelTrack >= 4
       ? { transform: "translateY(400%)" }
       : null
 
@@ -26,15 +32,30 @@ function PageOne({ isClosing, setClosingPage, explore, wheelTrack }) {
           <h1 className="last-name">Phan</h1>
         </div>
         <div className="img">
-          <img src={avatar} alt={"face"} />
           <div className="gradient" />
+          <img src={avatar} alt={"face"} />
         </div>
         <p className="greeting">
           Hi there,
           <br />
-          I'm a <span>software engineer</span> who loves building functional,
+          I'm a{" "}
+          <span className="color-switch" style={highlight1Styles}>
+            software engineer
+          </span>{" "}
+          who loves building{" "}
+          <span className="underline" style={highlight2Styles}>
+            functional
+          </span>
+          ,
           <br />
-          beautiful and interactive websites.
+          <span className="underline" style={highlight2Styles}>
+            beautiful
+          </span>{" "}
+          and{" "}
+          <span className="underline" style={highlight2Styles}>
+            interactive
+          </span>{" "}
+          websites.
         </p>
         <div className="explore-container" onClick={explore}>
           <div className="explore-text">

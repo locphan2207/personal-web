@@ -19,6 +19,8 @@ const PAGE_WHEEL_RANGES = {
   [PAGE_NAMES.ABOUT_PAGE]: PAGE_FOUR_WHEEL_RANGE,
 }
 
+const THROTTLE_TIME = 1000
+
 function App() {
   const [pageVisible, setPageVisible] = useState(PAGE_NAMES.HOME_PAGE)
   const [closingPage, setClosingPage] = useState(null)
@@ -40,7 +42,7 @@ function App() {
       e.deltaY > 0 ? scrollTextRotateDeg + 100 : scrollTextRotateDeg - 100
     )
     isInThrottle.current = true
-    setTimeout(() => (isInThrottle.current = false), 100)
+    setTimeout(() => (isInThrottle.current = false), THROTTLE_TIME)
 
     const nextWheelTrack = e.deltaY > 0 ? wheelTrack + 1 : wheelTrack - 1
     const currPageIdx = NAV_NAMES_ORDER.findIndex(item => item === pageVisible)

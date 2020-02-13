@@ -72,10 +72,22 @@
   margin-top: 45rem;
   margin-left: 25rem;
   transition: transform 0.3s ease-in-out;
+  z-index: 3;
 }
 
-.greeting span {
-  color: #eeb669;
+.greeting .color-switch {
+  color: #a8a5a3;
+  transition: all 0.2s linear;
+}
+
+.greeting .underline {
+  color: #a8a5a3;
+  background-image: linear-gradient(120deg, #eeb669 0%, #eeb669 100%);
+  background-repeat: no-repeat;
+  background-size: 0% 2rem;
+  background-position: 0 100%;
+  transition: background-size 0.2s linear;
+  overflow: visible;
 }
 
 .explore-container {
