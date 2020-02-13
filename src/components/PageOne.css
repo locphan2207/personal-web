@@ -85,14 +85,30 @@
   cursor: pointer;
 }
 
-.explore-container p {
+.explore-text {
+  position: relative;
+  overflow-y: hidden;
+  padding-right: 40rem;
+}
+
+.explore-text p {
   font-weight: 600;
   color: #f2f2f2;
   font-size: 25rem;
-  margin-right: 20rem;
+  transition: transform 0.5s ease-in-out;
 }
 
-.explore-container:hover p {
+.explore-text p:nth-child(2) {
+  position: absolute;
+  top: -200%;
+}
+
+.explore-text p:nth-child(3) {
+  position: absolute;
+  top: -400%;
+}
+
+.explore-text:hover p {
   color: #c97328;
 }
 

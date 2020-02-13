@@ -7,9 +7,16 @@ import { useOnCloseWatcher } from "helpers/animationHelpers"
 
 export const PAGE_ONE_WHEEL_RANGE = [0, 3]
 
-function PageOne({ isClosing, setClosingPage, explore }) {
+function PageOne({ isClosing, setClosingPage, explore, wheelTrack }) {
   const onClose = () => {}
   useOnCloseWatcher(isClosing, setClosingPage, onClose)
+
+  const exploreTextStyles =
+    wheelTrack === 2
+      ? { transform: "translateY(200%)" }
+      : wheelTrack >= 3
+      ? { transform: "translateY(400%)" }
+      : null
 
   return (
     <div className="page-one">
@@ -30,7 +37,11 @@ function PageOne({ isClosing, setClosingPage, explore }) {
           beautiful and interactive websites.
         </p>
         <div className="explore-container" onClick={explore}>
-          <p>EXPLORE ME</p>
+          <div className="explore-text">
+            <p style={exploreTextStyles}>SCROLL</p>
+            <p style={exploreTextStyles}>EXPLORE</p>
+            <p style={exploreTextStyles}>CONNECT</p>
+          </div>
           <Triangle className="triangle" />
         </div>
       </div>

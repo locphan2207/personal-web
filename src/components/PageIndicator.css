@@ -13,4 +13,5 @@
   color: #a8a5a3;
   font-family: Palatino Bold;
   font-size: 20rem;
+  transition: all 0.5s ease-in-out;
 }
