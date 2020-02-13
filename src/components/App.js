@@ -24,6 +24,7 @@ function App() {
   const [closingPage, setClosingPage] = useState(null)
   const [wheelTrack, setWheelTrack] = useState(0)
   const nextPage = useRef(null)
+  const isInThrottle = useRef(false)
 
   // Trigger the closing animation and store the next page to ref
   // So it can set the new page after closing animation finishes
@@ -33,7 +34,12 @@ function App() {
   }
 
   const handleOnWheel = e => {
-    if (closingPage) return
+    if (isInThrottle.current) console.log("IS IN THROTTLE")
+    if (closingPage || isInThrottle.current) return
+    isInThrottle.current = true
+    setTimeout(() => (isInThrottle.current = false), 500)
+
+    console.log(wheelTrack)
 
     const nextWheelTrack = e.deltaY > 0 ? wheelTrack + 1 : wheelTrack - 1
     const currPageIdx = NAV_NAMES_ORDER.findIndex(item => item === pageVisible)
