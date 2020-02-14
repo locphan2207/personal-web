@@ -14,6 +14,7 @@
   border: 1rem solid #eeb669;
   animation: cursor-shadow 5s linear infinite;
   transform: translate(-50%, -50%);
+  pointer-events: none;
 }
 
 .App {
