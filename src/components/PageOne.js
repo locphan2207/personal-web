@@ -5,11 +5,39 @@ import avatar from "assets/avatar.png"
 import { ReactComponent as Triangle } from "assets/triangle.svg"
 import { useOnCloseWatcher } from "helpers/animationHelpers"
 
-export const PAGE_ONE_WHEEL_RANGE = [0, 5]
+export const PAGE_ONE_WHEEL_RANGE = [0, 4]
 
 function PageOne({ isClosing, setClosingPage, explore, wheelTrack }) {
-  const onClose = () => {}
+  const onClose = () => {
+    const layerOne = document.getElementsByClassName("layer-1")[0]
+    const layerTwo = document.getElementsByClassName("layer-2")[0]
+    layerTwo.setAttribute("class", "layer-2 left")
+    setTimeout(() => layerOne.setAttribute("class", "layer-1 left"), 300)
+
+    return new Promise(resolve => {
+      setTimeout(() => resolve("done"), 700)
+    })
+  }
   useOnCloseWatcher(isClosing, setClosingPage, onClose)
+
+  const onOpen = () => {
+    const layerOne = document.getElementsByClassName("layer-1")[0]
+    const layerTwo = document.getElementsByClassName("layer-2")[0]
+    const textButton = document.getElementsByClassName("explore-text")[0]
+    const triangle = document.getElementsByClassName("triangle")[0]
+    layerTwo.setAttribute("class", "layer-2")
+    setTimeout(() => layerOne.setAttribute("class", "layer-1"), 300)
+    setTimeout(() => {
+      textButton.setAttribute("class", "explore-text")
+    }, 500)
+    setTimeout(() => {
+      triangle.setAttribute("class", "triangle")
+    }, 700)
+  }
+
+  useEffect(() => {
+    onOpen()
+  }, [])
 
   const highlight1Styles =
     wheelTrack >= 1 ? { color: "#eeb669", fontSize: "22rem" } : null
@@ -33,6 +61,8 @@ function PageOne({ isClosing, setClosingPage, explore, wheelTrack }) {
         </div>
         <div className="img">
           <div className="gradient" />
+          <div className="layer-1 left" />
+          <div className="layer-2 left" />
           <img src={avatar} alt={"face"} />
         </div>
         <p className="greeting">
@@ -58,12 +88,12 @@ function PageOne({ isClosing, setClosingPage, explore, wheelTrack }) {
           websites.
         </p>
         <div className="explore-container" onClick={explore}>
-          <div className="explore-text">
+          <div className="explore-text hidden-above">
             <p style={exploreTextStyles}>SCROLL</p>
             <p style={exploreTextStyles}>EXPLORE</p>
             <p style={exploreTextStyles}>CONNECT</p>
           </div>
-          <Triangle className="triangle" />
+          <Triangle className="triangle hidden-below" />
         </div>
       </div>
     </div>

@@ -24,6 +24,7 @@
   letter-spacing: 5rem;
   color: #eeb669;
   text-align: left;
+  z-index: 3;
 }
 
 .last-name {
@@ -47,7 +48,7 @@
 
 .img img {
   width: 23vw;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
 @media only screen and (min-width: 1200px) {
@@ -55,13 +56,37 @@
     width: 20vw;
   }
 }
+
 .img .gradient {
-  background: linear-gradient(#0000001f, #dfb58410);
+  background: linear-gradient(#000000dc, #dfb5842c);
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 150%;
+  z-index: 1;
+}
+
+.img .layer-1 {
+  background: linear-gradient(to bottom, #eeb669 0%, #c97328 100%);
+  position: absolute;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: transform 0.5s linear;
+}
+
+.img .layer-2 {
+  background: linear-gradient(#5b544f69, #a8a5a369);
+  position: absolute;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 150%;
+  z-index: 1;
+  transition: transform 0.5s linear;
 }
 
 .greeting {
@@ -95,12 +120,14 @@
   margin-left: 25rem;
   margin-top: 100rem;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .explore-text {
   position: relative;
   overflow-y: hidden;
   padding-right: 45rem;
+  transition: transform 0.3s ease-in;
 }
 
 .explore-text p {
@@ -128,4 +155,5 @@
   width: auto;
   height: 25rem;
   align-self: center;
+  transition: transform 0.3s ease-in;
 }
