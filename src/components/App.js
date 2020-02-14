@@ -18,8 +18,9 @@ const PAGE_WHEEL_RANGES = {
   [PAGE_NAMES.SKILLS_PAGE]: PAGE_THREE_WHEEL_RANGE,
   [PAGE_NAMES.ABOUT_PAGE]: PAGE_FOUR_WHEEL_RANGE,
 }
+console.log(window.navigator)
 
-const THROTTLE_TIME = 1000
+const THROTTLE_TIME = window.navigator.platform === "MacIntel" ? 1300 : 500
 
 function App() {
   const [pageVisible, setPageVisible] = useState(PAGE_NAMES.HOME_PAGE)
@@ -37,12 +38,15 @@ function App() {
   }
 
   const handleOnWheel = e => {
-    if (closingPage || isInThrottle.current) return
+    if (closingPage || isInThrottle.current) {
+      console.log("in throt")
+      return
+    }
+
+    console.log(wheelTrack)
     setScrollTextRotateDeg(
       e.deltaY > 0 ? scrollTextRotateDeg + 100 : scrollTextRotateDeg - 100
     )
-    isInThrottle.current = true
-    setTimeout(() => (isInThrottle.current = false), THROTTLE_TIME)
 
     const nextWheelTrack = e.deltaY > 0 ? wheelTrack + 1 : wheelTrack - 1
     const currPageIdx = NAV_NAMES_ORDER.findIndex(item => item === pageVisible)
@@ -55,6 +59,9 @@ function App() {
     } else {
       setWheelTrack(nextWheelTrack)
     }
+
+    isInThrottle.current = true
+    setTimeout(() => (isInThrottle.current = false), THROTTLE_TIME)
   }
 
   // Act as a listener for when a page finishes its closing animation
