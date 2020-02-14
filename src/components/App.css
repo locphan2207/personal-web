@@ -5,6 +5,13 @@
   justify-content: center;
 }
 
+#cursor {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 2.5rem;
+  border: solid #a8a5a3 1rem;
+}
+
 .App {
   width: 100vw;
   height: 100vh;
@@ -17,7 +24,7 @@
 }
 
 .right-vertical-bar {
-  width: 1rem;
+  width: 2rem;
   height: 47%;
   background-color: #5b544f;
   position: absolute;
@@ -36,7 +43,7 @@
 }
 
 .left-vertical-bar {
-  width: 1rem;
+  width: 2rem;
   height: 24%;
   background-color: #5b544f;
   position: absolute;

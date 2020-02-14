@@ -43,7 +43,6 @@ function App() {
       return
     }
 
-    console.log(wheelTrack)
     setScrollTextRotateDeg(
       e.deltaY > 0 ? scrollTextRotateDeg + 100 : scrollTextRotateDeg - 100
     )
@@ -132,6 +131,7 @@ function App() {
           />
         )}
       </div>
+      <div id="cursor" />
     </div>
   )
 }
