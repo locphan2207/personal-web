@@ -139,6 +139,7 @@ table {
 }
 
 html {
+  overflow: hidden; // avoid bouncing scroll in mac
   height: 100%;
 }
 
