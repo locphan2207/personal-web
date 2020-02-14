@@ -13,7 +13,7 @@ const SKILLS = {
 const SKILLS_LIST = Object.values(SKILLS).reduce((i, e) => [...i, ...e], [])
 export const PAGE_THREE_WHEEL_RANGE = [0, SKILLS_LIST.length - 1]
 
-function PageThree({ isClosing, setClosingPage, wheelTrack }) {
+function PageThree({ isClosing, setClosingPage, wheelTrack, setWheelTrack }) {
   const [shouldShowStrokeText, setShouldShowStrokeText] = useState(true)
   const [selected, setSelected] = useState(SKILLS.languages[0])
 
@@ -21,6 +21,10 @@ function PageThree({ isClosing, setClosingPage, wheelTrack }) {
   useOnCloseWatcher(isClosing, setClosingPage, onClose)
 
   useEffect(() => {
+    // Update wheelTrack based on the current selected
+    if (selected !== SKILLS_LIST[wheelTrack]) {
+      setWheelTrack(SKILLS_LIST.findIndex(item => item === selected))
+    }
     setShouldShowStrokeText(false)
     setTimeout(() => setShouldShowStrokeText(true), 100)
   }, [selected])

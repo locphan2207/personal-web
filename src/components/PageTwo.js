@@ -82,10 +82,9 @@ function PageTwo({ isClosing, setClosingPage, wheelTrack, setWheelTrack }) {
     }
   }, [wheelTrack])
 
+  // Update wheelTrack based on the current selected
   useEffect(() => {
-    console.log(selectedProjectIdx, wheelTrack)
     if (wheelTrack !== selectedProjectIdx) {
-      console.log("H")
       setWheelTrack(selectedProjectIdx)
     }
   }, [selectedProjectIdx])

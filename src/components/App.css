@@ -54,11 +54,11 @@
 }
 
 .right {
-  transform: translateX(100%) !important;
+  transform: translateX(101%) !important;
 }
 
 .left {
-  transform: translateX(-100%) !important;
+  transform: translateX(-101%) !important;
 }
 
 .hidden-below {
@@ -190,5 +190,14 @@
   }
   to {
     transform: rotateX(0deg) skewX(0deg) translateY(0);
+  }
+}
+
+@keyframes draw-underline {
+  from {
+    background-size: 0 0;
+  }
+  to {
+    background-size: 100% 2rem;
   }
 }

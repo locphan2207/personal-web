@@ -15,7 +15,7 @@ function PageOne({ isClosing, setClosingPage, explore, wheelTrack }) {
     setTimeout(() => layerOne.setAttribute("class", "layer-1"), 100)
 
     return new Promise(resolve => {
-      setTimeout(() => resolve("done"), 700)
+      setTimeout(() => resolve("done"), 500)
     })
   }
   useOnCloseWatcher(isClosing, setClosingPage, onClose)
