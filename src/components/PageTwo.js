@@ -9,7 +9,7 @@ import emotion from "assets/emotion.png"
 
 export const PAGE_TWO_WHEEL_RANGE = [0, 3]
 // Animation timeout delay (in millisecond)
-const TITLE_SHOW_DURATION = 500
+const TITLE_SHOW_DURATION = 300
 // Animation CSS delay (in second)
 const TAG_CHAR_DELAY = 0.3
 
@@ -19,9 +19,22 @@ function PageTwo({ isClosing, setClosingPage, wheelTrack, setWheelTrack }) {
 
   const onProjectSelect = index => {
     if (index !== selectedProjectIdx) {
-      setSelectedProjectIdx(index)
-      setIsDescriptionVisible(false)
-      setTimeout(() => setIsDescriptionVisible(true), 100)
+      const layerOne = document.getElementsByClassName("layer-1")[0]
+      const layerTwo = document.getElementsByClassName("layer-2")[0]
+      layerTwo.setAttribute("class", "layer-2")
+      setTimeout(() => layerOne.setAttribute("class", "layer-1"), 100)
+
+      setTimeout(() => {
+        setSelectedProjectIdx(index)
+        setIsDescriptionVisible(false)
+      }, 300)
+      setTimeout(() => {
+        setIsDescriptionVisible(true)
+      }, 400)
+      setTimeout(() => {
+        layerTwo.setAttribute("class", "layer-2 right")
+        setTimeout(() => layerOne.setAttribute("class", "layer-1 right"), 100)
+      }, 500)
     }
   }
 
@@ -36,6 +49,10 @@ function PageTwo({ isClosing, setClosingPage, wheelTrack, setWheelTrack }) {
     }
 
     setIsDescriptionVisible(true)
+    const layerOne = document.getElementsByClassName("layer-1")[0]
+    const layerTwo = document.getElementsByClassName("layer-2")[0]
+    layerTwo.setAttribute("class", "layer-2 right")
+    setTimeout(() => layerOne.setAttribute("class", "layer-1 right"), 300)
   }
 
   const onClose = () => {
@@ -76,12 +93,12 @@ function PageTwo({ isClosing, setClosingPage, wheelTrack, setWheelTrack }) {
   return (
     <div className={"page-two"}>
       <div className={"project-titles"}>
-        {isDescriptionVisible && (
-          <div className="project-img">
-            <img src={PROJECTS[selectedProjectIdx].img} alt={"project"} />
-            <div className="gradient" />
-          </div>
-        )}
+        <div className="project-img">
+          <img src={PROJECTS[selectedProjectIdx].img} alt={"project"} />
+          <div className="gradient" />
+          <div className="layer-1" />
+          <div className="layer-2" />
+        </div>
         {PROJECTS.map((project, idx) => (
           <p
             key={project.name}

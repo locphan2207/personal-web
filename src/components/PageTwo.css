@@ -50,6 +50,28 @@
   height: 100%;
 }
 
+.project-img .layer-1 {
+  background: linear-gradient(#eeb669 0%, #c97328 100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: transform 0.2s linear;
+}
+
+.project-img .layer-2 {
+  background: linear-gradient(#5b544f69, #a8a5a369);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150%;
+  z-index: 1;
+  transition: transform 0.2s linear;
+}
+
 .desc-body {
   width: 37%;
   min-width: 37%;

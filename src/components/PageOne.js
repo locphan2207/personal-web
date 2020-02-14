@@ -11,8 +11,8 @@ function PageOne({ isClosing, setClosingPage, explore, wheelTrack }) {
   const onClose = () => {
     const layerOne = document.getElementsByClassName("layer-1")[0]
     const layerTwo = document.getElementsByClassName("layer-2")[0]
-    layerTwo.setAttribute("class", "layer-2 left")
-    setTimeout(() => layerOne.setAttribute("class", "layer-1 left"), 300)
+    layerTwo.setAttribute("class", "layer-2")
+    setTimeout(() => layerOne.setAttribute("class", "layer-1"), 100)
 
     return new Promise(resolve => {
       setTimeout(() => resolve("done"), 700)
@@ -25,8 +25,8 @@ function PageOne({ isClosing, setClosingPage, explore, wheelTrack }) {
     const layerTwo = document.getElementsByClassName("layer-2")[0]
     const textButton = document.getElementsByClassName("explore-text")[0]
     const triangle = document.getElementsByClassName("triangle")[0]
-    layerTwo.setAttribute("class", "layer-2")
-    setTimeout(() => layerOne.setAttribute("class", "layer-1"), 300)
+    layerTwo.setAttribute("class", "layer-2 right")
+    setTimeout(() => layerOne.setAttribute("class", "layer-1 right"), 100)
     setTimeout(() => {
       textButton.setAttribute("class", "explore-text")
     }, 500)
@@ -61,8 +61,8 @@ function PageOne({ isClosing, setClosingPage, explore, wheelTrack }) {
         </div>
         <div className="img">
           <div className="gradient" />
-          <div className="layer-1 left" />
-          <div className="layer-2 left" />
+          <div className="layer-1" />
+          <div className="layer-2" />
           <img src={avatar} alt={"face"} />
         </div>
         <p className="greeting">
