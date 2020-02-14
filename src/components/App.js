@@ -18,7 +18,6 @@ const PAGE_WHEEL_RANGES = {
   [PAGE_NAMES.SKILLS_PAGE]: PAGE_THREE_WHEEL_RANGE,
   [PAGE_NAMES.ABOUT_PAGE]: PAGE_FOUR_WHEEL_RANGE,
 }
-console.log(window.navigator)
 
 const THROTTLE_TIME = window.navigator.platform === "MacIntel" ? 1300 : 500
 
@@ -81,6 +80,7 @@ function App() {
       // In-line will send the correct function handler with correct state and props of the component
       // Otherwise, window.addEventListeners will only send in 1 version of the handler with only init state values
       onWheel={handleOnWheel}
+      onMouseMove={throttle(handleOnMouseMove)}
     >
       <div className="App">
         <div className="left-vertical-bar">
@@ -134,6 +134,24 @@ function App() {
       <div id="cursor" />
     </div>
   )
+}
+
+const throttle = f => {
+  let inThrottle = false
+  return arg => {
+    if (!inThrottle) {
+      inThrottle = true
+      f(arg)
+      setTimeout(() => (inThrottle = false), 60 / 1000)
+    }
+  }
+}
+
+const handleOnMouseMove = e => {
+  const cursor = document.getElementById("cursor")
+  if (!cursor) return
+  cursor.style.top = `${e.pageY}px`
+  cursor.style.left = `${e.pageX}px`
 }
 
 export default App

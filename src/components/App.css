@@ -6,10 +6,14 @@
 }
 
 #cursor {
-  width: 5rem;
-  height: 5rem;
-  border-radius: 2.5rem;
-  border: solid #a8a5a3 1rem;
+  width: 40rem;
+  height: 40rem;
+  border-radius: 20rem;
+  z-index: 100;
+  position: absolute;
+  border: 1rem solid #eeb669;
+  animation: cursor-shadow 5s linear infinite;
+  transform: translate(-50%, -50%);
 }
 
 .App {
@@ -24,7 +28,7 @@
 }
 
 .right-vertical-bar {
-  width: 2rem;
+  width: 2git statrem;
   height: 47%;
   background-color: #5b544f;
   position: absolute;
@@ -213,5 +217,32 @@
   }
   to {
     background-size: 100% 2rem;
+  }
+}
+
+@keyframes cursor-shadow {
+  0% {
+    box-shadow: 0 0 0 1rem #c97328;
+  }
+  10% {
+    box-shadow: 0 0 20rem 1rem #c97328;
+  }
+  20% {
+    box-shadow: 0 0 0 1rem #c97328;
+  }
+  30% {
+    box-shadow: 0 0 20rem 1rem #c97328;
+  }
+  40% {
+    box-shadow: 0 0 0 1rem #c97328;
+  }
+  70% {
+    box-shadow: 0 0 20rem 1rem #c97328;
+  }
+  90% {
+    box-shadow: 0 0 20rem 3rem #c97328;
+  }
+  100% {
+    box-shadow: 0 0 0 1rem #c97328;
   }
 }
