@@ -70,59 +70,61 @@ function App() {
 
   return (
     <div
-      className="App"
+      className="scroll-catch"
       // Event listeners should be inline instead of using window.addEventListeners
       // In-line will send the correct function handler with correct state and props of the component
       // Otherwise, window.addEventListeners will only send in 1 version of the handler with only init state values
       onWheel={handleOnWheel}
     >
-      <div className="left-vertical-bar">
-        <p style={{ transform: `rotateZ(${scrollTextRotateDeg}deg)` }}>
-          {"scroll"}
-        </p>
+      <div className="App">
+        <div className="left-vertical-bar">
+          <p style={{ transform: `rotateZ(${scrollTextRotateDeg}deg)` }}>
+            {"scroll"}
+          </p>
+        </div>
+        <div className="right-vertical-bar">
+          <div
+            className="scroll-indicator"
+            style={{
+              height: `${scrollPercent}%`,
+            }}
+          />
+        </div>
+        <NavBar pageVisible={pageVisible} switchPage={switchPage} />
+        <PageIndicator pageVisible={pageVisible} />
+        {pageVisible === PAGE_NAMES.HOME_PAGE && (
+          <PageOne
+            isClosing={closingPage === PAGE_NAMES.HOME_PAGE}
+            setClosingPage={setClosingPage}
+            explore={() => switchPage(PAGE_NAMES.WORK_PAGE)}
+            wheelTrack={wheelTrack}
+            switchPage={switchPage}
+          />
+        )}
+        {pageVisible === PAGE_NAMES.WORK_PAGE && (
+          <PageTwo
+            isClosing={closingPage === PAGE_NAMES.WORK_PAGE}
+            setClosingPage={setClosingPage}
+            wheelTrack={wheelTrack}
+            setWheelTrack={setWheelTrack}
+          />
+        )}
+        {pageVisible === PAGE_NAMES.SKILLS_PAGE && (
+          <PageThree
+            isClosing={closingPage === PAGE_NAMES.SKILLS_PAGE}
+            setClosingPage={setClosingPage}
+            wheelTrack={wheelTrack}
+            setWheelTrack={setWheelTrack}
+          />
+        )}
+        {pageVisible === PAGE_NAMES.ABOUT_PAGE && (
+          <PageFour
+            isClosing={closingPage === PAGE_NAMES.ABOUT_PAGE}
+            setClosingPage={setClosingPage}
+            wheelTrack={wheelTrack}
+          />
+        )}
       </div>
-      <div className="right-vertical-bar">
-        <div
-          className="scroll-indicator"
-          style={{
-            height: `${scrollPercent}%`,
-          }}
-        />
-      </div>
-      <NavBar pageVisible={pageVisible} switchPage={switchPage} />
-      <PageIndicator pageVisible={pageVisible} />
-      {pageVisible === PAGE_NAMES.HOME_PAGE && (
-        <PageOne
-          isClosing={closingPage === PAGE_NAMES.HOME_PAGE}
-          setClosingPage={setClosingPage}
-          explore={() => switchPage(PAGE_NAMES.WORK_PAGE)}
-          wheelTrack={wheelTrack}
-          switchPage={switchPage}
-        />
-      )}
-      {pageVisible === PAGE_NAMES.WORK_PAGE && (
-        <PageTwo
-          isClosing={closingPage === PAGE_NAMES.WORK_PAGE}
-          setClosingPage={setClosingPage}
-          wheelTrack={wheelTrack}
-          setWheelTrack={setWheelTrack}
-        />
-      )}
-      {pageVisible === PAGE_NAMES.SKILLS_PAGE && (
-        <PageThree
-          isClosing={closingPage === PAGE_NAMES.SKILLS_PAGE}
-          setClosingPage={setClosingPage}
-          wheelTrack={wheelTrack}
-          setWheelTrack={setWheelTrack}
-        />
-      )}
-      {pageVisible === PAGE_NAMES.ABOUT_PAGE && (
-        <PageFour
-          isClosing={closingPage === PAGE_NAMES.ABOUT_PAGE}
-          setClosingPage={setClosingPage}
-          wheelTrack={wheelTrack}
-        />
-      )}
     </div>
   )
 }
