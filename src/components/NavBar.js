@@ -49,6 +49,7 @@ function NavBar({ pageVisible, switchPage }) {
       <div className="nav-names">
         {NAV_NAMES_ORDER.map(pageName => (
           <h5
+            className="hover-effect"
             ref={ref => {
               if (ref) itemHeights.current[pageName] = ref.offsetHeight
             }}
