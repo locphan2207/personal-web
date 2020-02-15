@@ -16,10 +16,6 @@
   pointer-events: none;
 }
 
-.hover-effect:hover #cursor {
-  animation: cursor-shadow 5s linear infinite;
-}
-
 .App {
   width: 100vw;
   height: 100vh;
