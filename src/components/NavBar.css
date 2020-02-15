@@ -5,6 +5,13 @@
   right: 0;
   display: flex;
 }
+@media only screen and (max-width: 480px) {
+  .nav-bar {
+    position: fixed;
+    bottom: 5%;
+    right: 0;
+  }
+}
 
 .nav-names {
   display: flex;

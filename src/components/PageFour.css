@@ -13,6 +13,11 @@
   font-weight: 200;
   color: #a8a5a3;
 }
+@media only screen and (max-width: 480px) {
+  .page-four p {
+    font-size: 30rem;
+  }
+}
 
 .links {
   margin-top: 10%;
@@ -20,12 +25,23 @@
   display: flex;
   justify-content: space-evenly;
 }
+@media only screen and (max-width: 480px) {
+  .links {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 
 .links a {
   color: #a8a5a3;
-  font-size: 60em;
+  font-size: 60rem;
   font-weight: 700;
   cursor: none;
+}
+@media only screen and (max-width: 480px) {
+  .links a {
+    line-height: 150rem;
+  }
 }
 
 .links a:hover {
