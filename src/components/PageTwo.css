@@ -8,7 +8,7 @@
 @media only screen and (max-width: 480px) {
   .page-two {
     margin: 0;
-    padding: 0 5%;
+    padding: 0;
     flex-direction: column;
   }
 }

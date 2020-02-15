@@ -4,7 +4,7 @@ const Clickable = props => {
   const onHover = () => {
     const cursor = document.getElementById("cursor")
     cursor.style.animation = `cursor-shadow 5s linear ${
-      window.screen.width > 480 ? "infinite" : ""
+      window.screen.width > 767 ? "infinite" : ""
     }`
     cursor.style.width = "50rem"
     cursor.style.height = "50rem"

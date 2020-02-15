@@ -4,6 +4,7 @@
   bottom: 10%;
   right: 0;
   display: flex;
+  z-index: 10;
 }
 @media only screen and (max-width: 480px) {
   .nav-bar {

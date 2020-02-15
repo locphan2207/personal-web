@@ -7,7 +7,7 @@
 }
 @media only screen and (max-width: 480px) {
   .page-one {
-    padding: 0 5%;
+    padding: 0;
     flex-direction: column;
   }
 }
@@ -169,7 +169,7 @@
 .explore-text {
   position: relative;
   overflow-y: hidden;
-  padding-right: 25rem;
+  padding-right: 45rem;
   transition: transform 0.3s ease-in;
 }
 
@@ -177,6 +177,7 @@
   font-weight: 600;
   color: #f2f2f2;
   font-size: 15rem;
+  line-height: 20rem;
   letter-spacing: 3rem;
   transition: transform 0.5s ease-in-out;
 }
@@ -200,4 +201,9 @@
   height: 15rem;
   align-self: center;
   transition: transform 0.3s ease-in;
+}
+@media only screen and (max-width: 767px) {
+  .explore-container .triangle {
+    transform: rotateZ(-90deg);
+  }
 }

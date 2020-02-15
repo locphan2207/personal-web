@@ -82,11 +82,13 @@ function App() {
       onMouseMove={throttle(handleOnMouseMove)}
     >
       <div className="App">
-        <div className="left-vertical-bar">
-          <p style={{ transform: `rotateZ(${scrollTextRotateDeg}deg)` }}>
-            {"scroll"}
-          </p>
-        </div>
+        {window.screen.width > 767 && (
+          <div className="left-vertical-bar">
+            <p style={{ transform: `rotateZ(${scrollTextRotateDeg}deg)` }}>
+              {"scroll"}
+            </p>
+          </div>
+        )}
         <div className="right-vertical-bar">
           <div
             className="scroll-indicator"
@@ -96,7 +98,9 @@ function App() {
           />
         </div>
         <NavBar pageVisible={pageVisible} switchPage={switchPage} />
-        <PageIndicator pageVisible={pageVisible} />
+        {window.screen.width > 767 && (
+          <PageIndicator pageVisible={pageVisible} />
+        )}
         {pageVisible === PAGE_NAMES.HOME_PAGE && (
           <PageOne
             isClosing={closingPage === PAGE_NAMES.HOME_PAGE}

@@ -101,7 +101,9 @@ function PageOne({
         <Clickable>
           <div className="explore-container" onClick={onClick}>
             <div className="explore-text hidden-above">
-              <p style={exploreTextStyles}>SCROLL</p>
+              <p style={exploreTextStyles}>
+                {window.screen.width > 767 ? "SCROLL" : "TAP ON"}
+              </p>
               <p style={exploreTextStyles}>EXPLORE</p>
               <p style={exploreTextStyles}>CONNECT</p>
             </div>

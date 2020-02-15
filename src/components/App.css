@@ -45,6 +45,8 @@
   .App {
     height: unset;
     margin: unset;
+    margin: unset;
+    padding: 10% 0;
   }
 }
 
