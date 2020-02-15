@@ -5,12 +5,25 @@
   margin: 8% 0;
   width: 100%;
 }
+@media only screen and (max-width: 480px) {
+  .page-two {
+    margin: 0;
+    padding: 0 5%;
+    flex-direction: column;
+  }
+}
 
 .project-titles {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   margin-top: 25%;
+}
+@media only screen and (max-width: 480px) {
+  .project-titles {
+    margin-top: 0;
+    padding-top: 5%;
+  }
 }
 
 .project-title {
@@ -31,17 +44,30 @@
   position: absolute;
   top: 50%;
   right: 50%;
-  /* left: 5%; */
-  /* height: 100%; */
   height: 70%;
   overflow: hidden;
   opacity: 0.6;
   transform: translateY(-50%);
 }
+@media only screen and (max-width: 480px) {
+  .project-img {
+    top: calc(45rem * 3.5);
+    right: 50%;
+    transform: translateX(50%);
+    max-width: 85%;
+    height: 55%;
+    opacity: 1;
+  }
+}
 
 .project-img img {
   max-height: 100%;
   animation: appear 1s ease-out both;
+}
+@media only screen and (max-width: 480px) {
+  .project-img img {
+    height: 100%;
+  }
 }
 
 .project-img .gradient {
@@ -51,6 +77,13 @@
   right: 0;
   width: 45vw;
   height: 100%;
+}
+@media only screen and (max-width: 480px) {
+  .project-img .gradient {
+    background: linear-gradient(to bottom, #000000f6, #1c19137c 90%, #d9b45e10);
+    width: 100%;
+    height: 120%;
+  }
 }
 
 .project-img .layer-1 {
@@ -86,6 +119,16 @@
   align-items: flex-end;
   position: relative;
   overflow: hidden;
+}
+@media only screen and (max-width: 480px) {
+  .desc-body {
+    width: 100%;
+    min-width: unset;
+    max-width: unset;
+    height: 100%;
+    margin-left: 0;
+    margin-top: 110%;
+  }
 }
 
 .project-tags {

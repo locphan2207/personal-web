@@ -142,6 +142,7 @@ html {
   overflow: hidden; /* avoid bouncing scroll in mac*/
   height: 100%;
   cursor: none;
+  background-color: #130f0d;
 }
 @media only screen and (max-width: 480px) {
   html {
@@ -179,7 +180,6 @@ a {
 
 #root {
   height: 100%;
-  background-color: #130f0d;
   display: flex;
   justify-content: center;
 }
