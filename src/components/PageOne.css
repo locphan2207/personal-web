@@ -5,6 +5,12 @@
   padding: 11%;
   width: 100%;
 }
+@media only screen and (max-width: 480px) {
+  .page-one {
+    padding: 0 5%;
+    flex-direction: column;
+  }
+}
 
 .intro-container {
   position: relative;
@@ -17,6 +23,13 @@
   transition: transform 0.3s ease-out;
   align-self: center;
 }
+@media only screen and (max-width: 480px) {
+  .name-container {
+    flex-direction: column;
+    align-self: flex-start;
+    align-items: flex-start;
+  }
+}
 
 .name-container h1 {
   font-family: Palatino Bold;
@@ -26,6 +39,11 @@
   text-align: right;
   z-index: 3;
   margin-right: 40rem;
+}
+@media only screen and (max-width: 480px) {
+  .name-container h1 {
+    margin-right: 0;
+  }
 }
 
 .last-name {
@@ -39,25 +57,32 @@
   -webkit-text-stroke-color: #eeb669;
   z-index: 3;
 }
+@media only screen and (max-width: 480px) {
+  .last-name {
+    margin-left: 0;
+  }
+}
 
 .img {
   position: absolute;
-  right: 0%;
+  right: 0;
   top: 0;
   width: 47%;
   overflow: hidden;
+}
+@media only screen and (max-width: 480px) {
+  .img {
+    width: 100%;
+    left: 50%;
+    top: 100rem;
+    transform: translateX(-50%);
+  }
 }
 
 .img img {
   width: 100%;
   opacity: 0.8;
 }
-
-/* @media only screen and (min-width: 1200px) {
-  .img img {
-    width: 20vw;
-  }
-} */
 
 .img .gradient {
   background: linear-gradient(#000000dc, #dfb5842c);
@@ -105,6 +130,13 @@
   animation: slide-right-spring 0.8s linear;
   text-align: left;
 }
+@media only screen and (max-width: 480px) {
+  .greeting {
+    margin-top: 130%;
+    margin-left: 0;
+    width: 100%;
+  }
+}
 
 .greeting .color-switch {
   color: #a8a5a3;
@@ -126,6 +158,12 @@
   margin-left: 25rem;
   margin-top: 100rem;
   overflow: hidden;
+}
+@media only screen and (max-width: 480px) {
+  .explore-container {
+    margin-left: 25rem;
+    margin-top: 50rem;
+  }
 }
 
 .explore-text {
