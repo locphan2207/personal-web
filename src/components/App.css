@@ -24,6 +24,11 @@
   pointer-events: none;
   transition: width 0.1s linear, height 0.1s linear, border-radius 0.1s linear;
 }
+@media only screen and (max-width: 480px) {
+  #cursor {
+    border: 0 solid #eeb669;
+  }
+}
 
 .App {
   width: 100vw;
