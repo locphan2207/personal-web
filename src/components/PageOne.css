@@ -92,11 +92,12 @@
 .greeting {
   font-size: 20rem;
   width: 50%;
-  line-height: 30rem;
+  line-height: 35rem;
   color: #a8a5a3;
   font-weight: 200;
   margin-top: 75rem;
   margin-left: 25rem;
+  letter-spacing: 2rem;
   transition: transform 0.3s ease-in-out;
   z-index: 3;
   animation: slide-right-spring 0.8s linear;
@@ -136,6 +137,7 @@
   font-weight: 600;
   color: #f2f2f2;
   font-size: 15rem;
+  letter-spacing: 3rem;
   transition: transform 0.5s ease-in-out;
 }
 

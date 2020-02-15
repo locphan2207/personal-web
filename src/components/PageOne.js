@@ -57,8 +57,7 @@ function PageOne({
     onOpen()
   }, [])
 
-  const highlight1Styles =
-    wheelTrack >= 1 ? { color: "#eeb669", fontSize: "22rem" } : null
+  const highlight1Styles = wheelTrack >= 1 ? { color: "#eeb669" } : null
 
   const highlight2Styles =
     wheelTrack >= 2 ? { backgroundSize: "100% 2rem" } : null
@@ -94,7 +93,7 @@ function PageOne({
           <span className="underline" style={highlight2Styles}>
             functional
           </span>
-          ,
+          ,{" "}
           <span className="underline" style={highlight2Styles}>
             beautiful
           </span>{" "}
