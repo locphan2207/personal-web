@@ -4,12 +4,12 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 8% 0;
+  padding: 10% 5%;
   width: 100%;
 }
 
 .page-four p {
-  font-size: 60rem;
+  font-size: 40rem;
   font-weight: 200;
   color: #a8a5a3;
 }
@@ -23,7 +23,7 @@
 
 .links a {
   color: #a8a5a3;
-  font-size: 85em;
+  font-size: 60em;
   font-weight: 700;
   cursor: none;
 }
