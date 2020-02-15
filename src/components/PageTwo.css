@@ -137,6 +137,11 @@
   margin-top: 150rem;
   margin-right: 50rem;
 }
+@media only screen and (max-width: 480px) {
+  .project-tags {
+    margin-top: 20rem;
+  }
+}
 
 .project-tag-char {
   font-size: 30rem;
@@ -180,12 +185,22 @@
   flex-direction: column;
   align-items: flex-start;
 }
+@media only screen and (max-width: 480px) {
+  .project-year-container {
+    flex-direction: row;
+  }
+}
 
 .project-year-dash {
-  height: 1px;
+  height: 1rem;
   margin: 10rem 0 10rem -50%;
   animation: slide-left 0.5s ease-out 0.5s both,
     reduce-width 1s ease-out 0.5s both, white-to-black 1s ease-out 0.5s both;
+}
+@media only screen and (max-width: 480px) {
+  .project-year-dash {
+    display: none;
+  }
 }
 
 .year-wrapper {
@@ -200,6 +215,13 @@
   width: auto;
   font-size: 10rem;
   text-align: justify;
+}
+@media only screen and (max-width: 480px) {
+  .project-year {
+    writing-mode: unset;
+    font-size: 15rem;
+    padding-left: 10rem;
+  }
 }
 
 .project-year.even {

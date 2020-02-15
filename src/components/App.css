@@ -202,6 +202,15 @@
   }
 }
 
+@keyframes reduce-height {
+  from {
+    height: 500%;
+  }
+  to {
+    height: 200%;
+  }
+}
+
 @keyframes appear {
   from {
     opacity: 0;
