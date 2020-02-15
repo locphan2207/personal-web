@@ -93,6 +93,12 @@
   height: 150%;
   z-index: 1;
 }
+@media only screen and (max-width: 480px) {
+  .img .gradient {
+    background: linear-gradient(#000000dc, #dfb58417);
+    height: 200%;
+  }
+}
 
 .img .layer-1 {
   background: linear-gradient(to bottom, #eeb669 0%, #c97328 100%);
