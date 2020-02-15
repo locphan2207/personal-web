@@ -76,12 +76,7 @@ function PageOne({
           <h1>Tan Loc</h1>
           <h1 className="last-name">Phan</h1>
         </div>
-        <div className="img">
-          <div className="gradient" />
-          <div className="layer-1" />
-          <div className="layer-2" />
-          <img src={avatar} alt={"face"} />
-        </div>
+
         <p className="greeting">
           Hi there,
           <br />
@@ -113,6 +108,12 @@ function PageOne({
             <Triangle className="triangle hidden-below" />
           </div>
         </Clickable>
+        <div className="img">
+          <div className="gradient" />
+          <div className="layer-1" />
+          <div className="layer-2" />
+          <img src={avatar} alt={"face"} />
+        </div>
       </div>
     </div>
   )
