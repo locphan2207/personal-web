@@ -211,11 +211,13 @@ const PROJECTS = [
     years: ["2018"],
     description: (
       <p>
-        A cross-platform mobile app to keep track of users' emotions, built with{" "}
-        <span>React Native</span> and <span>Firebase</span>
+        A game built with <span>JavaScript</span>. Players protect a character
+        from being hit by big blocks of data falling down from the sky by
+        controlling the shield using the mouse
       </p>
     ),
     tags: "Fullstack · Mobile dev",
+    tags: "Frontend · Web game",
   },
   {
     name: "Emotion Diary",
@@ -225,12 +227,11 @@ const PROJECTS = [
     years: ["2018"],
     description: (
       <p>
-        A game built with <span>JavaScript</span>. Players protect a character
-        from being hit by big blocks of data falling down from the sky by
-        controlling the shield using the mouse
+        A cross-platform mobile app to keep track of users' emotions, built with{" "}
+        <span>React Native</span> and <span>Firebase</span>
       </p>
     ),
-    tags: "Frontend · Web game",
+    tags: "Fullstack · Mobile dev",
   },
 ]
 

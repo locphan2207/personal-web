@@ -192,7 +192,7 @@
 }
 
 .project-year-dash {
-  height: 1rem;
+  height: 1px;
   margin: 10rem 0 10rem -50%;
   animation: slide-left 0.5s ease-out 0.5s both,
     reduce-width 1s ease-out 0.5s both, white-to-black 1s ease-out 0.5s both;
