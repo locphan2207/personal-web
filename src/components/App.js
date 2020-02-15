@@ -38,7 +38,6 @@ function App() {
 
   const handleOnWheel = e => {
     if (closingPage || isInThrottle.current) {
-      console.log("in throt")
       return
     }
 
@@ -70,8 +69,6 @@ function App() {
       setWheelTrack(PAGE_WHEEL_RANGES[nextPage.current][0])
     }
   }, [closingPage])
-
-  useEffect(() => addHoverListeners(), [])
 
   const scrollPercent = (wheelTrack / PAGE_WHEEL_RANGES[pageVisible][1]) * 100
 
@@ -154,19 +151,6 @@ const handleOnMouseMove = e => {
   if (!cursor) return
   cursor.style.top = `${e.pageY}px`
   cursor.style.left = `${e.pageX}px`
-}
-
-const addHoverListeners = () => {
-  const hoverElements = document.getElementsByClassName("hover-effect")
-  const cursor = document.getElementById("cursor")
-  for (const el of hoverElements) {
-    el.addEventListener("mouseover", () => {
-      cursor.style.animation = "cursor-shadow 5s linear infinite"
-    })
-    el.addEventListener("mouseout", () => {
-      cursor.style.animation = ""
-    })
-  }
 }
 
 export default App

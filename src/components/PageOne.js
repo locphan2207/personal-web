@@ -4,6 +4,7 @@ import "./PageOne.css"
 import avatar from "assets/avatar.png"
 import { ReactComponent as Triangle } from "assets/triangle.svg"
 import { useOnCloseWatcher } from "helpers/animationHelpers"
+import Clickable from "./Clickable"
 
 export const PAGE_ONE_WHEEL_RANGE = [0, 4]
 
@@ -87,14 +88,16 @@ function PageOne({ isClosing, setClosingPage, explore, wheelTrack }) {
           </span>{" "}
           websites.
         </p>
-        <div className="explore-container" onClick={explore}>
-          <div className="explore-text hidden-above">
-            <p style={exploreTextStyles}>SCROLL</p>
-            <p style={exploreTextStyles}>EXPLORE</p>
-            <p style={exploreTextStyles}>CONNECT</p>
+        <Clickable>
+          <div className="explore-container" onClick={explore}>
+            <div className="explore-text hidden-above">
+              <p style={exploreTextStyles}>SCROLL</p>
+              <p style={exploreTextStyles}>EXPLORE</p>
+              <p style={exploreTextStyles}>CONNECT</p>
+            </div>
+            <Triangle className="triangle hidden-below" />
           </div>
-          <Triangle className="triangle hidden-below" />
-        </div>
+        </Clickable>
       </div>
     </div>
   )

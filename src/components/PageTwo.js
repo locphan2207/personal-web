@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import "./PageTwo.css"
 import { useOnCloseWatcher } from "helpers/animationHelpers"
+import Clickable from "./Clickable"
 import { ReactComponent as Triangle } from "assets/triangle.svg"
 import sbk from "assets/sbk.png"
 import food from "assets/food.png"
@@ -99,18 +100,19 @@ function PageTwo({ isClosing, setClosingPage, wheelTrack, setWheelTrack }) {
           <div className="layer-2" />
         </div>
         {PROJECTS.map((project, idx) => (
-          <p
-            key={project.name}
-            onMouseDown={() => onProjectSelect(idx)}
-            className={"project-title hidden-below"}
-            style={
-              idx === selectedProjectIdx
-                ? { color: "#EEB669", transform: "scale(1.3)" }
-                : null
-            }
-          >
-            {project.name}
-          </p>
+          <Clickable key={project.name}>
+            <p
+              onMouseDown={() => onProjectSelect(idx)}
+              className={"project-title hidden-below"}
+              style={
+                idx === selectedProjectIdx
+                  ? { color: "#EEB669", transform: "scale(1.3)" }
+                  : null
+              }
+            >
+              {project.name}
+            </p>
+          </Clickable>
         ))}
       </div>
 
@@ -152,15 +154,17 @@ function PageTwo({ isClosing, setClosingPage, wheelTrack, setWheelTrack }) {
             <div className={"project-description"}>
               {PROJECTS[selectedProjectIdx].description}
             </div>
-            <a
-              className="more-container"
-              href={PROJECTS[selectedProjectIdx].link}
-              // eslint-disable-next-line react/jsx-no-target-blank
-              target="_blank"
-            >
-              <p>more</p>
-              <Triangle className="triangle" />
-            </a>
+            <Clickable>
+              <a
+                className="more-container"
+                href={PROJECTS[selectedProjectIdx].link}
+                // eslint-disable-next-line react/jsx-no-target-blank
+                target="_blank"
+              >
+                <p>more</p>
+                <Triangle className="triangle" />
+              </a>
+            </Clickable>
           </>
         )}
       </div>

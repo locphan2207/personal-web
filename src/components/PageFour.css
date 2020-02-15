@@ -25,6 +25,7 @@
   color: #a8a5a3;
   font-size: 85em;
   font-weight: 700;
+  cursor: none;
 }
 
 .links a:hover {

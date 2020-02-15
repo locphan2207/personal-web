@@ -6,14 +6,15 @@
 }
 
 #cursor {
-  width: 40rem;
-  height: 40rem;
-  border-radius: 20rem;
+  width: 30rem;
+  height: 30rem;
+  border-radius: 15rem;
   z-index: 100;
   position: absolute;
   border: 1rem solid #eeb669;
   transform: translate(-50%, -50%);
   pointer-events: none;
+  transition: width 0.1s linear, height 0.1s linear, border-radius 0.1s linear;
 }
 
 .App {

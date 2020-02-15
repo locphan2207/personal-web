@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 
 import "./PageThree.css"
+import Clickable from "./Clickable"
 import StrokeOutlineText from "./StrokeOutlineText"
 import { useOnCloseWatcher } from "helpers/animationHelpers"
 
@@ -63,13 +64,14 @@ const SkillGroup = ({ groupName, skills, setSelected, selected }) => {
     <div className="skill-group">
       <div className="skill-column">
         {skills.map(skill => (
-          <p
-            key={skill}
-            onClick={() => setSelected(skill)}
-            style={selected === skill ? { color: "#f2f2f2" } : null}
-          >
-            {skill}
-          </p>
+          <Clickable key={skill}>
+            <p
+              onClick={() => setSelected(skill)}
+              style={selected === skill ? { color: "#f2f2f2" } : null}
+            >
+              {skill}
+            </p>
+          </Clickable>
         ))}
       </div>
       <div className="vertical-bar" />

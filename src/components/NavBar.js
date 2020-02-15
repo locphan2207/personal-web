@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react"
 import "./NavBar.css"
+import Clickable from "./Clickable"
 
 function NavBar({ pageVisible, switchPage }) {
   const itemHeights = useRef({})
@@ -48,16 +49,16 @@ function NavBar({ pageVisible, switchPage }) {
       <div className={"left-bar"} style={bottomBarStyles} />
       <div className="nav-names">
         {NAV_NAMES_ORDER.map(pageName => (
-          <h5
-            className="hover-effect"
-            ref={ref => {
-              if (ref) itemHeights.current[pageName] = ref.offsetHeight
-            }}
-            key={pageName}
-            onClick={() => clickHandler(pageName)}
-          >
-            {pageName}
-          </h5>
+          <Clickable key={pageName}>
+            <h5
+              ref={ref => {
+                if (ref) itemHeights.current[pageName] = ref.offsetHeight
+              }}
+              onClick={() => clickHandler(pageName)}
+            >
+              {pageName}
+            </h5>
+          </Clickable>
         ))}
       </div>
     </div>
