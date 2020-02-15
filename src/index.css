@@ -160,14 +160,24 @@ code {
 }
 
 html {
-  font-size: calc(100vw / 1920);
+  /* font-size: calc(65vw / 1920); */
+  font-size: 1px;
 }
-
-@media only screen and (min-width: 1200px) {
+/* @media only screen and (max-width: 1200px) {
   html {
-    font-size: calc(65vw / 1920);
+    font-size: calc(100vw / 1200);
   }
 }
+@media only screen and (max-width: 992px) {
+  html {
+    font-size: calc(100vw / 992);
+  }
+}
+@media only screen and (max-width: 768px) {
+  html {
+    font-size: calc(100vw / 768);
+  }
+} */
 
 a {
   text-decoration: none;

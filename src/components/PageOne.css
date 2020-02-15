@@ -10,7 +10,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-left: 10%;
 }
 
 .name-container {
@@ -20,7 +19,7 @@
 
 .name-container h1 {
   font-family: Palatino Bold;
-  font-size: 150rem;
+  font-size: 100rem;
   letter-spacing: 5rem;
   color: #eeb669;
   text-align: left;
@@ -29,33 +28,33 @@
 
 .last-name {
   font-family: Palatino Bold;
-  font-size: 150rem;
+  font-size: 100rem;
   letter-spacing: 5rem;
   text-align: left;
-  margin-left: 50rem;
+  margin-left: 100rem;
   -webkit-text-fill-color: transparent;
-  -webkit-text-stroke-width: 3rem;
+  -webkit-text-stroke-width: 2rem;
   -webkit-text-stroke-color: #eeb669;
   z-index: 3;
 }
 
 .img {
   position: absolute;
-  right: -10%;
+  right: 0%;
   top: 0;
+  width: 45%;
   overflow: hidden;
 }
 
 .img img {
-  width: 23vw;
   opacity: 0.8;
 }
 
-@media only screen and (min-width: 1200px) {
+/* @media only screen and (min-width: 1200px) {
   .img img {
     width: 20vw;
   }
-}
+} */
 
 .img .gradient {
   background: linear-gradient(#000000dc, #dfb5842c);
@@ -91,14 +90,16 @@
 
 .greeting {
   font-size: 20rem;
+  width: 50%;
   line-height: 30rem;
   color: #a8a5a3;
   font-weight: 200;
-  margin-top: 45rem;
+  margin-top: 75rem;
   margin-left: 25rem;
   transition: transform 0.3s ease-in-out;
   z-index: 3;
   animation: slide-right-spring 0.8s linear;
+  text-align: left;
 }
 
 .greeting .color-switch {
@@ -126,14 +127,14 @@
 .explore-text {
   position: relative;
   overflow-y: hidden;
-  padding-right: 45rem;
+  padding-right: 25rem;
   transition: transform 0.3s ease-in;
 }
 
 .explore-text p {
   font-weight: 600;
   color: #f2f2f2;
-  font-size: 35rem;
+  font-size: 15rem;
   transition: transform 0.5s ease-in-out;
 }
 
@@ -153,7 +154,7 @@
 
 .explore-container .triangle {
   width: auto;
-  height: 25rem;
+  height: 15rem;
   align-self: center;
   transition: transform 0.3s ease-in;
 }

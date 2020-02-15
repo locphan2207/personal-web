@@ -95,7 +95,6 @@ function PageOne({
             functional
           </span>
           ,
-          <br />
           <span className="underline" style={highlight2Styles}>
             beautiful
           </span>{" "}
