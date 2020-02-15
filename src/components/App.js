@@ -101,8 +101,8 @@ function App() {
           <PageOne
             isClosing={closingPage === PAGE_NAMES.HOME_PAGE}
             setClosingPage={setClosingPage}
-            explore={() => switchPage(PAGE_NAMES.WORK_PAGE)}
             wheelTrack={wheelTrack}
+            setWheelTrack={setWheelTrack}
             switchPage={switchPage}
           />
         )}

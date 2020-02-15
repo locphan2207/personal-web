@@ -5,10 +5,17 @@ import avatar from "assets/avatar.png"
 import { ReactComponent as Triangle } from "assets/triangle.svg"
 import { useOnCloseWatcher } from "helpers/animationHelpers"
 import Clickable from "./Clickable"
+import { PAGE_NAMES } from "./NavBar"
 
 export const PAGE_ONE_WHEEL_RANGE = [0, 4]
 
-function PageOne({ isClosing, setClosingPage, explore, wheelTrack }) {
+function PageOne({
+  isClosing,
+  setClosingPage,
+  wheelTrack,
+  setWheelTrack,
+  switchPage,
+}) {
   const onClose = () => {
     const layerOne = document.getElementsByClassName("layer-1")[0]
     const layerTwo = document.getElementsByClassName("layer-2")[0]
@@ -20,6 +27,16 @@ function PageOne({ isClosing, setClosingPage, explore, wheelTrack }) {
     })
   }
   useOnCloseWatcher(isClosing, setClosingPage, onClose)
+
+  const onClick = () => {
+    if (wheelTrack < 3) {
+      setWheelTrack(3)
+    } else if (wheelTrack < 4) {
+      setWheelTrack(4)
+    } else {
+      switchPage(PAGE_NAMES.WORK_PAGE)
+    }
+  }
 
   const onOpen = () => {
     const layerOne = document.getElementsByClassName("layer-1")[0]
@@ -89,7 +106,7 @@ function PageOne({ isClosing, setClosingPage, explore, wheelTrack }) {
           websites.
         </p>
         <Clickable>
-          <div className="explore-container" onClick={explore}>
+          <div className="explore-container" onClick={onClick}>
             <div className="explore-text hidden-above">
               <p style={exploreTextStyles}>SCROLL</p>
               <p style={exploreTextStyles}>EXPLORE</p>
