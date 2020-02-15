@@ -160,8 +160,7 @@ code {
 }
 
 html {
-  /* font-size: calc(65vw / 1920); */
-  font-size: 1px;
+  font-size: min(1px, calc(100vw / 1920));
 }
 /* @media only screen and (max-width: 1200px) {
   html {
