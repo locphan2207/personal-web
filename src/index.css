@@ -162,17 +162,17 @@ code {
 html {
   font-size: min(1px, calc(100vw / 1920));
 }
-@media only screen and (max-width: 1280px) {
+/* @media only screen and (max-width: 1280px) {
   html {
-    font-size: calc(100vw / 1280px);
+    font-size: calc(100vw / 1920);
   }
-}
+} */
 /* @media only screen and (max-width: 992px) {
   html {
     font-size: calc(100vw / 992);
   }
-}
-@media only screen and (max-width: 768px) {
+} */
+/* @media only screen and (max-width: 768px) {
   html {
     font-size: calc(100vw / 768);
   }
