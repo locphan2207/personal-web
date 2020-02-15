@@ -55,6 +55,7 @@
 }
 @media only screen and (max-width: 480px) {
   .right-vertical-bar {
+    position: fixed;
     right: 3%;
     top: 1%;
   }
@@ -78,6 +79,7 @@
 }
 @media only screen and (max-width: 480px) {
   .left-vertical-bar {
+    position: fixed;
     left: 3%;
     bottom: 1%;
   }
