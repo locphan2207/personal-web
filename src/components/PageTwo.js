@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useCallback } from "react"
 import "./PageTwo.css"
 import { useOnCloseWatcher } from "helpers/animationHelpers"
 import Clickable from "./Clickable"
@@ -18,26 +18,29 @@ function PageTwo({ isClosing, setClosingPage, wheelTrack, setWheelTrack }) {
   const [selectedProjectIdx, setSelectedProjectIdx] = useState(0)
   const [isDescriptionVisible, setIsDescriptionVisible] = useState(false)
 
-  const onProjectSelect = index => {
-    if (index !== selectedProjectIdx) {
-      const layerOne = document.getElementsByClassName("layer-1")[0]
-      const layerTwo = document.getElementsByClassName("layer-2")[0]
-      layerTwo.setAttribute("class", "layer-2")
-      setTimeout(() => layerOne.setAttribute("class", "layer-1"), 100)
+  const onProjectSelect = useCallback(
+    index => {
+      if (index !== selectedProjectIdx) {
+        const layerOne = document.getElementsByClassName("layer-1")[0]
+        const layerTwo = document.getElementsByClassName("layer-2")[0]
+        layerTwo.setAttribute("class", "layer-2")
+        setTimeout(() => layerOne.setAttribute("class", "layer-1"), 100)
 
-      setTimeout(() => {
-        setSelectedProjectIdx(index)
-        setIsDescriptionVisible(false)
-      }, 300)
-      setTimeout(() => {
-        setIsDescriptionVisible(true)
-      }, 400)
-      setTimeout(() => {
-        layerTwo.setAttribute("class", "layer-2 right")
-        setTimeout(() => layerOne.setAttribute("class", "layer-1 right"), 100)
-      }, 500)
-    }
-  }
+        setTimeout(() => {
+          setSelectedProjectIdx(index)
+          setIsDescriptionVisible(false)
+        }, 300)
+        setTimeout(() => {
+          setIsDescriptionVisible(true)
+        }, 400)
+        setTimeout(() => {
+          layerTwo.setAttribute("class", "layer-2 right")
+          setTimeout(() => layerOne.setAttribute("class", "layer-1 right"), 100)
+        }, 500)
+      }
+    },
+    [selectedProjectIdx]
+  )
 
   const onOpen = () => {
     // Animate project titles, start from the bottom up
@@ -81,6 +84,7 @@ function PageTwo({ isClosing, setClosingPage, wheelTrack, setWheelTrack }) {
     if (wheelTrack >= 0 || wheelTrack <= 3) {
       onProjectSelect(wheelTrack)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wheelTrack])
 
   // Update wheelTrack based on the current selected
@@ -88,7 +92,7 @@ function PageTwo({ isClosing, setClosingPage, wheelTrack, setWheelTrack }) {
     if (wheelTrack !== selectedProjectIdx) {
       setWheelTrack(selectedProjectIdx)
     }
-  }, [selectedProjectIdx])
+  }, [selectedProjectIdx, setWheelTrack, wheelTrack])
 
   return (
     <div className={"page-two"}>
@@ -216,7 +220,6 @@ const PROJECTS = [
         controlling the shield using the mouse
       </p>
     ),
-    tags: "Fullstack · Mobile dev",
     tags: "Frontend · Web game",
   },
   {

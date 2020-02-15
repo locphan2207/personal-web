@@ -22,7 +22,7 @@ function PageFour({ isClosing, setClosingPage, wheelTrack }) {
       <div className="links">
         {Object.keys(LINKS).map(key => (
           <Clickable key={key}>
-            <a href={LINKS[key].link} target="_blank">
+            <a href={LINKS[key].link} target="_blank" rel="noopener noreferrer">
               {LINKS[key].text}
             </a>
           </Clickable>

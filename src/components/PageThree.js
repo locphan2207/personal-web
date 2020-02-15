@@ -28,7 +28,7 @@ function PageThree({ isClosing, setClosingPage, wheelTrack, setWheelTrack }) {
     }
     setShouldShowStrokeText(false)
     setTimeout(() => setShouldShowStrokeText(true), 100)
-  }, [selected])
+  }, [selected, setWheelTrack, wheelTrack])
 
   useEffect(() => {
     if (wheelTrack >= 0 && wheelTrack <= 18)

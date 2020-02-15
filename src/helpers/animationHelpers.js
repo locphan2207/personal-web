@@ -111,10 +111,6 @@ const _randomDuration = radius => {
   return Math.random() * (100 / radius) + 10
 }
 
-const _convertRemToPixels = rem => {
-  return rem * parseFloat(getComputedStyle(document.documentElement).fontSize)
-}
-
 const _getAngleFromMatrix = matrixStr => {
   // rotate(Xdeg) = matrix(cos(X), sin(X), -sin(X), cos(X), 0, 0);
   // Xdeg = arcsin(X) or arccos(X)
