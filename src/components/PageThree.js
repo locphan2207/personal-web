@@ -21,14 +21,17 @@ function PageThree({ isClosing, setClosingPage, wheelTrack, setWheelTrack }) {
   const onClose = () => {}
   useOnCloseWatcher(isClosing, setClosingPage, onClose)
 
-  useEffect(() => {
+  const onSelect = select => {
     // Update wheelTrack based on the current selected
-    if (selected !== SKILLS_LIST[wheelTrack]) {
-      setWheelTrack(SKILLS_LIST.findIndex(item => item === selected))
+    if (select !== SKILLS_LIST[wheelTrack]) {
+      setWheelTrack(SKILLS_LIST.findIndex(item => item === select))
     }
+    setSelected(select)
+  }
+
+  useEffect(() => {
     setShouldShowStrokeText(false)
     setTimeout(() => setShouldShowStrokeText(true), 100)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected])
 
   useEffect(() => {
@@ -49,7 +52,7 @@ function PageThree({ isClosing, setClosingPage, wheelTrack, setWheelTrack }) {
               gridRow: `${(idx % 2) + 1} / span 1`,
             }}
             selected={selected}
-            setSelected={setSelected}
+            setSelected={onSelect}
           />
         ))}
       </div>
