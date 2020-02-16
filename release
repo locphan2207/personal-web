@@ -1,6 +1,7 @@
 #!/bin/bash
 yarn build
 
+rm -rf deploy
 cp -r build deploy
 cp CNAME ./deploy/
 
