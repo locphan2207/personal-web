@@ -7,7 +7,7 @@ import * as serviceWorker from "./serviceWorker"
 setTimeout(() => {
   document.getElementById("loading-screen").style.display = "none"
   ReactDOM.render(<App />, document.getElementById("root"))
-}, 2000)
+}, 1000)
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

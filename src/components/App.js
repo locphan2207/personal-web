@@ -99,7 +99,7 @@ function App() {
         </div>
         <NavBar pageVisible={pageVisible} switchPage={switchPage} />
         {window.screen.width > 767 && (
-          <PageIndicator pageVisible={pageVisible} />
+          <PageIndicator pageVisible={pageVisible} switchPage={switchPage} />
         )}
         {pageVisible === PAGE_NAMES.HOME_PAGE && (
           <PageOne
