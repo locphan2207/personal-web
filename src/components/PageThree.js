@@ -28,7 +28,8 @@ function PageThree({ isClosing, setClosingPage, wheelTrack, setWheelTrack }) {
     }
     setShouldShowStrokeText(false)
     setTimeout(() => setShouldShowStrokeText(true), 100)
-  }, [selected, setWheelTrack, wheelTrack])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selected])
 
   useEffect(() => {
     if (wheelTrack >= 0 && wheelTrack <= 18)

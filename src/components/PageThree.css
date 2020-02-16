@@ -13,10 +13,10 @@
 
 .skill-group-container {
   display: grid;
-  width: 70%;
+  width: 50%;
   grid-template-columns: auto auto;
   grid-template-rows: auto auto;
-  grid-gap: 50rem;
+  grid-gap: 40rem;
   justify-items: end;
   align-items: start;
 }
