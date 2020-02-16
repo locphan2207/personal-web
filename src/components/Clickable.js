@@ -6,9 +6,9 @@ const Clickable = props => {
     cursor.style.animation = `cursor-shadow 5s linear ${
       window.screen.width > 767 ? "infinite" : ""
     }`
-    cursor.style.width = "50rem"
-    cursor.style.height = "50rem"
-    cursor.style.borderRadius = "25rem"
+    cursor.style.width = "30rem"
+    cursor.style.height = "30rem"
+    cursor.style.borderRadius = "15rem"
   }
   const onLeave = () => {
     const cursor = document.getElementById("cursor")
