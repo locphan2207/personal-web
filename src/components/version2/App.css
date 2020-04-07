@@ -1,0 +1,17 @@
+html {
+  background-color: #fcfcfc;
+}
+
+#loading-screen {
+  background-color: #fcfcfc;
+}
+
+#loading-screen .bar-container {
+  background-color: #a8a5a3;
+}
+
+#loading-screen .bar {
+  background: linear-gradient(to right, #433c4c, #e59d39);
+}
+
+/* START */

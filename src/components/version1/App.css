@@ -1,3 +1,23 @@
+@font-face {
+  font-family: "Palatino";
+  src: local("Palatino"), url(./assets/palatino-linotype.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Palatino Bold";
+  src: local("Palatino Bold"),
+    url(./assets/palatino-linotype-bold.ttf) format("truetype");
+}
+
+html {
+  background-color: #130f0d;
+}
+
+#loading-screen {
+  background-color: #130f0d;
+}
+
+/* START */
 .scroll-catch {
   width: 100vw;
   height: 100vh;
