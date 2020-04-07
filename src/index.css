@@ -133,13 +133,10 @@ table {
 html {
   overflow: hidden; /* avoid bouncing scroll in mac*/
   height: 100%;
-  font-size: min(1px, calc(100vw / 1920));
 }
-
 @media only screen and (max-width: 480px) {
   html {
     overflow: visible;
-    font-size: calc(100vw / 480);
   }
 }
 
@@ -165,7 +162,6 @@ a {
 #root {
   height: 100%;
   display: flex;
-  justify-content: center;
 }
 
 #loading-screen {
@@ -178,11 +174,13 @@ a {
   align-items: center;
   justify-content: center;
   z-index: 100;
+  opacity: 1;
+  transition: opacity 0.2s linear;
 }
 
 #loading-screen .bar-container {
   width: 30%;
-  height: 4rem;
+  height: 2rem;
   background-color: #a8a5a3;
   position: relative;
   overflow: hidden;

@@ -1,0 +1,39 @@
+.link-container {
+  overflow: visible;
+  width: fit-content;
+}
+
+.link-text {
+  color: #ad986f;
+  font-size: 20rem;
+  margin-top: 20rem;
+}
+
+.link-text:hover {
+  color: #0a0a0a;
+  cursor: pointer;
+}
+
+.underline {
+  background-color: #ad986f;
+  height: 1rem;
+  transition: all 0.5s ease-in-out;
+  width: 150%;
+  animation: 0.5s line 0.5s ease-in-out backwards;
+  overflow: visible;
+  margin-top: 5rem;
+}
+
+.link-text:hover ~ .underline {
+  width: 100%;
+  background-color: #0a0a0a;
+}
+
+@keyframes line {
+  from {
+    width: 30%;
+  }
+  to {
+    width: 150%;
+  }
+}

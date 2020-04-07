@@ -1,12 +1,13 @@
 @font-face {
   font-family: "Palatino";
-  src: local("Palatino"), url(./assets/palatino-linotype.ttf) format("truetype");
+  src: local("Palatino"),
+    url(../../assets/palatino-linotype.ttf) format("truetype");
 }
 
 @font-face {
   font-family: "Palatino Bold";
   src: local("Palatino Bold"),
-    url(./assets/palatino-linotype-bold.ttf) format("truetype");
+    url(../../assets/palatino-linotype-bold.ttf) format("truetype");
 }
 
 html {
@@ -14,6 +15,16 @@ html {
   cursor: none;
   font-family: Montserrat;
   color: #3e3d3d;
+  font-size: min(1px, calc(100vw / 1920));
+}
+@media only screen and (max-width: 480px) {
+  html {
+    font-size: calc(100vw / 480);
+  }
+}
+
+#root {
+  justify-content: center;
 }
 
 #loading-screen {

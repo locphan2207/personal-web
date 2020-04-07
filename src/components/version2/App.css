@@ -2,6 +2,24 @@ html {
   background-color: #fcfcfc;
   font-family: IBM Plex Sans;
   color: #0a0a0a;
+  font-size: 0.5px;
+}
+@media only screen and (min-width: 480px) {
+  html {
+    overflow: visible;
+    font-size: 0.75px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  html {
+    overflow: visible;
+    font-size: 1px;
+  }
+}
+
+#root {
+  flex-direction: column;
+  padding: 0 10vw;
 }
 
 #loading-screen {
@@ -13,46 +31,56 @@ html {
 }
 
 #loading-screen .bar {
-  background: linear-gradient(120deg, #a76407 0%, #e59d39 50%, #e59d39 100%);
+  background: linear-gradient(120deg, #a76407 0%, #ad986f 50%, #ad986f 100%);
 }
 
-/*0a0a0a*/
 /* START */
-.greeting {
-  font-size: 50rem;
-  width: 50%;
-  line-height: 60rem;
-  font-weight: 300;
-  margin-top: 75rem;
-  margin-left: 25rem;
-  letter-spacing: 2rem;
-  transition: transform 0.3s ease-in-out;
-  text-align: left;
+.intro {
+  display: grid;
+  grid-template-areas:
+    "name-greet"
+    "lottie";
+  align-items: center;
+  margin-top: 10vh;
+  row-gap: 50rem;
+  column-gap: 20rem;
 }
-@media only screen and (max-width: 480px) {
-  .greeting {
-    margin-top: 130%;
-    margin-left: 0;
-    width: 100%;
+@media only screen and (min-width: 480px) {
+  .intro {
+    grid-template-areas: "name-greet lottie";
+    grid-template-columns: 1.5fr 1fr;
   }
 }
 
-.greeting .color-switch {
-  animation: changeColor 0.2s linear 0.5s forwards;
+.name-greet {
+  grid-area: name-greet;
 }
 
-.greeting .underline {
-  background-image: linear-gradient(
-    120deg,
-    #a76407 0%,
-    #e59d39 50%,
-    #e59d39 100%
-  );
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 0% 2rem;
-  animation: underline 0.2s linear 0.5s forwards;
-  overflow: visible;
+.name {
+  font-family: Playfair Display;
+  font-size: 60rem;
+  letter-spacing: 2rem;
+  font-style: italic;
+  margin-left: -5rem;
+}
+
+.greeting {
+  font-size: 20rem;
+  width: 90%;
+  line-height: 30rem;
+  letter-spacing: 1rem;
+  margin-top: 20rem;
+  vertical-align: ce;
+  color: #00000099;
+}
+
+.greeting .color-switch {
+  color: #0a0a0a;
+}
+
+.lottie {
+  grid-area: lottie;
+  background-color: #f5f5f5;
 }
 
 /* Animations */
@@ -62,14 +90,5 @@ html {
   }
   to {
     color: #e59d39;
-  }
-}
-
-@keyframes underline {
-  from {
-    background-size: 0% 2rem;
-  }
-  to {
-    background-size: 100% 2rem;
   }
 }

@@ -5,10 +5,13 @@ import "./index.css"
 import App from "./components/version2/App"
 import * as serviceWorker from "./serviceWorker"
 
+const showLoadingTime = 1000
 setTimeout(() => {
-  document.getElementById("loading-screen").style.display = "none"
+  const loadingScreen = document.getElementById("loading-screen")
+  loadingScreen.style.opacity = "0"
+  loadingScreen.style.zIndex = "-100"
   ReactDOM.render(<App />, document.getElementById("root"))
-}, 1500)
+}, showLoadingTime)
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
