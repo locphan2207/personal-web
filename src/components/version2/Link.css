@@ -9,6 +9,8 @@
   margin-top: 20rem;
   margin-bottom: 3rem;
   font-weight: 700;
+  font-style: italic;
+  letter-spacing: 0.9rem;
 }
 
 .link-text:hover {

@@ -89,6 +89,19 @@ html {
   border-top: 1px solid #946d24;
 }
 
+.sub-section {
+  margin-bottom: 100rem;
+}
+
+.sub-section-title {
+  font-size: 20rem;
+  color: #ad986f;
+  font-family: Playfair Display;
+  text-align: center;
+  margin: 30rem;
+  letter-spacing: 1rem;
+}
+
 .expertise {
   display: grid;
   grid-template-areas:
@@ -133,7 +146,7 @@ html {
 @media only screen and (min-width: 480px) {
   .expertise-section:nth-child(odd) {
     column-gap: 20rem;
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-areas:
       "exp-header exp-lottie"
       "exp-text exp-lottie"
@@ -141,7 +154,7 @@ html {
   }
   .expertise-section:nth-child(even) {
     column-gap: 20rem;
-    grid-template-columns: 1fr 1.5fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-areas:
       "exp-lottie exp-header"
       "exp-lottie exp-text"
@@ -154,6 +167,7 @@ html {
   font-size: 30rem;
   font-weight: 700;
   grid-area: exp-header;
+  letter-spacing: 0.9rem;
 }
 
 .expertise-text {
@@ -216,7 +230,7 @@ html {
       "w-info w-desc"
       "w-link w-desc"
       ". w-desc";
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr 3fr;
     grid-template-rows: fit-content;
     column-gap: 20rem;
   }
@@ -232,6 +246,7 @@ html {
   font-family: Playfair Display;
   font-size: 30rem;
   font-weight: 700;
+  letter-spacing: 0.9rem;
 }
 
 .work-year {
