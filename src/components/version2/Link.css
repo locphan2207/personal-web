@@ -7,6 +7,7 @@
   color: #ad986f;
   font-size: 15rem;
   margin-top: 20rem;
+  margin-bottom: 3rem;
   font-weight: 700;
 }
 
@@ -17,9 +18,9 @@
 
 .underline {
   background-color: #ad986f;
-  height: 1rem;
+  height: 1px;
   transition: all 0.5s ease-in-out;
-  width: 150%;
+  width: calc(100% + 20rem);
   animation: 0.5s line 0.5s ease-in-out backwards;
   overflow: visible;
   margin-top: 5rem;
@@ -35,6 +36,6 @@
     width: 30%;
   }
   to {
-    width: 150%;
+    width: calc(100% + 20rem);
   }
 }

@@ -84,9 +84,12 @@ html {
   grid-area: lottie;
 }
 
+.big-section {
+  padding: 5vw 3vw;
+  border-top: 1px solid #946d24;
+}
+
 .expertise {
-  padding: 3vw;
-  border-top: 0.5rem solid #ad986f;
   display: grid;
   grid-template-areas:
     "frontend"
@@ -182,7 +185,7 @@ html {
 }
 
 .expertise-skills span {
-  color: #ad986f;
+  color: #946d24;
   font-family: Playfair Display;
   font-weight: 700;
 }
@@ -194,6 +197,88 @@ html {
 
 .expertise-section:nth-child(-n + 2) .expertise-lottie {
   width: 50%;
+}
+
+.work-section {
+  display: grid;
+  grid-template-areas:
+    "w-info w-year"
+    "w-info w-tags"
+    "w-desc w-desc"
+    "w-link .";
+  align-items: flex-start;
+}
+@media only screen and (min-width: 480px) {
+  .work-section {
+    grid-template-areas:
+      ". w-year"
+      ". w-tags"
+      "w-info w-desc"
+      "w-link w-desc"
+      ". w-desc";
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: fit-content;
+    column-gap: 20rem;
+  }
+}
+
+.work-info {
+  grid-area: w-info;
+  align-self: flex-start;
+  justify-self: flex-start;
+}
+
+.work-section h3 {
+  font-family: Playfair Display;
+  font-size: 30rem;
+  font-weight: 700;
+}
+
+.work-year {
+  font-family: Playfair Display;
+  font-size: 15rem;
+  justify-self: flex-end;
+  align-self: flex-start;
+  grid-area: w-year;
+}
+
+.work-role {
+  /* color: #946d24; */
+  color: #00000099;
+  font-family: Playfair Display;
+  font-size: 20rem;
+  line-height: 30rem;
+}
+
+.work-tags {
+  font-size: 15rem;
+  line-height: 20rem;
+  color: #00000099;
+  font-family: Playfair Display;
+  font-weight: 700;
+  grid-area: w-tags;
+  justify-self: flex-end;
+  align-self: flex-start;
+}
+
+.work-desc {
+  font-size: 20rem;
+  line-height: 30rem;
+  color: #00000099;
+  grid-area: w-desc;
+  justify-self: flex-end;
+  align-self: flex-start;
+}
+@media only screen and (min-width: 480px) {
+  .work-desc {
+    font-size: 15rem;
+    line-height: 25rem;
+    margin-top: -20rem;
+  }
+}
+
+.work-link {
+  grid-area: w-link;
 }
 
 /* Animations */
