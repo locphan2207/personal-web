@@ -43,7 +43,7 @@ function App() {
             <span>Skills</span>: React, React Native, Redux, Redux Saga, HTML5,
             CSS3, jQuery
           </p>
-          <div className="expertise-lottie" style={{ width: "50%" }}>
+          <div className="expertise-lottie">
             <lottie-player
               src="https://assets4.lottiefiles.com/datafiles/BaVRvn779cBHwSV/data.json"
               background="transparent"
@@ -64,7 +64,7 @@ function App() {
           <p className="expertise-skills">
             <span>Skills</span>: Django, Flask, Rails, SQL, NoSQL
           </p>
-          <div className="expertise-lottie" style={{ width: "50%" }}>
+          <div className="expertise-lottie">
             <lottie-player
               src="https://assets1.lottiefiles.com/private_files/lf30_CkJZhd.json"
               background="transparent"
