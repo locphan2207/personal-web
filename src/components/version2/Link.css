@@ -5,8 +5,9 @@
 
 .link-text {
   color: #ad986f;
-  font-size: 20rem;
+  font-size: 15rem;
   margin-top: 20rem;
+  font-weight: 700;
 }
 
 .link-text:hover {
