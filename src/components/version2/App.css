@@ -36,12 +36,19 @@ html {
 }
 
 /* START */
-#scroll-trigger {
+.sticky-header {
+  padding: 5rem 5vw;
   position: fixed;
-  top: 80%;
-  height: 5rem;
-  width: 100rem;
-  background-color: red;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+.name {
+  font-family: Playfair Display;
+  font-size: 60rem;
+  letter-spacing: 2rem;
+  font-style: italic;
 }
 
 .intro {
@@ -69,16 +76,6 @@ html {
 
 .name-greet {
   grid-area: name-greet;
-}
-
-.name {
-  font-family: Playfair Display;
-  font-size: 60rem;
-  letter-spacing: 2rem;
-  font-style: italic;
-  margin-left: -5rem;
-  position: fixed;
-  top: 0;
 }
 
 .greeting {
