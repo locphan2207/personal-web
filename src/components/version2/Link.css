@@ -1,6 +1,7 @@
 .link-container {
   overflow: visible;
   width: fit-content;
+  transition: opacity 0.2s ease-out;
 }
 
 .link-text {
@@ -8,9 +9,9 @@
   font-size: 15rem;
   margin-top: 20rem;
   margin-bottom: 3rem;
-  font-weight: 700;
+  font-weight: 600;
   font-style: italic;
-  letter-spacing: 0.9rem;
+  letter-spacing: 0.7rem;
 }
 
 .link-text:hover {
@@ -18,12 +19,15 @@
   cursor: pointer;
 }
 
+.link-text-dark:hover {
+  color: #ffffff;
+}
+
 .underline {
   background-color: #ad986f;
   height: 1px;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.2s ease-out;
   width: calc(100% + 20rem);
-  animation: 0.5s line 0.5s ease-in-out backwards;
   overflow: visible;
   margin-top: 5rem;
 }
@@ -31,6 +35,10 @@
 .link-text:hover ~ .underline {
   width: 100%;
   background-color: #0a0a0a;
+}
+
+.link-text-dark:hover ~ .underline {
+  background-color: #ffffff;
 }
 
 @keyframes line {

@@ -1,14 +1,47 @@
-import React from "react"
+import React, { useEffect } from "react"
+import { useSpring, animated, config } from "react-spring"
+
 import "./App.css"
+
 import Link from "./Link"
+import Image from "./Image"
+
+import food from "assets/food.png"
+import dataBlock from "assets/data-block.png"
+import emotion from "assets/emotion.png"
+import {
+  createNameToHeaderScene,
+  interpolateRange,
+} from "helpers/animationHelpers2"
 
 function App() {
+  const [props, set] = useSpring(() => ({
+    progress: 0,
+    config: config.default,
+  }))
+
+  const transformName = props.progress.interpolate(progress => {
+    const dx = interpolateRange(progress, [0, 1], [0, -20])
+    const dy = interpolateRange(progress, [0, 1], [20, 0])
+    const scale = interpolateRange(progress, [0, 1], [1, 0.5])
+    return `translate(${dx}%, ${dy}vh) scale(${scale})`
+  })
+
+  // Create scene after mounting
+  useEffect(() => {
+    createNameToHeaderScene(set)
+  }, [set])
   return (
     <>
       {/*Intro*/}
+      <div className="sticky-header">
+        <animated.h1 className="name" style={{ transform: transformName }}>
+          Tan Loc Phan
+        </animated.h1>
+        <animated.div className="sticky-header-bg"></animated.div>
+      </div>
       <div className="intro">
         <div className="name-greet">
-          <h1 className="name">Tan Loc Phan</h1>
           <p className="greeting">
             Hi there,
             <br />
@@ -16,7 +49,7 @@ function App() {
             loves building functional, beautiful and interactive web
             applications.
           </p>
-          <Link text="Learn more" />
+          <Link text="Learn more" delay={0.5} />
         </div>
         <div className="intro-lottie">
           <lottie-player
@@ -140,7 +173,41 @@ function App() {
             </p>
           </div>
         </div>
-        <p className="sub-section-title">PROJECTS</p>
+        <div className="sub-section">
+          <p className="sub-section-title">PROJECTS</p>
+          <div className="project-section">
+            <div className="project-item">
+              <Image src={food} />
+              <h3>Food Stories</h3>
+              <p className="project-year">2018</p>
+              <p className="project-desc">
+                Food Stories is a full-stack web application that is inspired by
+                Kitchen Stories. The project is built entirely on{" "}
+                <span>Ruby on Rails</span> backend and with{" "}
+                <span>React-Redux</span> frontend
+              </p>
+            </div>
+            <div className="project-item">
+              <Image src={dataBlock} />
+              <h3>Data Block</h3>
+              <p className="project-year">2018</p>
+              <p className="project-desc">
+                A game built with <span>JavaScript</span>. Players protect a
+                character from being hit by big blocks of data falling down from
+                the sky by controlling the shield using the mouse
+              </p>
+            </div>
+            <div className="project-item">
+              <Image src={emotion} />
+              <h3>Emotion Diary</h3>
+              <p className="project-year">2018</p>
+              <p className="project-desc">
+                A cross-platform mobile app to keep track of users' emotions,
+                built with <span>React Native</span> and <span>Firebase</span>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   )
