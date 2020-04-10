@@ -1,9 +1,11 @@
-function makeCallback(callback) {
+function makeCallback(callback, type = "appear") {
   return (entries, observer) => {
     for (const entry of entries) {
-      if (entry.isIntersecting) {
-        console.log("calling")
-        callback()
+      console.log(entry)
+      if (type === "appear") {
+        if (entry.isIntersecting) {
+          callback()
+        }
       }
     }
   }

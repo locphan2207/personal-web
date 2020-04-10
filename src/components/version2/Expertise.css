@@ -1,6 +1,7 @@
 .expertise {
   display: grid;
   grid-template-areas:
+    "vertical-bar"
     "frontend"
     "backend"
     "cs";
@@ -8,12 +9,14 @@
 }
 @media only screen and (min-width: 480px) {
   .expertise {
-    grid-template-areas:
-      "frontend"
-      "backend"
-      "cs";
     row-gap: 100rem;
   }
+}
+
+.big-section .bar {
+  height: 1px;
+  background-color: #946d24;
+  grid-area: vertical-bar;
 }
 
 .frontend {
@@ -102,8 +105,4 @@
 .expertise-lottie {
   grid-area: exp-lottie;
   justify-self: center;
-}
-
-.expertise-section:nth-child(-n + 2) .expertise-lottie {
-  width: 50%;
 }

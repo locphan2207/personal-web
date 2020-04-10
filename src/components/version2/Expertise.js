@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import { useSpring, animated, config } from "react-spring"
 
 import "./Expertise.css"
@@ -7,9 +7,19 @@ import { interpolateRange } from "helpers/animationHelpers2"
 import { makeObserver } from "helpers/observer"
 
 function Expertise() {
+  const refBar = useRef(null)
+  const refFE = useRef(null)
+  const refBE = useRef(null)
+  const refCS = useRef(null)
+
+  const [isBarVisible, setIsBarVisible] = useState(false)
   const [isFEVisible, setIsFEVisible] = useState(false)
   const [isBEVisible, setIsBEVisible] = useState(false)
   const [isCSVisible, setIsCSVisible] = useState(false)
+  const [propsBar, setBar] = useSpring(() => ({
+    value: 0,
+    config: config.default,
+  }))
   const [propsFE, setFE] = useSpring(() => ({
     value: 0,
     config: config.default,
@@ -24,13 +34,15 @@ function Expertise() {
   }))
 
   useEffect(() => {
-    const frontendEl = document.getElementById("fronend")
-    makeObserver(frontendEl, () => setIsFEVisible(true))
-    const backendEl = document.getElementById("backend")
-    makeObserver(backendEl, () => setIsBEVisible(true))
-    const csEl = document.getElementById("cs")
-    makeObserver(csEl, () => setIsCSVisible(true))
+    makeObserver(refBar.current, () => setIsBarVisible(true))
+    makeObserver(refFE.current, () => setIsFEVisible(true))
+    makeObserver(refBE.current, () => setIsBEVisible(true))
+    makeObserver(refCS.current, () => setIsCSVisible(true))
   }, [])
+
+  useEffect(() => {
+    if (isBarVisible) setBar({ value: 1 })
+  }, [isBarVisible, setBar])
 
   useEffect(() => {
     if (isFEVisible) setFE({ value: 1 })
@@ -50,12 +62,14 @@ function Expertise() {
       const dx = interpolateRange(value, [0, 1], range)
       return `translateX(${dx}vh)`
     })
+  const barWidth = propsBar.value.interpolate([0, 1], ["0%", "100%"])
 
   return (
-    <div id="expertise" className=" big-section expertise">
+    <div className=" big-section expertise">
+      <animated.div ref={refBar} className="bar" style={{ width: barWidth }} />
       <animated.div
-        id="fronend"
-        className="expertise-section fronend"
+        ref={refFE}
+        className="expertise-section frontend"
         style={{
           opacity: opacity(propsFE),
           transform: translateX(propsFE, [-20, 0]),
@@ -75,7 +89,7 @@ function Expertise() {
           <span>Skills</span>: React, React Native, Redux, Redux Saga, HTML5,
           CSS3, jQuery
         </p>
-        <div className="expertise-lottie">
+        <div className="expertise-lottie" style={{ width: "50%" }}>
           <lottie-player
             src="https://assets4.lottiefiles.com/datafiles/BaVRvn779cBHwSV/data.json"
             background="transparent"
@@ -87,7 +101,7 @@ function Expertise() {
         </div>
       </animated.div>
       <animated.div
-        id="backend"
+        ref={refBE}
         className="expertise-section backend"
         style={{
           opacity: opacity(propsBE),
@@ -105,7 +119,7 @@ function Expertise() {
         <p className="expertise-skills">
           <span>Skills</span>: Django, Flask, Rails, SQL, NoSQL
         </p>
-        <div className="expertise-lottie">
+        <div className="expertise-lottie" style={{ width: "50%" }}>
           <lottie-player
             src="https://assets1.lottiefiles.com/private_files/lf30_CkJZhd.json"
             background="transparent"
@@ -117,7 +131,7 @@ function Expertise() {
         </div>
       </animated.div>
       <animated.div
-        id="cs"
+        ref={refCS}
         className="expertise-section cs"
         style={{
           opacity: opacity(propsCS),

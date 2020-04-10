@@ -5,10 +5,7 @@ import "./Intro.css"
 
 import Link from "./shared/Link"
 
-import {
-  createNameToHeaderScene,
-  interpolateRange,
-} from "helpers/animationHelpers2"
+import { interpolateRange } from "helpers/animationHelpers2"
 
 function Intro() {
   return (

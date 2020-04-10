@@ -1,15 +1,5 @@
 import ScrollMagic from "scrollmagic"
-const controller = new ScrollMagic.Controller()
-
-export const interpolateRange = (input, inRange, outRange) => {
-  const inRangeLength = inRange[1] - inRange[0]
-  const outRangeLength = outRange[1] - outRange[0]
-  const inOffset = inRange[0]
-  const outOffset = outRange[0]
-  const inPercent = (input - inOffset) / inRangeLength
-  const output = inPercent * outRangeLength + outOffset
-  return output
-}
+const scrollController = new ScrollMagic.Controller()
 
 export const createNameToHeaderScene = callback =>
   new ScrollMagic.Scene({
@@ -20,6 +10,14 @@ export const createNameToHeaderScene = callback =>
     .on("progress", ({ progress, scrollDirection }) => {
       callback({ progress })
     })
-    .addTo(controller)
+    .addTo(scrollController)
 
-export default controller
+export const interpolateRange = (input, inRange, outRange) => {
+  const inRangeLength = inRange[1] - inRange[0]
+  const outRangeLength = outRange[1] - outRange[0]
+  const inOffset = inRange[0]
+  const outOffset = outRange[0]
+  const inPercent = (input - inOffset) / inRangeLength
+  const output = inPercent * outRangeLength + outOffset
+  return output
+}
