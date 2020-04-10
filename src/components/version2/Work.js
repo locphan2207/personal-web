@@ -3,8 +3,8 @@ import { useSpring, animated, config } from "react-spring"
 
 import "./Work.css"
 
-import Link from "./Link"
-import Image from "./Image"
+import Link from "./shared/Link"
+import Image from "./shared/Image"
 
 import food from "assets/food.png"
 import dataBlock from "assets/data-block.png"

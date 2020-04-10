@@ -3,7 +3,7 @@ import { useSpring, animated, config } from "react-spring"
 
 import "./Intro.css"
 
-import Link from "./Link"
+import Link from "./shared/Link"
 
 import {
   createNameToHeaderScene,
