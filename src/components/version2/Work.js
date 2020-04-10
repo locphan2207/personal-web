@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useRef } from "react"
+import { useSpring, animated, config } from "react-spring"
+
 import "./Work.css"
 
 import Link from "./shared/Link"
@@ -12,18 +14,54 @@ import { interpolateRange } from "helpers/animationHelpers2"
 import { makeObserver } from "helpers/observer"
 
 function Work() {
+  const refBar = useRef(null)
+  const refWork = useRef(null)
+
+  const [isBarVisible, setIsBarVisible] = useState(false)
   const [isWorkVisible, setIsWorkVisible] = useState(false)
-  const [isProjectVisible, setIsProjectVisible] = useState(false)
+  const [propsBar, setBar] = useSpring(() => ({
+    value: 0,
+    config: config.default,
+  }))
+  const [propsWork, setWork] = useSpring(() => ({
+    value: 0,
+    config: config.default,
+  }))
+
   useEffect(() => {
-    const workEl = document.getElementById("work")
-    const projEl = document.getElementById("project")
-    makeObserver(workEl, () => setIsWorkVisible(true))
-    makeObserver(projEl, () => setIsProjectVisible(true))
+    makeObserver(refBar.current, () => setIsBarVisible(true))
+    makeObserver(refWork.current, () => setIsWorkVisible(true), {
+      triggerPosition: 0.8,
+    })
   }, [])
+
+  useEffect(() => {
+    if (isBarVisible) setBar({ value: 1 })
+  }, [isBarVisible, setBar])
+
+  useEffect(() => {
+    if (isWorkVisible) setWork({ value: 1 })
+  }, [isWorkVisible, setWork])
+
+  const barWidth = propsBar.value.interpolate([0, 1], ["0%", "100%"])
+  const opacity = props => props.value.interpolate([0, 1], [0, 1])
+  const translateY = (props, range) =>
+    props.value.interpolate(value => {
+      const dy = interpolateRange(value, [0, 1], range)
+      return `translateY(${dy}vh)`
+    })
 
   return (
     <div className="big-section">
-      <div id="work" className="sub-section">
+      <animated.div ref={refBar} className="bar" style={{ width: barWidth }} />
+      <animated.div
+        ref={refWork}
+        className="sub-section"
+        style={{
+          opacity: opacity(propsWork),
+          transform: translateY(propsWork, [30, 0]),
+        }}
+      >
         <p className="sub-section-title">WORK</p>
         <div className="work-section">
           <p className="work-year">2018 - 2020</p>
@@ -54,7 +92,7 @@ function Work() {
             reports to avoid bugs and crashes
           </p>
         </div>
-      </div>
+      </animated.div>
       )}
       <div id="project" className="sub-section">
         <p className="sub-section-title">PROJECTS</p>

@@ -10,14 +10,19 @@ function makeCallback(callback, type = "appear") {
     }
   }
 }
-const observerOptions = {
-  rootMargin: "0px 0px -50% 0px",
-}
+const makeOptions = ({ threshold, triggerPosition }) => ({
+  rootMargin: `0px 0px -${triggerPosition || 0.5 * 100}% 0px`,
+  threshold: threshold || 0.1,
+})
 
-export const makeObserver = (target, callback) => {
+export const makeObserver = (
+  target,
+  callback,
+  { threshold, triggerPosition } = {}
+) => {
   const observer = new IntersectionObserver(
     makeCallback(callback),
-    observerOptions
+    makeOptions({ threshold, triggerPosition })
   )
   observer.observe(target)
   return observer
