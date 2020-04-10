@@ -21,7 +21,7 @@ function App() {
   }))
 
   const transformName = props.progress.interpolate(progress => {
-    const dx = interpolateRange(progress, [0, 1], [5, -25])
+    const dx = interpolateRange(progress, [0, 1], [0, -25])
     const dy = interpolateRange(progress, [0, 1], [20, 0])
     const scale = interpolateRange(progress, [0, 1], [1, 0.5])
     return `translate(${dx}%, ${dy}vh) scale(${scale})`
@@ -29,7 +29,7 @@ function App() {
 
   const backgroundHeader = props.progress.interpolate(
     [0, 1],
-    ["#fcfcfcff", "#f5f5f5fa"]
+    ["#fcfcfcff", "#f5f5f5aa"]
   )
   // Create scene after mounting
   useEffect(() => {
