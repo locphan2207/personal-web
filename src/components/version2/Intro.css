@@ -1,0 +1,42 @@
+.intro {
+  height: 80vh;
+  display: grid;
+  grid-template-areas:
+    "name-greet"
+    "lottie";
+  align-items: flex-end;
+  row-gap: 10rem;
+  column-gap: 20rem;
+  position: relative;
+  grid-template-rows: 1fr 1fr;
+}
+@media only screen and (min-width: 480px) {
+  .intro {
+    align-items: center;
+    height: 100vh;
+    margin-top: 0;
+    grid-template-areas: "name-greet lottie";
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: 1fr;
+  }
+}
+
+.name-greet {
+  grid-area: name-greet;
+}
+
+.greeting {
+  font-size: 20rem;
+  width: 90%;
+  line-height: 30rem;
+  vertical-align: ce;
+  color: #00000099;
+}
+
+.greeting .color-switch {
+  animation: 0.2s changeColor 0.5s ease-out both;
+}
+
+.intro-lottie {
+  grid-area: lottie;
+}

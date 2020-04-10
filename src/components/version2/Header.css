@@ -1,0 +1,17 @@
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: 0 max(10vw, calc((100vw - 1200px) / 2));
+  backdrop-filter: blur(6px);
+}
+
+.name {
+  font-family: Playfair Display;
+  font-size: 60rem;
+  letter-spacing: 2rem;
+  font-style: italic;
+  z-index: 11;
+}
