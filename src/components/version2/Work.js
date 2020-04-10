@@ -1,6 +1,4 @@
-import React, { useEffect } from "react"
-import { useSpring, animated, config } from "react-spring"
-
+import React, { useEffect, useState } from "react"
 import "./Work.css"
 
 import Link from "./shared/Link"
@@ -10,15 +8,22 @@ import food from "assets/food.png"
 import dataBlock from "assets/data-block.png"
 import emotion from "assets/emotion.png"
 
-import {
-  createNameToHeaderScene,
-  interpolateRange,
-} from "helpers/animationHelpers2"
+import { interpolateRange } from "helpers/animationHelpers2"
+import { makeObserver } from "helpers/observer"
 
 function Work() {
+  const [isWorkVisible, setIsWorkVisible] = useState(false)
+  const [isProjectVisible, setIsProjectVisible] = useState(false)
+  useEffect(() => {
+    const workEl = document.getElementById("work")
+    const projEl = document.getElementById("project")
+    makeObserver(workEl, () => setIsWorkVisible(true))
+    makeObserver(projEl, () => setIsProjectVisible(true))
+  }, [])
+
   return (
     <div className="big-section">
-      <div className="sub-section">
+      <div id="work" className="sub-section">
         <p className="sub-section-title">WORK</p>
         <div className="work-section">
           <p className="work-year">2018 - 2020</p>
@@ -50,7 +55,8 @@ function Work() {
           </p>
         </div>
       </div>
-      <div className="sub-section">
+      )}
+      <div id="project" className="sub-section">
         <p className="sub-section-title">PROJECTS</p>
         <div className="project-section">
           <div className="project-item">
@@ -85,6 +91,7 @@ function Work() {
           </div>
         </div>
       </div>
+      )}
     </div>
   )
 }

@@ -1,17 +1,66 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { useSpring, animated, config } from "react-spring"
 
 import "./Expertise.css"
 
-import {
-  createNameToHeaderScene,
-  interpolateRange,
-} from "helpers/animationHelpers2"
+import { interpolateRange } from "helpers/animationHelpers2"
+import { makeObserver } from "helpers/observer"
 
 function Expertise() {
+  const [isFEVisible, setIsFEVisible] = useState(false)
+  const [isBEVisible, setIsBEVisible] = useState(false)
+  const [isCSVisible, setIsCSVisible] = useState(false)
+  const [propsFE, setFE] = useSpring(() => ({
+    value: 0,
+    config: config.default,
+  }))
+  const [propsBE, setBE] = useSpring(() => ({
+    value: 0,
+    config: config.default,
+  }))
+  const [propsCS, setCS] = useSpring(() => ({
+    value: 0,
+    config: config.default,
+  }))
+
+  useEffect(() => {
+    const frontendEl = document.getElementById("fronend")
+    makeObserver(frontendEl, () => setIsFEVisible(true))
+    const backendEl = document.getElementById("backend")
+    makeObserver(backendEl, () => setIsBEVisible(true))
+    const csEl = document.getElementById("cs")
+    makeObserver(csEl, () => setIsCSVisible(true))
+  }, [])
+
+  useEffect(() => {
+    if (isFEVisible) setFE({ value: 1 })
+  }, [isFEVisible, setFE])
+
+  useEffect(() => {
+    if (isBEVisible) setBE({ value: 1 })
+  }, [isBEVisible, setBE])
+
+  useEffect(() => {
+    if (isCSVisible) setCS({ value: 1 })
+  }, [isCSVisible, setCS])
+
+  const opacity = props => props.value.interpolate([0, 1], [0, 1])
+  const translateX = (props, range) =>
+    props.value.interpolate(value => {
+      const dx = interpolateRange(value, [0, 1], range)
+      return `translateX(${dx}vh)`
+    })
+
   return (
-    <div className=" big-section expertise">
-      <div className="expertise-section fronend">
+    <div id="expertise" className=" big-section expertise">
+      <animated.div
+        id="fronend"
+        className="expertise-section fronend"
+        style={{
+          opacity: opacity(propsFE),
+          transform: translateX(propsFE, [-20, 0]),
+        }}
+      >
         <h3>Frontend</h3>
         <p className="expertise-text">
           I love to see beautiful designs come to life by building it with
@@ -36,8 +85,15 @@ function Expertise() {
             // loop
           ></lottie-player>
         </div>
-      </div>
-      <div className="expertise-section backend">
+      </animated.div>
+      <animated.div
+        id="backend"
+        className="expertise-section backend"
+        style={{
+          opacity: opacity(propsBE),
+          transform: translateX(propsBE, [20, 0]),
+        }}
+      >
         <h3>Backend</h3>
         <p className="expertise-text">
           A good web app needs stable a backend. I have used different MVC
@@ -59,8 +115,15 @@ function Expertise() {
             autoplay
           ></lottie-player>
         </div>
-      </div>
-      <div className="expertise-section cs">
+      </animated.div>
+      <animated.div
+        id="cs"
+        className="expertise-section cs"
+        style={{
+          opacity: opacity(propsCS),
+          transform: translateX(propsCS, [-20, 0]),
+        }}
+      >
         <h3>CS Fundamental</h3>
         <p className="expertise-text">
           Applying computer science fundamental knowledge helps me building
@@ -82,7 +145,7 @@ function Expertise() {
             // hover
           ></lottie-player>
         </div>
-      </div>
+      </animated.div>
     </div>
   )
 }
