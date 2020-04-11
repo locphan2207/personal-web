@@ -17,7 +17,7 @@ function Intro() {
           I'm a <span className="color-switch">software engineer</span> who
           loves building functional, beautiful and interactive web applications.
         </p>
-        <Link text="Learn more" delay={0.5} />
+        <Link text="Learn more" link="#expertise" delay={500} />
       </div>
       <div className="intro-lottie">
         <lottie-player

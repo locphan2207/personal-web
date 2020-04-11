@@ -10,7 +10,7 @@
   border: 1px solid #ad986f;
 }
 
-.button-container p {
+.button-text {
   color: #ffffff;
   font-size: 15rem;
   font-weight: 600;
@@ -20,7 +20,7 @@
   user-select: none;
 }
 
-.button-container:hover p {
+.button-container:hover .button-text {
   color: #ad986f;
   cursor: pointer;
   letter-spacing: 1.3rem;

@@ -61,7 +61,9 @@ function Work() {
 
   useEffect(() => {
     makeObserver(refBar.current, () => setIsBarVisible(true))
-    makeObserver(refWork.current, () => setIsWorkVisible(true))
+    makeObserver(refWork.current, () => setIsWorkVisible(true), {
+      threshold: 0.1,
+    })
     makeObserver(refProj.current, () => setIsProjVisible(true))
   }, [])
 
@@ -168,7 +170,14 @@ function Work() {
             <p className="work-role">Software Engineer</p>
           </div>
           <p className="work-tags">Fullstack · Mobile dev</p>
-          <Link className="work-link" text="More" />
+          <Link
+            className="work-link"
+            link="http://getsbk.com/"
+            text="More"
+            delay={500}
+            hidden={!isWorkVisible}
+            newTab
+          />
           <p className="work-desc">
             <br />● Contributed directly to building a cross-platform mobile
             application using React Native from the early stages to the app
@@ -204,7 +213,7 @@ function Work() {
                 key={item.title}
                 style={{ transform: projectTransform(propsProjects[idx]) }}
               >
-                <Image src={item.img} />
+                <Image src={item.img} link={item.link} />
                 <h3>{item.title}</h3>
                 <p className="project-year">{item.year}</p>
                 <p className="project-desc">{item.desc}</p>
@@ -221,20 +230,21 @@ function Work() {
 
 const PROJECTS = [
   {
-    img: food,
-    title: "Food Stories",
+    img: emotion,
+    title: "Emotion Diary",
+    link: "https://github.com/locphan2207/Emotion-Diary",
     year: "2018",
     desc: (
       <>
-        Food Stories is a full-stack web application that is inspired by Kitchen
-        Stories. The project is built entirely on <span>Ruby on Rails</span>{" "}
-        backend and with <span>React-Redux</span> frontend
+        A cross-platform mobile app to keep track of users' emotions, built with{" "}
+        <span>React Native</span> and <span>Firebase</span>
       </>
     ),
   },
   {
     img: dataBlock,
     title: "Data Block",
+    link: "https://locphan2207.github.io/Data-block/",
     year: "2018",
     desc: (
       <>
@@ -245,13 +255,15 @@ const PROJECTS = [
     ),
   },
   {
-    img: emotion,
-    title: "Emotion Diary",
+    img: food,
+    title: "Food Stories",
+    link: "http://food-stories.herokuapp.com/#/",
     year: "2018",
     desc: (
       <>
-        A cross-platform mobile app to keep track of users' emotions, built with{" "}
-        <span>React Native</span> and <span>Firebase</span>
+        Food Stories is a full-stack web application that is inspired by Kitchen
+        Stories. The project is built entirely on <span>Ruby on Rails</span>{" "}
+        backend and with <span>React-Redux</span> frontend
       </>
     ),
   },

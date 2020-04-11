@@ -65,7 +65,7 @@ function Expertise() {
   const barWidth = propsBar.value.interpolate([0, 1], ["0%", "100%"])
 
   return (
-    <div className=" big-section expertise">
+    <div id="expertise" className=" big-section expertise">
       <animated.div ref={refBar} className="bar" style={{ width: barWidth }} />
       <animated.div
         ref={refFE}

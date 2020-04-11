@@ -8,7 +8,7 @@ const imgUrl = url => ({
   backgroundImage: `${imgGradient}, url(${url})`,
 })
 
-function Image({ src }) {
+function Image({ src, link }) {
   const [isHovered, setIsHovered] = useState(false)
   return (
     <div
@@ -18,7 +18,9 @@ function Image({ src }) {
     >
       <div className="img" style={imgUrl(src)}></div>
       <div className="img-layer">
-        {isHovered && <Button text="More" style={{ zIndex: 1 }} />}
+        {isHovered && (
+          <Button text="More" link={link} style={{ zIndex: 1 }} newTab />
+        )}
       </div>
     </div>
   )
