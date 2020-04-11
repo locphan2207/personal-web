@@ -32,14 +32,20 @@ const toDeck = idx => ({
   delay: idx * 100,
 })
 
-const toCarousel = (idx, cardWidth) => ({
-  dx: idx * cardWidth + 10,
-  dy: 0,
-  rotate: 0,
-  rorateX: 0,
-  left: "0%",
-  delay: idx * 100,
-})
+const toCarousel = (idx, cardWidth) => {
+  const bodyWidth = document.getElementById("root").getBoundingClientRect()
+    .width
+  const gap = (bodyWidth - cardWidth * PROJECTS.length) / PROJECTS.length
+  console.log(bodyWidth, gap)
+  return {
+    dx: idx * (cardWidth + gap),
+    dy: 0,
+    rotate: 0,
+    rorateX: 0,
+    left: "0%",
+    delay: idx * 100,
+  }
+}
 
 function Work() {
   const refBar = useRef(null)
@@ -268,14 +274,15 @@ function Work() {
 
 const PROJECTS = [
   {
-    img: emotion,
-    title: "Emotion Diary",
-    link: "https://github.com/locphan2207/Emotion-Diary",
+    img: food,
+    title: "Food Stories",
+    link: "http://food-stories.herokuapp.com/#/",
     year: "2018",
     desc: (
       <>
-        A cross-platform mobile app to keep track of users' emotions, built with{" "}
-        <span>React Native</span> and <span>Firebase</span>
+        Food Stories is a full-stack web application that is inspired by Kitchen
+        Stories. The project is built entirely on <span>Ruby on Rails</span>{" "}
+        backend and with <span>React-Redux</span> frontend
       </>
     ),
   },
@@ -292,16 +299,16 @@ const PROJECTS = [
       </>
     ),
   },
+
   {
-    img: food,
-    title: "Food Stories",
-    link: "http://food-stories.herokuapp.com/#/",
+    img: emotion,
+    title: "Emotion Diary",
+    link: "https://github.com/locphan2207/Emotion-Diary",
     year: "2018",
     desc: (
       <>
-        Food Stories is a full-stack web application that is inspired by Kitchen
-        Stories. The project is built entirely on <span>Ruby on Rails</span>{" "}
-        backend and with <span>React-Redux</span> frontend
+        A cross-platform mobile app to keep track of users' emotions, built with{" "}
+        <span>React Native</span> and <span>Firebase</span>
       </>
     ),
   },
