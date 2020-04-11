@@ -1,7 +1,6 @@
 function makeCallback(callback, type = "appear") {
   return (entries, observer) => {
     for (const entry of entries) {
-      console.log(entry)
       if (type === "appear") {
         if (entry.isIntersecting) {
           callback()
@@ -11,8 +10,8 @@ function makeCallback(callback, type = "appear") {
   }
 }
 const makeOptions = ({ threshold, triggerPosition }) => ({
-  rootMargin: `0px 0px -${triggerPosition || 0.5 * 100}% 0px`,
-  threshold: threshold || 0.1,
+  rootMargin: `0px 0px -${triggerPosition || 0.7 * 100}% 0px`,
+  threshold: threshold || 0.01,
 })
 
 export const makeObserver = (

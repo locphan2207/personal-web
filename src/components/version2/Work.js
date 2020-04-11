@@ -1,5 +1,12 @@
 import React, { useEffect, useState, useRef } from "react"
-import { useSpring, animated, config } from "react-spring"
+import {
+  useSpring,
+  useSprings,
+  animated,
+  interpolate,
+  config,
+} from "react-spring"
+import { useGesture, useDrag } from "react-use-gesture"
 
 import "./Work.css"
 
@@ -16,6 +23,7 @@ import { makeObserver } from "helpers/observer"
 function Work() {
   const refBar = useRef(null)
   const refWork = useRef(null)
+  const refProjects = useRef([])
 
   const [isBarVisible, setIsBarVisible] = useState(false)
   const [isWorkVisible, setIsWorkVisible] = useState(false)
@@ -26,6 +34,12 @@ function Work() {
   const [propsWork, setWork] = useSpring(() => ({
     value: 0,
     config: config.default,
+  }))
+
+  const [propsProj, setProjs] = useSprings(PROJECTS.length, idx => ({
+    dx: 0,
+    dy: 0,
+    config: { mass: 1, tension: 500, friction: 48 },
   }))
 
   useEffect(() => {
@@ -50,6 +64,25 @@ function Work() {
       const dy = interpolateRange(value, [0, 1], range)
       return `translateY(${dy}vh)`
     })
+
+  const projectTransform = ({ dx, dy }) =>
+    interpolate([dx, dy], (dx, dy) => {
+      return `translate(${dx}rem, ${dy}rem)`
+    })
+
+  const bindGestureHandler = useDrag(state => {
+    const {
+      args: [currIdx],
+      down,
+      movement: [dx, dy],
+      // distance,
+      // direction: [xDir],
+    } = state
+    setProjs(idx => {
+      if (currIdx !== idx) return
+      return { dx: down ? dx : 0, dy: down ? dy : 0 }
+    })
+  })
 
   return (
     <div className="big-section">
@@ -97,41 +130,67 @@ function Work() {
       <div id="project" className="sub-section">
         <p className="sub-section-title">PROJECTS</p>
         <div className="project-section">
-          <div className="project-item">
-            <Image src={food} />
-            <h3>Food Stories</h3>
-            <p className="project-year">2018</p>
-            <p className="project-desc">
-              Food Stories is a full-stack web application that is inspired by
-              Kitchen Stories. The project is built entirely on{" "}
-              <span>Ruby on Rails</span> backend and with{" "}
-              <span>React-Redux</span> frontend
-            </p>
-          </div>
-          <div className="project-item">
-            <Image src={dataBlock} />
-            <h3>Data Block</h3>
-            <p className="project-year">2018</p>
-            <p className="project-desc">
-              A game built with <span>JavaScript</span>. Players protect a
-              character from being hit by big blocks of data falling down from
-              the sky by controlling the shield using the mouse
-            </p>
-          </div>
-          <div className="project-item">
-            <Image src={emotion} />
-            <h3>Emotion Diary</h3>
-            <p className="project-year">2018</p>
-            <p className="project-desc">
-              A cross-platform mobile app to keep track of users' emotions,
-              built with <span>React Native</span> and <span>Firebase</span>
-            </p>
-          </div>
+          {PROJECTS.map((item, idx) => {
+            const style = { transform: projectTransform(propsProj[idx]) }
+            console.log(style)
+            return (
+              <animated.div
+                {...bindGestureHandler(idx)}
+                ref={refProjects[idx]}
+                className="project-item"
+                key={item.title}
+                style={style}
+              >
+                <Image src={item.img} />
+                <h3>{item.title}</h3>
+                <p className="project-year">{item.year}</p>
+                <p className="project-desc">{item.desc}</p>
+              </animated.div>
+            )
+          })}
         </div>
       </div>
       )}
     </div>
   )
 }
+
+const PROJECTS = [
+  {
+    img: food,
+    title: "Food Stories",
+    year: "2018",
+    desc: (
+      <>
+        Food Stories is a full-stack web application that is inspired by Kitchen
+        Stories. The project is built entirely on <span>Ruby on Rails</span>{" "}
+        backend and with <span>React-Redux</span> frontend
+      </>
+    ),
+  },
+  {
+    img: dataBlock,
+    title: "Data Block",
+    year: "2018",
+    desc: (
+      <>
+        A game built with <span>JavaScript</span>. Players protect a character
+        from being hit by big blocks of data falling down from the sky by
+        controlling the shield using the mouse
+      </>
+    ),
+  },
+  {
+    img: emotion,
+    title: "Emotion Diary",
+    year: "2018",
+    desc: (
+      <>
+        A cross-platform mobile app to keep track of users' emotions, built with{" "}
+        <span>React Native</span> and <span>Firebase</span>
+      </>
+    ),
+  },
+]
 
 export default Work
