@@ -20,17 +20,26 @@ import emotion from "assets/emotion.png"
 import { interpolateRange } from "helpers/animationHelpers2"
 import { makeObserver } from "helpers/observer"
 
-const randomRotate = idx => {
-  return (idx % 2 === 0 ? 1 : -1) * (idx + 1)
+const getRotate = idx => {
+  return (idx % 2 === 0 ? 1 : -1) * (idx + 1.5)
 }
+const toDeck = idx => ({
+  dx: 0,
+  dy: 10,
+  rotate: getRotate(idx),
+  delay: idx * 100,
+})
 
 function Work() {
   const refBar = useRef(null)
   const refWork = useRef(null)
-  const refProjects = useRef([])
+  const refProj = useRef(null)
 
   const [isBarVisible, setIsBarVisible] = useState(false)
   const [isWorkVisible, setIsWorkVisible] = useState(false)
+  const [isProjVisible, setIsProjVisible] = useState(false)
+  const [goneProj] = useState(() => new Set())
+
   const [propsBar, setBar] = useSpring(() => ({
     value: 0,
     config: config.default,
@@ -40,20 +49,20 @@ function Work() {
     config: config.default,
   }))
 
-  const [propsProj, setProjs] = useSprings(PROJECTS.length, idx => ({
-    dx: 0,
-    dy: 0,
+  const [propsProjects, setProjs] = useSprings(PROJECTS.length, idx => ({
+    dx: (window.innerWidth + 500) * (idx % 2 === 0 ? 1 : -1),
+    dy: 10,
     scale: 1,
-    rotate: randomRotate(idx),
+    rotate: getRotate(idx),
     rotateX: 2,
+    // configs
     config: { mass: 1, tension: 500, friction: 50 },
   }))
 
   useEffect(() => {
     makeObserver(refBar.current, () => setIsBarVisible(true))
-    makeObserver(refWork.current, () => setIsWorkVisible(true), {
-      triggerPosition: 0.6,
-    })
+    makeObserver(refWork.current, () => setIsWorkVisible(true))
+    makeObserver(refProj.current, () => setIsProjVisible(true))
   }, [])
 
   useEffect(() => {
@@ -63,6 +72,12 @@ function Work() {
   useEffect(() => {
     if (isWorkVisible) setWork({ value: 1 })
   }, [isWorkVisible, setWork])
+
+  useEffect(() => {
+    if (isProjVisible) {
+      setProjs(toDeck)
+    }
+  }, [isProjVisible, setProjs])
 
   const barWidth = propsBar.value.interpolate([0, 1], ["0%", "100%"])
   const opacity = props => props.value.interpolate([0, 1], [0, 1])
@@ -93,6 +108,12 @@ function Work() {
       // Only update card of given index
       if (currIdx !== idx) return
 
+      if (goneProj.has(currIdx)) {
+        return {
+          dx: (window.innerWidth + 500) * (dirX > 0 ? 1 : dirX < 0 ? -1 : 0),
+        }
+      }
+
       // When mouse is pressing: Lift and straight up card
       if (down) {
         return {
@@ -106,24 +127,26 @@ function Work() {
 
       // When mouse is released: if velocity is strong -> a flick -> throw card out of screen with the direction
       if (velocity > 2 && Math.abs(dirX) > Math.abs(dirY)) {
-        if (dirX > 0) {
-          return {
-            dx: window.innerWidth + 500,
-          }
-        } else if (dirX < 0) {
-          return { dx: -window.innerWidth - 500 }
+        goneProj.add(currIdx)
+        return {
+          dx: (window.innerWidth + 500) * (dirX > 0 ? 1 : dirX < 0 ? -1 : 0),
         }
       }
 
       // When mouse is released: if velocity is small, let card go back to deck
       return {
         dx: 0,
-        dy: 0,
+        dy: 10,
         scale: 1,
         rotateX: 2,
-        rorate: randomRotate(idx),
+        rorate: getRotate(idx),
       }
     })
+
+    if (!down && goneProj.size === PROJECTS.length) {
+      goneProj.clear()
+      setTimeout(() => setProjs(toDeck), 1000)
+    }
   })
 
   return (
@@ -169,17 +192,17 @@ function Work() {
         </div>
       </animated.div>
       )}
-      <div id="project" className="sub-section">
+      <div ref={refProj} className="sub-section">
         <p className="sub-section-title">PROJECTS</p>
         <div className="project-section">
           {PROJECTS.map((item, idx) => {
             return (
               <animated.div
                 {...bindGestureHandler(idx)}
-                ref={refProjects[idx]}
+                // ref={refProjects[idx]}
                 className="project-item"
                 key={item.title}
-                style={{ transform: projectTransform(propsProj[idx]) }}
+                style={{ transform: projectTransform(propsProjects[idx]) }}
               >
                 <Image src={item.img} />
                 <h3>{item.title}</h3>
@@ -189,6 +212,7 @@ function Work() {
             )
           })}
         </div>
+        )} )}
       </div>
       )}
     </div>
