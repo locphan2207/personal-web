@@ -81,17 +81,15 @@
 }
 
 .project-section {
-  display: grid;
-  grid-template-areas:
-    "p-1"
-    "p-2"
-    "p-3";
-  column-gap: 20rem;
-  row-gap: 50rem;
+  width: 100%;
+  height: 800rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
 @media only screen and (min-width: 480px) {
   .project-section {
-    grid-template-areas: "p-1 p-2 p-3";
+    height: 550rem;
   }
 }
 
@@ -99,7 +97,21 @@
   border-radius: 1%;
   background-color: #f5f5f5;
   overflow: hidden;
-  box-shadow: 10rem 5rem 30rem -23rem #00000094;
+  box-shadow: 2rem 2rem 50rem 0rem #00000014;
+  border: 10rem solid #ffffff;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  cursor: grab;
+}
+@media only screen and (min-width: 480px) {
+  .project-item {
+    width: max(350rem, 20vw);
+  }
+}
+
+.project-item:active {
+  cursor: grabbing;
 }
 
 .project-item h3 {
@@ -107,6 +119,7 @@
   font-family: Playfair Display;
   font-weight: 600;
   margin: 5rem 10rem;
+  user-select: none;
 }
 @media only screen and (min-width: 480px) {
   .project-item h3 {
@@ -119,6 +132,7 @@
   font-family: Playfair Display;
   font-size: 25rem;
   margin: 0 10rem;
+  user-select: none;
 }
 @media only screen and (min-width: 480px) {
   .project-year {
@@ -131,6 +145,7 @@
   line-height: 30rem;
   color: #00000099;
   margin: 10rem;
+  user-select: none;
 }
 @media only screen and (min-width: 480px) {
   .project-desc {

@@ -17,6 +17,7 @@
   font-style: italic;
   letter-spacing: 0.7rem;
   transition: all 0.2s ease-out;
+  user-select: none;
 }
 
 .button-container:hover p {

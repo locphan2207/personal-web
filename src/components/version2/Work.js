@@ -6,7 +6,7 @@ import {
   interpolate,
   config,
 } from "react-spring"
-import { useGesture, useDrag } from "react-use-gesture"
+import { useDrag } from "react-use-gesture"
 
 import "./Work.css"
 
@@ -19,6 +19,10 @@ import emotion from "assets/emotion.png"
 
 import { interpolateRange } from "helpers/animationHelpers2"
 import { makeObserver } from "helpers/observer"
+
+const randomRotate = idx => {
+  return (idx % 2 === 0 ? 1 : -1) * (idx + 1)
+}
 
 function Work() {
   const refBar = useRef(null)
@@ -39,13 +43,16 @@ function Work() {
   const [propsProj, setProjs] = useSprings(PROJECTS.length, idx => ({
     dx: 0,
     dy: 0,
-    config: { mass: 1, tension: 500, friction: 48 },
+    scale: 1,
+    rotate: randomRotate(idx),
+    rotateX: 2,
+    config: { mass: 1, tension: 500, friction: 50 },
   }))
 
   useEffect(() => {
     makeObserver(refBar.current, () => setIsBarVisible(true))
     makeObserver(refWork.current, () => setIsWorkVisible(true), {
-      triggerPosition: 0.8,
+      triggerPosition: 0.6,
     })
   }, [])
 
@@ -65,22 +72,57 @@ function Work() {
       return `translateY(${dy}vh)`
     })
 
-  const projectTransform = ({ dx, dy }) =>
-    interpolate([dx, dy], (dx, dy) => {
-      return `translate(${dx}rem, ${dy}rem)`
-    })
+  const projectTransform = ({ dx, dy, rotate, rotateX, scale }) =>
+    interpolate(
+      [dx, dy, rotate, rotateX, scale],
+      (dx, dy, rotate, rotateX, scale) => {
+        const interpolatedDy = interpolateRange(dy, [-50, 50], [-5, 5])
+        return `perspective(800rem) translate(${dx}rem, ${interpolatedDy}rem) rotateZ(${rotate}deg) rotateX(${rotateX}deg) scale(${scale})`
+      }
+    )
 
   const bindGestureHandler = useDrag(state => {
     const {
       args: [currIdx],
       down,
       movement: [dx, dy],
-      // distance,
-      // direction: [xDir],
+      velocity,
+      direction: [dirX, dirY],
     } = state
     setProjs(idx => {
+      // Only update card of given index
       if (currIdx !== idx) return
-      return { dx: down ? dx : 0, dy: down ? dy : 0 }
+
+      // When mouse is pressing: Lift and straight up card
+      if (down) {
+        return {
+          dx,
+          dy,
+          scale: 1.05,
+          rotateX: 0,
+          rotate: 0,
+        }
+      }
+
+      // When mouse is released: if velocity is strong -> a flick -> throw card out of screen with the direction
+      if (velocity > 2 && Math.abs(dirX) > Math.abs(dirY)) {
+        if (dirX > 0) {
+          return {
+            dx: window.innerWidth + 500,
+          }
+        } else if (dirX < 0) {
+          return { dx: -window.innerWidth - 500 }
+        }
+      }
+
+      // When mouse is released: if velocity is small, let card go back to deck
+      return {
+        dx: 0,
+        dy: 0,
+        scale: 1,
+        rotateX: 2,
+        rorate: randomRotate(idx),
+      }
     })
   })
 
@@ -131,15 +173,13 @@ function Work() {
         <p className="sub-section-title">PROJECTS</p>
         <div className="project-section">
           {PROJECTS.map((item, idx) => {
-            const style = { transform: projectTransform(propsProj[idx]) }
-            console.log(style)
             return (
               <animated.div
                 {...bindGestureHandler(idx)}
                 ref={refProjects[idx]}
                 className="project-item"
                 key={item.title}
-                style={style}
+                style={{ transform: projectTransform(propsProj[idx]) }}
               >
                 <Image src={item.img} />
                 <h3>{item.title}</h3>
