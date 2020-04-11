@@ -110,11 +110,11 @@ function Expertise() {
       >
         <h3>Backend</h3>
         <p className="expertise-text">
-          A good web app needs stable a backend. I have used different MVC
+          A good web app needs a stable backend. I have used different MVC
           frameworks to build databases and RESTful API routes for many
           features. I always keep in mind that the backend knowledge is huge, so
-          I never stop learning. Especially, a system with good scale is
-          essential for services that million users access to.
+          I never stop learning. Especially, a system with a good scale is
+          essential when building services that have millions of users.
         </p>
         <p className="expertise-skills">
           <span>Skills</span>: Django, Flask, Rails, SQL, NoSQL
@@ -140,7 +140,7 @@ function Expertise() {
       >
         <h3>CS Fundamental</h3>
         <p className="expertise-text">
-          Applying computer science fundamental knowledge helps me building
+          Applying computer science fundamental knowledge helps me build
           efficient applications. Using the right algorithms and data structures
           makes the code fast and clean. Every time I write a new function, I
           make sure that the time and space complexity are on point. Knowing

@@ -14,23 +14,16 @@ function Button({
     ...style,
     animation: `${duration}s appear ${delay}s ease-out both`,
   }
+  const openNewTab = () => window.open(link, "_blank")
   return (
-    <div className={`button-container ${className}`} style={styles}>
-      {link && (
-        <a
-          className="button-text"
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {text}
-        </a>
-      )}
-      {onClick && (
-        <p className="button-text" onClick={onClick}>
-          {text}
-        </p>
-      )}
+    <div
+      className={`button-container ${className}`}
+      style={styles}
+      onClick={link ? openNewTab : onClick}
+    >
+      <p className="button-text" onClick={onClick}>
+        {text}
+      </p>
     </div>
   )
 }

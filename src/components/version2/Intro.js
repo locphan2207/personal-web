@@ -1,11 +1,8 @@
-import React, { useEffect } from "react"
-import { useSpring, animated, config } from "react-spring"
+import React from "react"
 
 import "./Intro.css"
 
 import Link from "./shared/Link"
-
-import { interpolateRange } from "helpers/animationHelpers2"
 
 function Intro() {
   return (

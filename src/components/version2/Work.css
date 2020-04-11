@@ -93,6 +93,10 @@
   }
 }
 
+.toggle-view {
+  font-size: 50rem;
+}
+
 .project-item {
   border-radius: 1%;
   background-color: #f5f5f5;
