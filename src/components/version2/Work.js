@@ -24,26 +24,32 @@ const BODY_WIDTH = document.getElementById("root").getBoundingClientRect().width
 const getRotate = idx => {
   return (idx % 2 === 0 ? 1 : -1) * (idx + 1.5)
 }
-const getCardPosInCarousel = (idx, cardWidth) => {
+const getCardPosInCarousel = (projIdx, cardWidth, cardOrder) => {
   const gap = (BODY_WIDTH - cardWidth * PROJECTS.length) / PROJECTS.length
-  return idx * (cardWidth + gap)
+  console.log("order in ", projIdx, cardOrder.indexOf(projIdx), cardOrder)
+  return cardOrder.indexOf(projIdx) * (cardWidth + gap)
 }
 const getCardPosInDeck = cardWidth => {
   return BODY_WIDTH / 2 - cardWidth / 2
 }
+const getCurrMoveIdx = (pos, cardWidth) => {
+  const gap = (BODY_WIDTH - cardWidth * PROJECTS.length) / PROJECTS.length
+  const idx = Math.round(pos / (cardWidth + gap))
+  return idx < 0 ? 0 : idx > PROJECTS.length - 1 ? PROJECTS.length - 1 : idx
+}
 
 const toDeck = (idx, cardWidth) => ({
   dx: getCardPosInDeck(cardWidth),
-  dy: 10,
+  dy: 0,
   rotate: getRotate(idx),
   delay: idx * 100,
   scale: 1,
-  zIndex: PROJECTS.length - idx,
+  zIndex: 0,
 })
 
-const toCarousel = (idx, cardWidth) => {
+const toCarousel = (idx, cardWidth, cardOrder) => {
   return {
-    dx: getCardPosInCarousel(idx, cardWidth),
+    dx: getCardPosInCarousel(idx, cardWidth, cardOrder),
     dy: 0,
     rotate: 0,
     delay: idx * 100,
@@ -58,6 +64,7 @@ function Work() {
   const refProj = useRef(null)
   const refProjects = useRef([])
   const cardWidth = useRef(0)
+  const cardOrder = useRef(PROJECTS.map((_, i) => i))
 
   const [isDeckView, setIsDeckView] = useState(true)
 
@@ -77,13 +84,12 @@ function Work() {
 
   const [propsProjects, setProjs] = useSprings(PROJECTS.length, idx => ({
     dx: (window.innerWidth + 500) * (idx % 2 === 0 ? 1 : -1),
-    dy: 10,
+    dy: 0,
     scale: 1,
     rotate: getRotate(idx),
-    // left: "50%",
-    zIndex: PROJECTS.length - idx,
+    zIndex: 0,
     // configs
-    config: { mass: 1, tension: 500, friction: 50 },
+    config: { mass: 1, tension: 500, friction: 40 },
   }))
 
   useEffect(() => {
@@ -109,7 +115,7 @@ function Work() {
         setProjs(idx => toDeck(idx, cardWidth.current))
       } else {
         goneProj.clear()
-        setProjs(idx => toCarousel(idx, cardWidth.current))
+        setProjs(idx => toCarousel(idx, cardWidth.current, cardOrder.current))
       }
     }
   }, [isProjVisible, isDeckView, setProjs, goneProj])
@@ -130,7 +136,7 @@ function Work() {
 
   const bindGestureHandler = useDrag(state => {
     const {
-      args: [currIdx],
+      args: [projIdx],
       down,
       movement: [dx, dy],
       velocity,
@@ -140,11 +146,12 @@ function Work() {
       // Deck
       setProjs(idx => {
         // Only update card of given index
-        if (currIdx !== idx) return
+        if (projIdx !== idx) return
 
-        if (goneProj.has(currIdx)) {
+        if (goneProj.has(projIdx)) {
           return {
             dx: (window.innerWidth + 500) * (dirX > 0 ? 1 : dirX < 0 ? -1 : 0),
+            immediate: key => key === "zIndex",
           }
         }
 
@@ -155,23 +162,28 @@ function Work() {
             dy,
             scale: 1.05,
             rotate: 0,
+            zIndex: 1,
+            immediate: key => key === "zIndex",
           }
         }
 
         // When mouse is released: if velocity is strong -> a flick -> throw card out of screen with the direction
         if (velocity > 2 && Math.abs(dirX) > Math.abs(dirY)) {
-          goneProj.add(currIdx)
+          goneProj.add(projIdx)
           return {
             dx: (window.innerWidth + 500) * (dirX > 0 ? 1 : dirX < 0 ? -1 : 0),
+            immediate: key => key === "zIndex",
           }
         }
 
         // When mouse is released: if velocity is small, let card go back to deck
         return {
           dx: getCardPosInDeck(cardWidth.current),
-          dy: 10,
+          dy: 0,
           scale: 1,
           rorate: getRotate(idx),
+          zIndex: 0,
+          immediate: key => key === "zIndex",
         }
       })
 
@@ -181,19 +193,37 @@ function Work() {
       }
     } else {
       // Carousel
+
       setProjs(idx => {
-        if (currIdx !== idx) return
-        if (down) {
+        // if (projIdx !== idx) return
+
+        if (projIdx === idx && down) {
+          const oldIdx = cardOrder.current.indexOf(projIdx)
+          const currMovePos =
+            getCardPosInCarousel(idx, cardWidth.current, cardOrder.current) + dx
+          const newIdx = getCurrMoveIdx(currMovePos, cardWidth.current)
+          if (oldIdx !== newIdx) {
+            console.log("old=", oldIdx, " new=", newIdx)
+            cardOrder.current.splice(oldIdx, 1)
+            console.log("del", cardOrder.current)
+            cardOrder.current.splice(newIdx, 0, projIdx)
+            console.log("add", cardOrder.current)
+          }
           return {
-            dx: getCardPosInCarousel(idx, cardWidth.current) + dx,
+            dx: currMovePos,
             dy,
             scale: 1.05,
+            zIndex: 1,
+            immediate: key => key === "zIndex",
           }
         }
+
         return {
-          dx: getCardPosInCarousel(idx, cardWidth.current),
+          dx: getCardPosInCarousel(idx, cardWidth.current, cardOrder.current),
           dy: 0,
           scale: 1,
+          zIndex: 0,
+          immediate: key => key === "zIndex",
         }
       })
     }
@@ -263,7 +293,6 @@ function Work() {
                 className="project-item"
                 key={item.title}
                 style={{
-                  // left: propsProjects[idx].left,
                   left: 0,
                   transform: projectTransform(propsProjects[idx], idx),
                   zIndex: propsProjects[idx].zIndex,
