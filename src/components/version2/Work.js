@@ -20,32 +20,35 @@ import emotion from "assets/emotion.png"
 import { interpolateRange } from "helpers/animationHelpers2"
 import { makeObserver } from "helpers/observer"
 
+const BODY_WIDTH = document.getElementById("root").getBoundingClientRect().width
 const getRotate = idx => {
   return (idx % 2 === 0 ? 1 : -1) * (idx + 1.5)
 }
-const toDeck = idx => ({
-  dx: 0,
-  dy: 10,
-  left: "50%",
-  rotateX: 2,
-  rotate: getRotate(idx),
-  delay: idx * 100,
-})
-
-const BODY_WIDTH = document.getElementById("root").getBoundingClientRect().width
 const getCardPosInCarousel = (idx, cardWidth) => {
   const gap = (BODY_WIDTH - cardWidth * PROJECTS.length) / PROJECTS.length
   return idx * (cardWidth + gap)
 }
+const getCardPosInDeck = cardWidth => {
+  return BODY_WIDTH / 2 - cardWidth / 2
+}
+
+const toDeck = (idx, cardWidth) => ({
+  dx: getCardPosInDeck(cardWidth),
+  dy: 10,
+  rotate: getRotate(idx),
+  delay: idx * 100,
+  scale: 1,
+  zIndex: PROJECTS.length - idx,
+})
 
 const toCarousel = (idx, cardWidth) => {
   return {
-    dx: 0,
+    dx: getCardPosInCarousel(idx, cardWidth),
     dy: 0,
     rotate: 0,
-    rorateX: 0,
-    left: "0%",
     delay: idx * 100,
+    scale: 1,
+    zIndex: 0,
   }
 }
 
@@ -54,6 +57,7 @@ function Work() {
   const refWork = useRef(null)
   const refProj = useRef(null)
   const refProjects = useRef([])
+  const cardWidth = useRef(0)
 
   const [isDeckView, setIsDeckView] = useState(true)
 
@@ -76,8 +80,8 @@ function Work() {
     dy: 10,
     scale: 1,
     rotate: getRotate(idx),
-    rotateX: 2,
-    left: "50%",
+    // left: "50%",
+    zIndex: PROJECTS.length - idx,
     // configs
     config: { mass: 1, tension: 500, friction: 50 },
   }))
@@ -88,6 +92,7 @@ function Work() {
       threshold: 0.1,
     })
     makeObserver(refProj.current, () => setIsProjVisible(true))
+    cardWidth.current = refProjects.current[0].getBoundingClientRect().width
   }, [])
 
   useEffect(() => {
@@ -101,11 +106,10 @@ function Work() {
   useEffect(() => {
     if (isProjVisible) {
       if (isDeckView) {
-        setProjs(toDeck)
+        setProjs(idx => toDeck(idx, cardWidth.current))
       } else {
         goneProj.clear()
-        const cardWidth = refProjects.current[0].getBoundingClientRect().width
-        setProjs(idx => toCarousel(idx, cardWidth))
+        setProjs(idx => toCarousel(idx, cardWidth.current))
       }
     }
   }, [isProjVisible, isDeckView, setProjs, goneProj])
@@ -118,21 +122,11 @@ function Work() {
       return `translateY(${dy}vh)`
     })
 
-  const projectTransform = ({ dx, dy, rotate, rotateX, scale }, idx) =>
-    interpolate(
-      [dx, dy, rotate, rotateX, scale],
-      (dx, dy, rotate, rotateX, scale) => {
-        const interpolatedDy = interpolateRange(dy, [-50, 50], [-5, 5])
-        if (isDeckView) {
-          return `perspective(800rem) translate(calc(${dx}rem - 50%), ${interpolatedDy}rem) rotateZ(${rotate}deg) rotateX(${rotateX}deg) scale(${scale})`
-        }
-        const cardWidth = refProjects.current[0].getBoundingClientRect().width
-        const initX = getCardPosInCarousel(idx, cardWidth)
-        // console.log(initX)
-        return `translate(${dx +
-          initX}rem, ${interpolatedDy}rem) rotateZ(${rotate}deg) scale(${scale})`
-      }
-    )
+  const projectTransform = ({ dx, dy, rotate, scale }, idx) =>
+    interpolate([dx, dy, rotate, scale], (dx, dy, rotate, scale) => {
+      const interpolatedDy = interpolateRange(dy, [-50, 50], [-5, 5])
+      return `translate(${dx}rem, ${interpolatedDy}rem) rotate(${rotate}deg) scale(${scale})`
+    })
 
   const bindGestureHandler = useDrag(state => {
     const {
@@ -157,10 +151,9 @@ function Work() {
         // When mouse is pressing: Lift and straight up card
         if (down) {
           return {
-            dx,
+            dx: getCardPosInDeck(cardWidth.current) + dx,
             dy,
             scale: 1.05,
-            rotateX: 0,
             rotate: 0,
           }
         }
@@ -175,31 +168,31 @@ function Work() {
 
         // When mouse is released: if velocity is small, let card go back to deck
         return {
-          dx: 0,
+          dx: getCardPosInDeck(cardWidth.current),
           dy: 10,
           scale: 1,
-          rotateX: 2,
           rorate: getRotate(idx),
         }
       })
 
       if (!down && goneProj.size === PROJECTS.length) {
         goneProj.clear()
-        setTimeout(() => setProjs(toDeck), 1000)
+        setTimeout(() => setProjs(idx => toDeck(idx, cardWidth.current)), 1000)
       }
     } else {
       // Carousel
-      console.log(state)
       setProjs(idx => {
         if (currIdx !== idx) return
         if (down) {
           return {
-            dx,
+            dx: getCardPosInCarousel(idx, cardWidth.current) + dx,
+            dy,
             scale: 1.05,
           }
         }
         return {
-          dx: 0,
+          dx: getCardPosInCarousel(idx, cardWidth.current),
+          dy: 0,
           scale: 1,
         }
       })
@@ -270,8 +263,10 @@ function Work() {
                 className="project-item"
                 key={item.title}
                 style={{
-                  left: propsProjects[idx].left,
+                  // left: propsProjects[idx].left,
+                  left: 0,
                   transform: projectTransform(propsProjects[idx], idx),
+                  zIndex: propsProjects[idx].zIndex,
                 }}
               >
                 <Image src={item.img} link={item.link} />
