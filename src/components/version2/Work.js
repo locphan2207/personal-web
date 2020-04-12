@@ -26,8 +26,10 @@ const getRotate = idx => {
 }
 const getCardPosInCarousel = (projIdx, cardWidth, cardOrder) => {
   const gap = (BODY_WIDTH - cardWidth * PROJECTS.length) / PROJECTS.length
-  console.log("order in ", projIdx, cardOrder.indexOf(projIdx), cardOrder)
-  return cardOrder.indexOf(projIdx) * (cardWidth + gap)
+  if (cardOrder) {
+    return cardOrder.indexOf(projIdx) * (cardWidth + gap)
+  }
+  return projIdx * (cardWidth + gap)
 }
 const getCardPosInDeck = cardWidth => {
   return BODY_WIDTH / 2 - cardWidth / 2
@@ -193,24 +195,17 @@ function Work() {
       }
     } else {
       // Carousel
+      const currIdx = cardOrder.current.indexOf(projIdx)
+      const currMovePos = getCardPosInCarousel(currIdx, cardWidth.current) + dx
+      const newIdx = getCurrMoveIdx(currMovePos, cardWidth.current)
+      const newOrder = [...cardOrder.current]
+      newOrder.splice(currIdx, 1)
+      newOrder.splice(newIdx, 0, projIdx)
 
       setProjs(idx => {
-        // if (projIdx !== idx) return
-
         if (projIdx === idx && down) {
-          const oldIdx = cardOrder.current.indexOf(projIdx)
-          const currMovePos =
-            getCardPosInCarousel(idx, cardWidth.current, cardOrder.current) + dx
-          const newIdx = getCurrMoveIdx(currMovePos, cardWidth.current)
-          if (oldIdx !== newIdx) {
-            console.log("old=", oldIdx, " new=", newIdx)
-            cardOrder.current.splice(oldIdx, 1)
-            console.log("del", cardOrder.current)
-            cardOrder.current.splice(newIdx, 0, projIdx)
-            console.log("add", cardOrder.current)
-          }
           return {
-            dx: currMovePos,
+            dx: getCardPosInCarousel(currIdx, cardWidth.current) + dx,
             dy,
             scale: 1.05,
             zIndex: 1,
@@ -219,13 +214,16 @@ function Work() {
         }
 
         return {
-          dx: getCardPosInCarousel(idx, cardWidth.current, cardOrder.current),
+          dx: getCardPosInCarousel(idx, cardWidth.current, newOrder),
           dy: 0,
           scale: 1,
           zIndex: 0,
           immediate: key => key === "zIndex",
         }
       })
+      if (!down) {
+        cardOrder.current = newOrder
+      }
     }
   })
 
