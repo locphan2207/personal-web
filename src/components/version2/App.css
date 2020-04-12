@@ -43,7 +43,7 @@ html {
 }
 
 .big-section {
-  padding: 5vw 3vw;
+  padding: 5vw 0;
 }
 
 .sub-section {
@@ -55,7 +55,7 @@ html {
   color: #ad986f;
   font-family: Playfair Display;
   text-align: center;
-  margin: 30rem;
+  margin: 30rem auto;
   letter-spacing: 1rem;
 }
 

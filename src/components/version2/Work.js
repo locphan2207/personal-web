@@ -26,18 +26,21 @@ const getRotate = idx => {
   return (idx % 2 === 0 ? 1 : -1) * (idx + 1.5)
 }
 const getCardPosInCarousel = (projIdx, cardWidth, cardOrder) => {
-  const gap = (BODY_WIDTH - cardWidth * PROJECTS.length) / PROJECTS.length
+  const margin =
+    (BODY_WIDTH - cardWidth * PROJECTS.length) / (PROJECTS.length * 2)
   if (cardOrder) {
-    return cardOrder.indexOf(projIdx) * (cardWidth + gap)
+    const idx = cardOrder.indexOf(projIdx)
+    return idx * (cardWidth + 2 * margin) + margin
   }
-  return projIdx * (cardWidth + gap)
+  return projIdx * (cardWidth + 2 * margin) + margin
 }
 const getCardPosInDeck = cardWidth => {
   return BODY_WIDTH / 2 - cardWidth / 2
 }
 const getCurrMoveIdx = (pos, cardWidth) => {
-  const gap = (BODY_WIDTH - cardWidth * PROJECTS.length) / PROJECTS.length
-  const idx = Math.round(pos / (cardWidth + gap))
+  const margin =
+    (BODY_WIDTH - cardWidth * PROJECTS.length) / (PROJECTS.length * 2)
+  const idx = Math.round((pos - margin) / (cardWidth + 2 * margin))
   return idx < 0 ? 0 : idx > PROJECTS.length - 1 ? PROJECTS.length - 1 : idx
 }
 
@@ -280,10 +283,6 @@ function Work() {
       )}
       <div ref={refProj} className="sub-section">
         <p className="sub-section-title">PROJECTS</p>
-        <ProjViewIcon
-          onClick={() => setIsDeckView(!isDeckView)}
-          isDeck={isDeckView}
-        />
         <div className="project-section">
           {PROJECTS.map((item, idx) => {
             return (
@@ -306,6 +305,11 @@ function Work() {
             )
           })}
         </div>
+        <ProjViewIcon
+          onClick={() => setIsDeckView(!isDeckView)}
+          isDeck={isDeckView}
+          visible={isProjVisible}
+        />
         )} )}
       </div>
       )}
