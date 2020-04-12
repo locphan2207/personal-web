@@ -32,13 +32,15 @@ const toDeck = idx => ({
   delay: idx * 100,
 })
 
+const BODY_WIDTH = document.getElementById("root").getBoundingClientRect().width
+const getCardPosInCarousel = (idx, cardWidth) => {
+  const gap = (BODY_WIDTH - cardWidth * PROJECTS.length) / PROJECTS.length
+  return idx * (cardWidth + gap)
+}
+
 const toCarousel = (idx, cardWidth) => {
-  const bodyWidth = document.getElementById("root").getBoundingClientRect()
-    .width
-  const gap = (bodyWidth - cardWidth * PROJECTS.length) / PROJECTS.length
-  console.log(bodyWidth, gap)
   return {
-    dx: idx * (cardWidth + gap),
+    dx: 0,
     dy: 0,
     rotate: 0,
     rorateX: 0,
@@ -98,18 +100,15 @@ function Work() {
 
   useEffect(() => {
     if (isProjVisible) {
-      setProjs(toDeck)
+      if (isDeckView) {
+        setProjs(toDeck)
+      } else {
+        goneProj.clear()
+        const cardWidth = refProjects.current[0].getBoundingClientRect().width
+        setProjs(idx => toCarousel(idx, cardWidth))
+      }
     }
-  }, [isProjVisible, setProjs])
-
-  useEffect(() => {
-    if (isDeckView) {
-      setProjs(toDeck)
-    } else if (refProjects.current.length) {
-      const cardWidth = refProjects.current[0].getBoundingClientRect().width
-      setProjs(idx => toCarousel(idx, cardWidth))
-    }
-  }, [isDeckView, setProjs])
+  }, [isProjVisible, isDeckView, setProjs, goneProj])
 
   const barWidth = propsBar.value.interpolate([0, 1], ["0%", "100%"])
   const opacity = props => props.value.interpolate([0, 1], [0, 1])
@@ -119,7 +118,7 @@ function Work() {
       return `translateY(${dy}vh)`
     })
 
-  const projectTransform = ({ dx, dy, rotate, rotateX, scale }) =>
+  const projectTransform = ({ dx, dy, rotate, rotateX, scale }, idx) =>
     interpolate(
       [dx, dy, rotate, rotateX, scale],
       (dx, dy, rotate, rotateX, scale) => {
@@ -127,7 +126,11 @@ function Work() {
         if (isDeckView) {
           return `perspective(800rem) translate(calc(${dx}rem - 50%), ${interpolatedDy}rem) rotateZ(${rotate}deg) rotateX(${rotateX}deg) scale(${scale})`
         }
-        return `translate(${dx}rem, ${interpolatedDy}rem) scale(${scale})`
+        const cardWidth = refProjects.current[0].getBoundingClientRect().width
+        const initX = getCardPosInCarousel(idx, cardWidth)
+        // console.log(initX)
+        return `translate(${dx +
+          initX}rem, ${interpolatedDy}rem) rotateZ(${rotate}deg) scale(${scale})`
       }
     )
 
@@ -186,6 +189,20 @@ function Work() {
       }
     } else {
       // Carousel
+      console.log(state)
+      setProjs(idx => {
+        if (currIdx !== idx) return
+        if (down) {
+          return {
+            dx,
+            scale: 1.05,
+          }
+        }
+        return {
+          dx: 0,
+          scale: 1,
+        }
+      })
     }
   })
 
@@ -254,7 +271,7 @@ function Work() {
                 key={item.title}
                 style={{
                   left: propsProjects[idx].left,
-                  transform: projectTransform(propsProjects[idx]),
+                  transform: projectTransform(propsProjects[idx], idx),
                 }}
               >
                 <Image src={item.img} link={item.link} />
