@@ -1,0 +1,24 @@
+.proj-view-icon {
+  width: 90rem;
+  height: 50rem;
+  position: relative;
+}
+
+.proj-view-icon > div {
+  margin: 20rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 80%;
+  width: 30%;
+}
+
+.proj-view-icon > div:nth-child(1) {
+  background-color: #a62a34;
+}
+.proj-view-icon > div:nth-child(2) {
+  background-color: #7fc8b8;
+}
+.proj-view-icon > div:nth-child(3) {
+  background-color: #e1c793;
+}

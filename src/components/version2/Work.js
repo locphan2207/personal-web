@@ -12,6 +12,7 @@ import "./Work.css"
 
 import Link from "./shared/Link"
 import Image from "./shared/Image"
+import ProjViewIcon from "./shared/ProjViewIcon"
 
 import food from "assets/food.png"
 import dataBlock from "assets/data-block.png"
@@ -279,9 +280,10 @@ function Work() {
       )}
       <div ref={refProj} className="sub-section">
         <p className="sub-section-title">PROJECTS</p>
-        <p onClick={() => setIsDeckView(!isDeckView)} className="toggle-view">
-          CLICK ME
-        </p>
+        <ProjViewIcon
+          onClick={() => setIsDeckView(!isDeckView)}
+          isDeck={isDeckView}
+        />
         <div className="project-section">
           {PROJECTS.map((item, idx) => {
             return (
