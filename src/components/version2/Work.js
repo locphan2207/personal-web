@@ -21,6 +21,8 @@ import emotion from "assets/emotion.png"
 import { interpolateRange } from "helpers/animationHelpers2"
 import { makeObserver } from "helpers/observer"
 
+const isMobile = window.innerWidth < 480
+
 const BODY_WIDTH = document.getElementById("root").getBoundingClientRect().width
 const getRotate = idx => {
   return (idx % 2 === 0 ? 1 : -1) * (idx + 1.5)
@@ -305,11 +307,13 @@ function Work() {
             )
           })}
         </div>
-        <ProjViewIcon
-          onClick={() => setIsDeckView(!isDeckView)}
-          isDeck={isDeckView}
-          visible={isProjVisible}
-        />
+        {!isMobile && (
+          <ProjViewIcon
+            onClick={() => setIsDeckView(!isDeckView)}
+            isDeck={isDeckView}
+            visible={isProjVisible}
+          />
+        )}
         )} )}
       </div>
       )}
