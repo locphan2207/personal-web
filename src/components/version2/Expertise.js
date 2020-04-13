@@ -3,23 +3,20 @@ import { useSpring, animated, config } from "react-spring"
 
 import "./Expertise.css"
 
+import BigSection from "./shared/BigSection"
+
 import { interpolateRange } from "helpers/animationHelpers2"
 import { makeObserver } from "helpers/observer"
 
 function Expertise() {
-  const refBar = useRef(null)
   const refFE = useRef(null)
   const refBE = useRef(null)
   const refCS = useRef(null)
 
-  const [isBarVisible, setIsBarVisible] = useState(false)
   const [isFEVisible, setIsFEVisible] = useState(false)
   const [isBEVisible, setIsBEVisible] = useState(false)
   const [isCSVisible, setIsCSVisible] = useState(false)
-  const [propsBar, setBar] = useSpring(() => ({
-    value: 0,
-    config: config.default,
-  }))
+
   const [propsFE, setFE] = useSpring(() => ({
     value: 0,
     config: config.default,
@@ -34,15 +31,10 @@ function Expertise() {
   }))
 
   useEffect(() => {
-    makeObserver(refBar.current, () => setIsBarVisible(true))
     makeObserver(refFE.current, () => setIsFEVisible(true))
     makeObserver(refBE.current, () => setIsBEVisible(true))
     makeObserver(refCS.current, () => setIsCSVisible(true))
   }, [])
-
-  useEffect(() => {
-    if (isBarVisible) setBar({ value: 1 })
-  }, [isBarVisible, setBar])
 
   useEffect(() => {
     if (isFEVisible) setFE({ value: 1 })
@@ -62,11 +54,9 @@ function Expertise() {
       const dx = interpolateRange(value, [0, 1], range)
       return `translateX(${dx}vh)`
     })
-  const barWidth = propsBar.value.interpolate([0, 1], ["0%", "100%"])
 
   return (
-    <div id="expertise" className=" big-section expertise">
-      <animated.div ref={refBar} className="bar" style={{ width: barWidth }} />
+    <BigSection id="expertise" className="expertise">
       <animated.div
         ref={refFE}
         className="expertise-section frontend"
@@ -93,7 +83,7 @@ function Expertise() {
           <lottie-player
             src="https://assets4.lottiefiles.com/datafiles/BaVRvn779cBHwSV/data.json"
             background="transparent"
-            speed="1"
+            // speed="1"
             autoplay
             // hover
             // loop
@@ -123,8 +113,8 @@ function Expertise() {
           <lottie-player
             src="https://assets1.lottiefiles.com/private_files/lf30_CkJZhd.json"
             background="transparent"
-            speed="0.3"
-            loop
+            // speed="0.3"
+            // loop
             // hover
             autoplay
           ></lottie-player>
@@ -153,14 +143,14 @@ function Expertise() {
           <lottie-player
             src="https://assets1.lottiefiles.com/packages/lf20_z0zkyp.json"
             background="transparent"
-            speed="1"
-            loop
+            // speed="1"
+            // loop
             autoplay
             // hover
           ></lottie-player>
         </div>
       </animated.div>
-    </div>
+    </BigSection>
   )
 }
 

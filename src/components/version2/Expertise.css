@@ -13,12 +13,6 @@
   }
 }
 
-.big-section .bar {
-  height: 1px;
-  background-color: #946d24;
-  grid-area: vertical-bar;
-}
-
 .frontend {
   grid-area: frontend;
 }
@@ -63,7 +57,7 @@
 .expertise-section h3 {
   font-family: Playfair Display;
   font-size: 30rem;
-  font-weight: 700;
+  font-weight: 600;
   grid-area: exp-header;
   letter-spacing: 0.9rem;
 }
@@ -87,7 +81,7 @@
   color: #00000099;
   grid-area: exp-skills;
   font-family: Playfair Display;
-  font-weight: 700;
+  font-weight: 600;
 }
 @media only screen and (min-width: 480px) {
   .expertise-skills {
@@ -99,7 +93,7 @@
 .expertise-skills span {
   color: #946d24;
   font-family: Playfair Display;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .expertise-lottie {

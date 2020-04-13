@@ -30,7 +30,7 @@
 .work-section h3 {
   font-family: Playfair Display;
   font-size: 30rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.9rem;
 }
 
@@ -54,7 +54,7 @@
   line-height: 20rem;
   color: #00000099;
   font-family: Playfair Display;
-  font-weight: 700;
+  font-weight: 600;
   grid-area: w-tags;
   justify-self: flex-end;
   align-self: flex-start;

@@ -5,18 +5,22 @@
   transition: opacity 0.2s ease-out;
 }
 
+.link-container:hover {
+  cursor: pointer;
+}
+
 .link-text {
   color: #ad986f;
   font-size: 15rem;
   margin-bottom: 3rem;
   font-weight: 600;
   font-style: italic;
-  letter-spacing: 0.7rem;
+  letter-spacing: 0.5rem;
+  font-family: Playfair Display;
 }
 
 .link-text:hover {
   color: #0a0a0a;
-  cursor: pointer;
 }
 
 .link-text-dark:hover {

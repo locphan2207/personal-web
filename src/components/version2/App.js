@@ -6,6 +6,7 @@ import Header from "./Header"
 import Intro from "./Intro"
 import Expertise from "./Expertise"
 import Work from "./Work"
+import Contact from "./Contact"
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Intro />
       <Expertise />
       <Work />
+      <Contact />
     </>
   )
 }

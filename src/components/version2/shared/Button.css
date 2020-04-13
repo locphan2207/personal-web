@@ -15,9 +15,10 @@
   font-size: 15rem;
   font-weight: 600;
   font-style: italic;
-  letter-spacing: 0.7rem;
   transition: all 0.2s ease-out;
   user-select: none;
+  letter-spacing: 0.5rem;
+  font-family: Playfair Display;
 }
 
 .button-container:hover .button-text {

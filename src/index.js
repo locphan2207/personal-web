@@ -6,7 +6,7 @@ import "./index.css"
 import App from "./components/version2/App"
 import * as serviceWorker from "./serviceWorker"
 
-const showLoadingTime = 1000
+const showLoadingTime = 2000
 setTimeout(() => {
   const loadingScreen = document.getElementById("loading-screen")
   loadingScreen.style.opacity = "0"

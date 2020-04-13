@@ -10,7 +10,7 @@ function makeCallback(callback, type = "appear") {
   }
 }
 const makeOptions = ({ threshold, triggerPosition }) => ({
-  rootMargin: `0px 0px -${triggerPosition || 0.4 * 100}% 0px`,
+  rootMargin: `0px 0px -${1 - triggerPosition || 0.4 * 100}% 0px`,
   threshold: threshold || 0.5,
 })
 

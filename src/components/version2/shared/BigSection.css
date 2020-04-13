@@ -1,0 +1,9 @@
+.big-section {
+  padding: 5vw 0;
+}
+
+.big-section .bar {
+  height: 1px;
+  background-color: #946d24;
+  grid-area: vertical-bar;
+}

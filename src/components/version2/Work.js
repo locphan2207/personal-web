@@ -13,6 +13,7 @@ import "./Work.css"
 import Link from "./shared/Link"
 import Image from "./shared/Image"
 import ProjViewIcon from "./shared/ProjViewIcon"
+import BigSection from "./shared/BigSection"
 
 import food from "assets/food.png"
 import dataBlock from "assets/data-block.png"
@@ -67,7 +68,6 @@ const toCarousel = (idx, cardWidth, cardOrder) => {
 }
 
 function Work() {
-  const refBar = useRef(null)
   const refWork = useRef(null)
   const refProj = useRef(null)
   const refProjects = useRef([])
@@ -76,16 +76,16 @@ function Work() {
 
   const [isDeckView, setIsDeckView] = useState(true)
 
-  const [isBarVisible, setIsBarVisible] = useState(false)
   const [isWorkVisible, setIsWorkVisible] = useState(false)
   const [isProjVisible, setIsProjVisible] = useState(false)
   const [goneProj] = useState(() => new Set())
 
-  const [propsBar, setBar] = useSpring(() => ({
+  const [propsWork, setWork] = useSpring(() => ({
     value: 0,
     config: config.default,
   }))
-  const [propsWork, setWork] = useSpring(() => ({
+
+  const [propsProj, setProj] = useSpring(() => ({
     value: 0,
     config: config.default,
   }))
@@ -101,7 +101,6 @@ function Work() {
   }))
 
   useEffect(() => {
-    makeObserver(refBar.current, () => setIsBarVisible(true))
     makeObserver(refWork.current, () => setIsWorkVisible(true), {
       threshold: 0.1,
     })
@@ -110,15 +109,12 @@ function Work() {
   }, [])
 
   useEffect(() => {
-    if (isBarVisible) setBar({ value: 1 })
-  }, [isBarVisible, setBar])
-
-  useEffect(() => {
     if (isWorkVisible) setWork({ value: 1 })
   }, [isWorkVisible, setWork])
 
   useEffect(() => {
     if (isProjVisible) {
+      setProj({ value: 1 })
       if (isDeckView) {
         setProjs(idx => toDeck(idx, cardWidth.current))
       } else {
@@ -126,9 +122,8 @@ function Work() {
         setProjs(idx => toCarousel(idx, cardWidth.current, cardOrder.current))
       }
     }
-  }, [isProjVisible, isDeckView, setProjs, goneProj])
+  }, [isProjVisible, setProj, isDeckView, setProjs, goneProj])
 
-  const barWidth = propsBar.value.interpolate([0, 1], ["0%", "100%"])
   const opacity = props => props.value.interpolate([0, 1], [0, 1])
   const translateY = (props, range) =>
     props.value.interpolate(value => {
@@ -234,8 +229,7 @@ function Work() {
   })
 
   return (
-    <div className="big-section">
-      <animated.div ref={refBar} className="bar" style={{ width: barWidth }} />
+    <BigSection>
       <animated.div
         ref={refWork}
         className="sub-section"
@@ -284,7 +278,15 @@ function Work() {
       </animated.div>
       )}
       <div ref={refProj} className="sub-section">
-        <p className="sub-section-title">PROJECTS</p>
+        <animated.p
+          className="sub-section-title"
+          style={{
+            opacity: opacity(propsProj),
+            transform: translateY(propsProj, [-10, 0]),
+          }}
+        >
+          PROJECTS
+        </animated.p>
         <div className="project-section">
           {PROJECTS.map((item, idx) => {
             return (
@@ -317,7 +319,7 @@ function Work() {
         )} )}
       </div>
       )}
-    </div>
+    </BigSection>
   )
 }
 
