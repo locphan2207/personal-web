@@ -26,13 +26,13 @@
 }
 
 .proj-view-icon > div:nth-child(1) {
-  background-color: wheat;
+  background-color: lavender;
 }
 .proj-view-icon > div:nth-child(2) {
   background-color: mediumturquoise;
 }
 .proj-view-icon > div:nth-child(3) {
-  background-color: lightgrey;
+  background-color: wheat;
 }
 
 .proj-view-icon-sub-text {
