@@ -171,7 +171,7 @@ function Work() {
         }
 
         // When mouse is released: if velocity is strong -> a flick -> throw card out of screen with the direction
-        if (velocity > 2 && Math.abs(dirX) > Math.abs(dirY)) {
+        if (velocity > 1.5 && Math.abs(dirX) > Math.abs(dirY)) {
           goneProj.add(projIdx)
           return {
             dx: (window.innerWidth + 500) * (dirX > 0 ? 1 : dirX < 0 ? -1 : 0),
@@ -255,23 +255,28 @@ function Work() {
             newTab
           />
           <p className="work-desc">
-            <br />● Contributed directly to building a cross-platform mobile
+            <br />
+            - Contributed directly to building a cross-platform mobile
             application using React Native from the early stages to the app
             store launch with the increase in user numbers from 0 to 9000
-            <br />● Constructed Redux Saga for API and websocket data flow
-            management to meet the requirements of every key feature
-            <br />● Integrated animated libraries and necessary styles to the
+            <br />
+            - Constructed Redux Saga for API and websocket data flow management
+            to meet the requirements of every key feature
+            <br />
+            - Integrated animated libraries and necessary styles to the
             components to deliver the top-notch UI/UX from the mocked designs
-            <br />● Reduced the number of re-renderings and load times by
-            designing granular components with efficient time complexity
-            selectors
-            <br />● Designed a geofencing micro-service which enforces users’
+            <br />
+            - Reduced the number of re-renderings and load times by designing
+            granular components with efficient time complexity selectors
+            <br />
+            - Designed a geofencing micro-service which enforces users’
             locations with GPS and IP addresses using Flask in the backend and
             React in the frontend
-            <br />● Implemented Django with Redis cache to build essential
-            database models and fast API endpoints for the social features such
-            as profiles, posts and comments
-            <br />● Applied unit and automation tests together with crashlytic
+            <br />
+            - Implemented Django with Redis cache to build essential database
+            models and fast API endpoints for the social features such as
+            profiles, posts and comments
+            <br />- Applied unit and automation tests together with crashlytic
             reports to avoid bugs and crashes
           </p>
         </div>

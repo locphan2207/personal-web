@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import { useSpring, animated, config } from "react-spring"
+import { useSpring, animated } from "react-spring"
 
 import "./Contact.css"
 

@@ -15,7 +15,7 @@ function BigSection({ id, className, children, observerOptions }) {
 
   useEffect(() => {
     makeObserver(refBar.current, () => setIsBarVisible(true), observerOptions)
-  }, [])
+  }, [observerOptions])
 
   useEffect(() => {
     if (isBarVisible) setBar({ value: 1 })
