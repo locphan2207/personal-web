@@ -1,1 +1,1 @@
-loc-phan.com
+https://www.loc-phan.com
