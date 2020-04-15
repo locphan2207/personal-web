@@ -16,7 +16,7 @@ import ProjViewIcon from "./shared/ProjViewIcon"
 import BigSection from "./shared/BigSection"
 
 import food from "assets/food.png"
-import dataBlock from "assets/data-block.png"
+import covid19 from "assets/track-covid19.png"
 import emotion from "assets/emotion.png"
 
 import { interpolateRange } from "helpers/animationHelpers2"
@@ -330,6 +330,18 @@ function Work() {
 
 const PROJECTS = [
   {
+    img: covid19,
+    title: "Track Covid19",
+    link: "https://track-covid19.net",
+    year: "2020",
+    desc: (
+      <>
+        A website for tracking all the stats related to the COVID-19 virus,
+        built with <span>React</span>
+      </>
+    ),
+  },
+  {
     img: food,
     title: "Food Stories",
     link: "http://food-stories.herokuapp.com/#/",
@@ -342,20 +354,6 @@ const PROJECTS = [
       </>
     ),
   },
-  {
-    img: dataBlock,
-    title: "Data Block",
-    link: "https://locphan2207.github.io/Data-block/",
-    year: "2018",
-    desc: (
-      <>
-        A game built with <span>JavaScript</span>. Players protect a character
-        from being hit by big blocks of data falling down from the sky by
-        controlling the shield using the mouse
-      </>
-    ),
-  },
-
   {
     img: emotion,
     title: "Emotion Diary",
